@@ -1,0 +1,170 @@
+# Vajranet UI — plain-HTTP / on-prem nginx template
+#
+# Use this instead of nginx-https.conf.example when the deployment has no public TLS
+# termination in front of it (LAN-internal on-prem installs, e.g. behind a
+# campus/corporate network perimeter that already isolates the host — there is
+# no public internet path to justify certbot/Let's Encrypt here). The Node
+# backend also does NOT terminate TLS in this mode (NODE_ENV=development,
+# no SSL_KEY_PATH/SSL_CERT_PATH set — see backend/.env.example) — everything
+# in the chain, browser -> nginx -> backend, is plain HTTP.
+#
+# Copy this file to /etc/nginx/sites-available/<domain>, replace YOUR_DOMAIN,
+# and enable it (see README, "Install and run locally").
+
+server {
+    listen 8080;   # scripts/setup/06-nginx.sh replaces this with $WEB_PORT (default 8080, as in Docker)
+    server_name YOUR_DOMAIN;
+
+    # Frontend static files. Deliberately NOT pointed at the repo checkout's
+    # frontend/dist directly — nginx's worker user (www-data) usually can't
+    # traverse into a developer/deploy user's home directory. Copy the
+    # built frontend/dist/ output here instead.
+    root /var/www/YOUR_DOMAIN;
+
+    # Response compression. Kept in sync with nginx-https.conf.example's identical block.
+    # Ubuntu's stock /etc/nginx/nginx.conf sets `gzip on` but leaves
+    # `gzip_types` commented out, so nginx's default applies and compresses
+    # text/html only — the JS/CSS bundles and every /api JSON response would go
+    # out uncompressed. Measured on a live deployment, 1,210 KB on the wire
+    # against 215 KB gzipped.
+    #
+    # This matters more here, not less: an on-prem LAN install is exactly where
+    # a slow link or a thin client is likely, and this template is the only
+    # config an http-mode install ever gets.
+    #
+    # woff2 is deliberately absent: already Brotli-compressed internally, so
+    # gzipping it burns CPU for essentially zero bytes.
+    gzip              on;
+    gzip_vary         on;
+    gzip_proxied      any;
+    gzip_comp_level   6;
+    gzip_min_length   1024;
+    gzip_types        text/plain text/css text/xml text/javascript
+                      application/javascript application/json application/xml
+                      application/xml+rss image/svg+xml;
+
+    # Static asset caching.
+    # Vite emits content-hashed filenames, so a given /assets/ URL's bytes can
+    # never change and are safe to cache permanently. Without this nginx sends
+    # no Cache-Control at all and browsers fall back to heuristic freshness,
+    # which after a deploy is near zero: 74% of asset requests measured as full
+    # 200 re-downloads rather than 304s.
+    #
+    # `try_files $uri =404` means a missing /assets/ file returns 404 rather
+    # than falling through to `location /`'s `try_files $uri /index.html`, which
+    # would serve index.html with HTTP 200 — a missing .js chunk delivered as
+    # HTML to a <script> tag, which fails confusingly rather than cleanly. This
+    # matches nginx-https.conf.example, the TLS template.
+    #
+    # Caution for future edits: nginx's `add_header` only inherits from an outer
+    # level when the current level defines none of its own. There are no
+    # server-level add_header directives in this file today, so nothing is being
+    # dropped — but if you add security headers at server or http level, they
+    # will be silently discarded inside this block and the `= /index.html` block
+    # below unless you repeat them here.
+    location /assets/ {
+        # The omission of "always" is deliberate. That flag would apply this
+        # header to error responses too, so a missing chunk would be served as a
+        # 404 carrying a one-year immutable directive and the browser would
+        # cache that 404 for a year. Without it the header applies only to
+        # 2xx/3xx.
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        try_files $uri =404;
+    }
+
+    # index.html is the one unhashed entrypoint, so it must always be
+    # revalidated or a deploy would never be picked up. `location /`'s
+    # try_files internally redirects here, so SPA deep links are covered too.
+    location = /index.html {
+        add_header Cache-Control "no-cache" always;
+    }
+
+    # nginx-https.conf.example's `http2 on;` is deliberately not mirrored here. Over plain
+    # HTTP that would be h2c (cleartext HTTP/2), which no mainstream browser
+    # negotiates, so it would be inert at best. HTTP/2 arrives with TLS, that
+    # is, by switching to nginx-https.conf.example.
+
+    # Agent packages built by scripts/setup/10-agents.sh. A missing file is a real 404 (not the console
+    # page) and the browser is told to save the file.
+    location ~ ^/(linux|windows)_agent\.zip$ {
+        try_files $uri =404;
+        add_header Content-Disposition "attachment";
+        add_header X-Content-Type-Options "nosniff";
+    }
+
+    location / {
+        try_files $uri /index.html;
+    }
+
+    # Backend REST API
+    location /api {
+        proxy_pass         http://127.0.0.1:4000;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_http_version 1.1;
+        proxy_set_header   Connection        "";
+    }
+
+    # Auth subrequest for Grafana
+    location = /auth/grafana {
+        internal;
+        proxy_pass              http://127.0.0.1:4000/api/auth/validate;
+        proxy_pass_request_body off;
+        proxy_set_header        Content-Length "";
+        proxy_set_header        Cookie $http_cookie;
+    }
+
+    # Grafana reverse proxy
+    location /grafana/ {
+        auth_request     /auth/grafana;
+        auth_request_set $vajra_user  $upstream_http_x_user_email;
+        auth_request_set $vajra_name  $upstream_http_x_user_name;
+        auth_request_set $vajra_role  $upstream_http_x_user_role;
+
+        proxy_pass         http://127.0.0.1:3000/;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade           $http_upgrade;
+        proxy_set_header   Connection        "upgrade";
+
+        # Forward Vajra identity to Grafana
+        proxy_set_header   X-WEBAUTH-USER      $vajra_user;
+        proxy_set_header   X-WEBAUTH-USER-NAME $vajra_name;
+        proxy_set_header   X-WEBAUTH-ROLE      $vajra_role;
+    }
+
+    # Health check
+    location /health {
+        proxy_pass         http://127.0.0.1:4000;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_http_version 1.1;
+        proxy_set_header   Connection        "";
+    }
+
+    # WebSocket — covers /ws/ui, /ws/ext, /ws/live
+    location /ws {
+        proxy_pass         http://127.0.0.1:4000;
+        proxy_set_header   Host              $host;
+        proxy_set_header   X-Real-IP         $remote_addr;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto $scheme;
+        proxy_http_version 1.1;
+        proxy_set_header   Upgrade           $http_upgrade;
+        proxy_set_header   Connection        "upgrade";
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+    }
+}
+
+# No :8080 -> :443 redirect block here on purpose — there is no :443 listener
+# in this mode at all. If you later add TLS in front of this box (e.g. a
+# campus reverse proxy, or you outgrow the LAN-only assumption), switch to
+# nginx-https.conf.example instead and replace YOUR_DOMAIN there.

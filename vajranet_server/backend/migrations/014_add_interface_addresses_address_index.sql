@@ -1,0 +1,29 @@
+-- Fleet DB: index on interface_addresses(address) — the owner lookup for
+-- scheduled network scans.
+--
+-- scanSchedulerService.ts resolves "which host owns this IP?" with
+-- `WHERE ia.address = $1`, once per candidate IP and up to 25 per scheduler
+-- tick. The table has no index on `address` (only PK `id` and
+-- idx_interface_addresses_host_id), so every lookup is a sequential scan of
+-- 213k rows / 35 MB. The `LIMIT 1` makes the cost input-dependent: an address
+-- absent from the table, which is the common case during a subnet scan, pays
+-- the full scan (~2,000 buffers, ~24 ms) rather than short-circuiting.
+--
+-- Safety constraint worth stating precisely. An index cannot change which rows
+-- a query matches, but it can change their ORDER, and therefore the visible
+-- result of a query whose ORDER BY is not total or which takes LIMIT without
+-- one. This index serves exactly such a lookup: a LIMIT 1 on a non-unique
+-- column (83,546 distinct addresses in production, 74 of them held by more than
+-- one host). The consuming query in services/scanSchedulerService.ts carries a
+-- total ORDER BY (pref, last_seen DESC NULLS LAST, host_identifier), which is
+-- what makes the index safe to add. Keep that ORDER BY total if the query is
+-- ever edited.
+--
+-- Write cost is negligible: interface_addresses has taken 217,172 inserts over
+-- its lifetime and zero updates. Index size ~8 MB.
+--
+-- CONCURRENTLY so the build takes no write lock (the osquery TLS server inserts
+-- into this table continuously) and therefore cannot run inside a transaction
+-- block — apply with autocommit on, e.g. `psql -f 014_...sql`.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_interface_addresses_address
+  ON interface_addresses (address);

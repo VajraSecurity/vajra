@@ -1,0 +1,30 @@
+[Unit]
+Description=Vajra log collection service.
+After=network-online.target clamd@scan.service clamav-daemon.service
+Wants=network-online.target
+# Tamper protection: prevent casual systemctl stop/restart. The uninstall
+# flow (do_uninstall_steps_full in vajra_install.sh) clears this itself
+# before stopping the service - it is not a barrier to a proper uninstall,
+# only to an ad hoc "systemctl stop vajra.service". These are [Unit]
+# options: systemd ignores them under [Service].
+RefuseManualStop=yes
+RefuseManualStart=no
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/bin/vajra.sh
+Restart=always
+RestartSec=3
+
+# Sandboxing. ProtectHome is read-only rather than the stricter "yes"
+# because SendNotification (agent/message/main.go) reaches the desktop
+# user's D-Bus session socket at /run/user/<uid>/bus - ProtectHome=yes
+# hides /run/user entirely (not just /home) and would silently break
+# desktop notifications; read-only keeps the socket reachable while still
+# blocking writes into home directories.
+ProtectSystem=full
+ProtectHome=read-only
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

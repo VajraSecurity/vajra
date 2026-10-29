@@ -1,0 +1,242 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\AccessProviders",
+"name": "AccessProviders",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Audit",
+"name": "Audit",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\CentralizedAccessPolicies",
+"name": "CentralizedAccessPolicies",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\ComponentUpdates",
+"name": "ComponentUpdates",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Credssp",
+"name": "Credssp",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Data",
+"name": "Data",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\DPL",
+"name": "DPL",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\FipsAlgorithmPolicy",
+"name": "FipsAlgorithmPolicy",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\GBG",
+"name": "GBG",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\JD",
+"name": "JD",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Kerberos",
+"name": "Kerberos",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\MSV1_0",
+"name": "MSV1_0",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\OfflineLSA",
+"name": "OfflineLSA",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\OfflineSAM",
+"name": "OfflineSAM",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\OSConfig",
+"name": "OSConfig",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Skew1",
+"name": "Skew1",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\SSO",
+"name": "SSO",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\SspiCache",
+"name": "SspiCache",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Tracing",
+"name": "Tracing",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\auditbasedirectories",
+"name": "auditbasedirectories",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\auditbaseobjects",
+"name": "auditbaseobjects",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Authentication Packages",
+"name": "Authentication Packages",
+"type": "REG_MULTI_SZ",
+"data": "msv1_0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Bounds",
+"name": "Bounds",
+"type": "REG_BINARY",
+"data": "0030000000200000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\crashonauditfail",
+"name": "crashonauditfail",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\fullprivilegeauditing",
+"name": "fullprivilegeauditing",
+"type": "REG_BINARY",
+"data": "00"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\LimitBlankPasswordUse",
+"name": "LimitBlankPasswordUse",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\NoLmHash",
+"name": "NoLmHash",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Notification Packages",
+"name": "Notification Packages",
+"type": "REG_MULTI_SZ",
+"data": "scecli"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\Security Packages",
+"name": "Security Packages",
+"type": "REG_MULTI_SZ",
+"data": "\"\""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\IsPplAutoEnabled",
+"name": "IsPplAutoEnabled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\RunAsPPL",
+"name": "RunAsPPL",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\RunAsPPLBoot",
+"name": "RunAsPPLBoot",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\LsaPid",
+"name": "LsaPid",
+"type": "REG_DWORD",
+"data": "868"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\SecureBoot",
+"name": "SecureBoot",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\ProductType",
+"name": "ProductType",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\disabledomaincreds",
+"name": "disabledomaincreds",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\everyoneincludesanonymous",
+"name": "everyoneincludesanonymous",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\forceguest",
+"name": "forceguest",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\restrictanonymous",
+"name": "restrictanonymous",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Lsa\\restrictanonymoussam",
+"name": "restrictanonymoussam",
+"type": "REG_DWORD",
+"data": "1"
+}
+]

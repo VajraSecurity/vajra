@@ -1,0 +1,8 @@
+# Fetched at CI build time by scripts/artifact.sh (pinned osquery release,
+# see OSQUERY_VERSION/OSQUERY_SHA256 there) -- never committed to git, the
+# 200MB+ binary exceeds GitHub's 100MB push limit.
+common/osqueryd
+
+# Build output of scripts/artifact.sh -- assembled fresh by CI, not source.
+dist/
+test-results/

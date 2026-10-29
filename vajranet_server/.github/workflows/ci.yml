@@ -1,0 +1,389 @@
+name: CI pipeline
+
+on:
+  push:
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
+
+
+# Cancel older in-progress runs on the same branch/PR when a new commit lands.
+# Grouped by branch name (github.head_ref on pull_request events, github.ref_name
+# on push events) rather than github.ref: a push to a branch with an open PR into
+# production fires both a `push` and a `pull_request` event for the same commit,
+# and those two events carry different refs (refs/heads/<branch> vs
+# refs/pull/<n>/merge) — grouping by raw ref would let both run to completion
+# instead of the second cancelling the first.
+concurrency:
+  group: ci-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: '24.x'
+
+
+jobs:
+  ###############################
+  ##### Compilation and Build ###
+  ###############################
+  build:
+    name: Build (${{ matrix.app}})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        app: [backend, frontend]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.app }}
+        run: npm ci
+
+      - name: Build
+        working-directory: ${{ matrix.app }}
+        run: npm run build --if-present # silently skip if no build script is present
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v7
+        with:
+          name: build-${{ matrix.app }}
+          # Both apps compile to dist/ (backend: tsconfig outDir; frontend:
+          # Vite's default) — not build/, which never exists.
+          path: ${{ matrix.app }}/dist
+          if-no-files-found: error
+          retention-days: 1
+
+
+  ###############################
+  ##### Commit Testing ##########
+  ###############################
+  test:
+    name: Test (${{ matrix.app}})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        app: [backend, frontend]
+      # Independent per-app suites — a backend test failure shouldn't hide
+      # whether frontend's suite (or vice versa) also passed/failed. Without
+      # this, the matrix's default fail-fast:true cancels the sibling job the
+      # moment either one fails, which is why frontend previously showed
+      # "skipped" instead of its actual result.
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.app }}
+        run: npm ci
+
+      - name: Run Unit tests
+        working-directory: ${{ matrix.app }}
+        # backend: `npm test` = `test:selftest` (a chain of self-contained *.selftest.ts scripts:
+        # mTLS, MFA guard, cert provisioning, patch bundles, SSRF validation, FIM, ...; each
+        # asserts and exits non-zero on the first failure) followed by `vitest run`.
+        # frontend: `npm test` runs vitest over the unit tests under src/test/unit (including the
+        # FIM component and helper tests).
+        run: npm test
+        env:
+          CI: true
+          # The FIM selftests fail on any gated part that did not run (osqueryd, Postgres). This
+          # generic job has neither, so it accepts those skips explicitly; the fim-tests job
+          # below runs them for real with no skips allowed.
+          FIM_ALLOW_SKIP: '1'
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-${{ matrix.app }}
+          path: ${{ matrix.app }}/coverage
+          if-no-files-found: warn
+          retention-days: 7
+
+
+  ###############################
+  ##### Static Code Analysis ####
+  ###############################
+  lint:
+    name: Lint (${{ matrix.app}})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        app: [backend, frontend]
+      # See the `test` job above — same fail-fast cascade otherwise skips
+      # the sibling app's lint job whenever one app fails.
+      fail-fast: false
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.app }}
+        run: npm ci
+
+      - name: Run ESLint
+        working-directory: ${{ matrix.app }}
+        run: npm run lint
+
+  # codeql:
+  #   name: CodeQL Security Scan
+  #   runs-on: ubuntu-latest
+  #   needs: test
+  #   timeout-minutes: 20
+  #   permissions:
+  #     contents: read
+  #     security-events: write
+  #     actions: read
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v7
+
+  #     - name: Initialize CodeQL
+  #       uses: github/codeql-action/init@v4
+  #       with:
+  #         languages: javascript
+          
+  #     - name: Run CodeQL Analysis
+  #       uses: github/codeql-action/analyze@v4
+
+
+  ###############################
+  ##### Dependency Audit ########
+  ###############################
+  dependency-audit:
+    name: Dependency Audit (${{ matrix.app}})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        app: [backend, frontend]
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.app }}
+        run: npm ci
+
+      - name: Audit for high/critical advisories
+        working-directory: ${{ matrix.app }}
+        run: npm audit --audit-level=high
+
+  ###############################
+  ##### Secret Scanning #########
+  ###############################
+  secret-scan:
+    name: Secret Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # Scoped up from the workflow-level `contents: read` (same pattern as
+    # the other jobs above) — on pull_request events gitleaks-action
+    # calls GET /repos/.../pulls/:number/commits to scan just the PR's
+    # commits, which 403s ("Resource not accessible by integration") without
+    # pull-requests: read.
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          # Full history, not just the merge commit — a secret introduced
+          # and then "removed" in a later commit on this same branch/PR is
+          # still a leaked secret and still needs to be caught.
+          fetch-depth: 0
+
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  ###############################
+  ##### DB Setup Check ##########
+  ###############################
+  db-setup-check:
+    name: DB Setup Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: vajra_ci
+          POSTGRES_PASSWORD: vajra_ci_password
+          POSTGRES_DB: vajra_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: backend
+        run: npm ci
+
+      # `npm run db:setup` (setupDatabase() in ormconfig-setup.ts) calls
+      # DataSource.initialize() against the primary DB config, which runs
+      # TypeORM's synchronize (NODE_ENV != production here) before layering
+      # on the extra indexes/columns/tables — so this one command exercises
+      # the whole primary-DB schema path end-to-end against a genuinely
+      # empty database, no fixture needed.
+      - name: Run primary DB setup against a fresh database
+        working-directory: backend
+        run: npm run db:setup
+        env:
+          NODE_ENV: test
+          PG_HOST: localhost
+          PG_PORT: 5432
+          POSTGRES_USER: vajra_ci
+          POSTGRES_PASSWORD: vajra_ci_password
+          POSTGRES_DB: vajra_db
+
+      # NOT covered here: `npm run db:setup:fleet` and backend/migrations/*.sql.
+      # Both assume a `nodes` table (and the rest of the base fleet schema)
+      # that the separate osquery fleet server provisions, not this repo —
+      # confirmed locally: db:setup:fleet fails with `relation "nodes" does
+      # not exist` against an empty database. Exercising that path for real
+      # needs a fixture mirroring the fleet server's actual schema, which
+      # isn't available here; faking one would risk a check that passes or
+      # fails for the wrong reasons. Left as a follow-up.
+
+
+      
+  ###############################
+  ##### FIM registry suites #####
+  ###############################
+  # Runs every FIM suite with NO skips allowed (FIM_ALLOW_SKIP unset): the pure/osquery suites
+  # need a real osqueryd, the two DB suites need Postgres. The DB is a throwaway service
+  # container: backend/src/test/fixtures/fim_ci_base_schema.sql (schema of the fleet tables the
+  # FIM code touches) + migrations 030-034, exactly what a fresh install applies. The real-row
+  # replay in test:fim-registry runs against the committed sanitized sample
+  # backend/src/test/fixtures/fim_registry_live_sample (FIM_REG_LIVEDATA would replace it with a
+  # full private export, which is never committed).
+  fim-tests:
+    name: FIM suites (osquery + Postgres)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: fimtest
+          POSTGRES_DB: fimdb
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 55432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      FIM_TEST_PG: 127.0.0.1:55432
+      FIM_HISTORY_HMAC_KEY: ci-only-fim-history-key-not-a-secret-0123456789
+      OSQUERY_VERSION: 5.12.1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: |
+            backend/package-lock.json
+            frontend/package-lock.json
+
+      - name: Install osquery (pinned)
+        run: |
+          curl -fsSL -o /tmp/osquery.deb "https://pkg.osquery.io/deb/osquery_${OSQUERY_VERSION}-1.linux_amd64.deb"
+          sudo apt-get install -y /tmp/osquery.deb postgresql-client
+          osqueryd --version
+
+      - name: Apply base schema fixture + FIM migrations
+        working-directory: backend
+        run: |
+          for f in src/test/fixtures/fim_ci_base_schema.sql migrations/030_add_fim_tables.sql migrations/031_add_fim_registry.sql migrations/032_add_fim_verify.sql migrations/033_add_fim_worker_schema.sql migrations/034_add_fim_perf.sql; do
+            psql -1 -v ON_ERROR_STOP=1 -q -h 127.0.0.1 -p 55432 -U fimtest -d fimdb -f "$f"
+          done
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Type-check backend
+        working-directory: backend
+        run: npx tsc --noEmit
+
+      - name: FIM suites (pure, catalog, osquery, both DB suites)
+        working-directory: backend
+        run: npm run test:fim-all
+
+      - name: FIM scale check (5,000 synthetic nodes)
+        working-directory: backend
+        run: npm run test:fim-load
+        env:
+          FIM_LOAD_NODES: '5000'
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Frontend FIM unit tests (vitest)
+        working-directory: frontend
+        run: npx vitest run src/test/unit/fim

@@ -1,0 +1,1895 @@
+[
+  {
+    "Policy Number": "1",
+    "Policy Name": "Anomalies and Events (DE.AE):",
+    "guidelines": [
+      {
+        "marker": "1",
+        "text": "Does the organization have a clearly defined policy including requirements justifying the exceptions, duration of exceptions, process of granting exceptions, and authority for approving, authority for review of exceptions granted on a periodic basis by officer(s) preferably at senior levels who are well equipped to understand the business and technical context of the exception(s) ?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "2",
+    "Policy Name": "Security Continuous Monitoring & Detection (DE.CM):",
+    "guidelines": [
+      {
+        "marker": "2",
+        "text": "Are the security logs maintained and monitored?",
+        "level": 1
+      },
+      {
+        "marker": "3",
+        "text": "Are there any procedure to monitor capacity utilization of critical systems and networks ?",
+        "level": 1
+      },
+      {
+        "marker": "4",
+        "text": "Are there mechanism to dynamically incorporate lessons learnt to continually improve the response strategies?",
+        "level": 1
+      },
+      {
+        "marker": "5",
+        "text": "Does the organisation Alert when users deviate from normal login behaviour, such as time-of-day, workstation location and duration.",
+        "level": 1
+      },
+      {
+        "marker": "6",
+        "text": "Does the organisation user or system accounts used to perform penetration testing should be controlled and monitored to make sure they are only being used for legitimate purposes, and are removed or restored to normal function after testing is over.",
+        "level": 1
+      },
+      {
+        "marker": "7",
+        "text": "Does the organisation Apply host-based firewalls or port filtering tools on end systems, with a default-deny rule that drops all traffic except those services and ports that are explicitly allowed.",
+        "level": 1
+      },
+      {
+        "marker": "8",
+        "text": "Does the organisation Apply static and dynamic analysis tools to verify that secure coding practices are being adhered to for internally developed software.",
+        "level": 1
+      },
+      {
+        "marker": "9",
+        "text": "Does the organisation Associate active ports, services and protocols to the hardware assets in the asset inventory.",
+        "level": 1
+      },
+      {
+        "marker": "10",
+        "text": "Does the organisation Automatically disable dormant accounts after a set period of inactivity.",
+        "level": 1
+      },
+      {
+        "marker": "11",
+        "text": "Does the organisation Automatically lock workstation sessions after a standard period of inactivity.",
+        "level": 1
+      },
+      {
+        "marker": "12",
+        "text": "Does the organisation Block all e-mail attachments entering the organization's email gateway if the file types are unnecessary for the organization's business.",
+        "level": 1
+      },
+      {
+        "marker": "13",
+        "text": "Does the organisation Conduct regular external and internal penetration tests to identify vulnerabilities and attack vectors that can be used to exploit enterprise systems successfully.",
+        "level": 1
+      },
+      {
+        "marker": "14",
+        "text": "Does the organisation Configure access for all accounts through as few centralized points of authentication as possible, including network, security, and cloud systems.",
+        "level": 1
+      },
+      {
+        "marker": "15",
+        "text": "Does the organisation Configure devices to not auto-run content from removable media.",
+        "level": 1
+      },
+      {
+        "marker": "16",
+        "text": "Does the organisation Configure monitoring systems to record network packets passing through the boundary at each of the organization's network boundaries.",
+        "level": 1
+      },
+      {
+        "marker": "17",
+        "text": "Does the organisation Configure network vulnerability scanning tools to detect and alert on unauthorized wireless access points connected to the wired network.",
+        "level": 1
+      },
+      {
+        "marker": "18",
+        "text": "Does the organisation Configure wireless access on client machines that do have an essential wireless business purpose, to allow access only to authorized wireless networks and to restrict access to other wireless networks.",
+        "level": 1
+      },
+      {
+        "marker": "19",
+        "text": "Does the organisation Create a separate wireless network for personal or untrusted devices. Enterprise access from this network should be treated as untrusted and filtered and audited accordingly.",
+        "level": 1
+      },
+      {
+        "marker": "20",
+        "text": "Does the organisation Create a test bed that mimics a production environment for specific penetration tests and Red Team attacks against elements that are not typically tested in production, such as attacks against supervisory control and data acquisition and other control systems.",
+        "level": 1
+      },
+      {
+        "marker": "21",
+        "text": "Does the organisation Decrypt all encrypted network traffic at the boundary proxy prior to analysing the content. However, the organization may use whitelists of allowed sites that can be accessed through the proxy without decrypting the traffic.",
+        "level": 1
+      },
+      {
+        "marker": "22",
+        "text": "Does the organisation Deliver training to address the skills gap identified to positively impact workforce members' security behaviour.",
+        "level": 1
+      },
+      {
+        "marker": "23",
+        "text": "Does the organisation Deny communications with known malicious or unused Internet IP addresses and limit access only to trusted and necessary IP address ranges at each of the organization's network boundaries,.",
+        "level": 1
+      },
+      {
+        "marker": "24",
+        "text": "Does the organisation Deploy Security Information and Event Management (SIEM) or log analytic tool for log correlation and analysis.",
+        "level": 1
+      },
+      {
+        "marker": "25",
+        "text": "Does the organisation Disable all workstation to workstation communication to limit an attacker's ability to move laterally and compromise neighbouring systems, through technologies such as Private VLANs or micro segmentation.",
+        "level": 1
+      },
+      {
+        "marker": "26",
+        "text": "Does the organisation Disable any account that cannot be associated with a business process or business owner.",
+        "level": 1
+      },
+      {
+        "marker": "27",
+        "text": "Does the organisation Disable wireless access on devices that do not have a business purpose for wireless access.",
+        "level": 1
+      },
+      {
+        "marker": "28",
+        "text": "Does the organisation Disable wireless peripheral access of devices (such as Bluetooth and NFC), unless such access is required for a business purpose.",
+        "level": 1
+      },
+      {
+        "marker": "29",
+        "text": "Does the organisation Encrypt sensitive information at rest using a tool that requires a secondary authentication mechanism not integrated into the operating system, in order to access the information.",
+        "level": 1
+      },
+      {
+        "marker": "30",
+        "text": "Does the organisation Encrypt all sensitive information in transit.",
+        "level": 1
+      },
+      {
+        "marker": "31",
+        "text": "Does the organisation Enforce network-based URL filters that limit a system's ability to connect to websites not approved by the organization. This filtering shall be enforced for each of the organization's systems, whether they are physically at an organization's facilities or not.",
+        "level": 1
+      },
+      {
+        "marker": "32",
+        "text": "Does the organisation Ensure network engineers use a dedicated machine for all administrative tasks or tasks requiring elevated access. This machine shall be segmented from the organization's primary network and not be allowed Internet access. This machine shall not be used for reading e-mail, composing documents, or surfing the Internet.",
+        "level": 1
+      },
+      {
+        "marker": "33",
+        "text": "Does the organisation Ensure that all accounts have an expiration date that is monitored and enforced.",
+        "level": 1
+      },
+      {
+        "marker": "34",
+        "text": "Does the organisation Ensure that all software development personnel receive training in writing secure code for their specific development environment and responsibilities.",
+        "level": 1
+      },
+      {
+        "marker": "35",
+        "text": "Does the organisation Ensure that appropriate logs are being aggregated to a central log management system for analysis and review.",
+        "level": 1
+      },
+      {
+        "marker": "36",
+        "text": "Does the organisation Ensure that only authorized scripting languages are able to run in all web browsers and email clients.",
+        "level": 1
+      },
+      {
+        "marker": "37",
+        "text": "Does the organisation Ensure that only fully supported web browsers and email clients are allowed to execute in the organization, ideally only using the latest version of the browsers and email clients provided by the vendor.",
+        "level": 1
+      },
+      {
+        "marker": "38",
+        "text": "Does the organisation Ensure that the organization's security awareness program is updated frequently (at least annually) to address new technologies, threats, standards and business requirements.",
+        "level": 1
+      },
+      {
+        "marker": "39",
+        "text": "Does the organisation Establish a process to accept and address reports of software vulnerabilities, including providing a means for external entities to contact your security group.",
+        "level": 1
+      },
+      {
+        "marker": "40",
+        "text": "Does the organisation Establish a program for penetration tests that includes a full scope of blended attacks, such as wireless, client-based, and web application attacks.",
+        "level": 1
+      },
+      {
+        "marker": "41",
+        "text": "Does the organisation Establish secure coding practices appropriate to the programming language and development environment being used.",
+        "level": 1
+      },
+      {
+        "marker": "42",
+        "text": "Does the organisation For applications that rely on a database, use standard hardening configuration templates. All systems that are part of critical business processes should also be tested.",
+        "level": 1
+      },
+      {
+        "marker": "43",
+        "text": "Does the organisation For in-house developed software, ensure that explicit error checking is performed and documented for all input, including for size, data type, and acceptable ranges or formats.",
+        "level": 1
+      },
+      {
+        "marker": "44",
+        "text": "Does the organisation If USB storage devices are required, ensure all data stored on such devices must be encrypted while at rest.",
+        "level": 1
+      },
+      {
+        "marker": "45",
+        "text": "Does the organisation Include tests for the presence of unprotected system information and artifacts that would be useful to attackers, including network diagrams, configuration files, older penetration test reports, e-mails or documents containing passwords or other information critical to system operation.",
+        "level": 1
+      },
+      {
+        "marker": "46",
+        "text": "Does the organisation Leverage the Advanced Encryption Standard (AES) to encrypt wireless data in transit.",
+        "level": 1
+      },
+      {
+        "marker": "47",
+        "text": "Does the organisation Log all URL requests from each of the organization's systems, whether on-site or a mobile device, in order to identify potentially malicious activity and assist incident handlers with identifying potentially compromised systems.",
+        "level": 1
+      },
+      {
+        "marker": "48",
+        "text": "Does the organisation Maintain an inventory of all sensitive information stored, processed, or transmitted by the organization's technology systems, including those located on-site or at a remote service provider.",
+        "level": 1
+      },
+      {
+        "marker": "49",
+        "text": "Does the organisation Maintain an inventory of authorized wireless access points connected to the wired network.",
+        "level": 1
+      },
+      {
+        "marker": "50",
+        "text": "Does the organisation Maintain an inventory of each of the organization's authentication systems, including those located on-site or at a remote service provider.",
+        "level": 1
+      },
+      {
+        "marker": "51",
+        "text": "Does the organisation Maintain separate environments for production and non- production systems. Developers should not have unmonitored access to production environments.",
+        "level": 1
+      },
+      {
+        "marker": "52",
+        "text": "Does the organisation Manage all network devices using multi-factor authentication and encrypted sessions.",
+        "level": 1
+      },
+      {
+        "marker": "53",
+        "text": "Does the organisation Manage the network infrastructure across network connections that are separated from the business use of that network, relying on separate VLANs or, preferably, on entirely different physical connectivity for management sessions for network devices.",
+        "level": 1
+      },
+      {
+        "marker": "54",
+        "text": "Does the organisation Monitor attempts to access deactivated accounts through audit logging.",
+        "level": 1
+      },
+      {
+        "marker": "55",
+        "text": "Does the organisation On a regular basis, review logs to identify anomalies or abnormal events.",
+        "level": 1
+      },
+      {
+        "marker": "56",
+        "text": "Does the organisation On a regular basis, tune SIEM system to better identify actionable events and decrease event noise.",
+        "level": 1
+      },
+      {
+        "marker": "57",
+        "text": "Does the organisation Only use up-to-date and trusted third-party components for the software developed by the organization.",
+        "level": 1
+      },
+      {
+        "marker": "58",
+        "text": "Does the organisation Perform a skills gap analysis to understand the skills and behaviours workforce members are not adhering to, using this information to build a baseline education roadmap.",
+        "level": 1
+      },
+      {
+        "marker": "59",
+        "text": "Does the organisation Perform periodic Red Team exercises to test organizational readiness to identify and stop attacks or to respond quickly and effectively.",
+        "level": 1
+      },
+      {
+        "marker": "60",
+        "text": "Does the organisation Place application firewalls in front of any critical servers to verify and validate the traffic going to the server. Any unauthorized traffic should be blocked and logged.",
+        "level": 1
+      },
+      {
+        "marker": "61",
+        "text": "Does the organisation Plan and conduct routine incident, response exercises and scenarios for the workforce involved in the incident response to maintain awareness and comfort in responding to real world threats. Exercises should test communication channels, decision making, and incident responders technical capabilities using tools and data available to them.",
+        "level": 1
+      },
+      {
+        "marker": "62",
+        "text": "Does the organisation Protect web applications by deploying web application firewalls (WAFs) that inspect all traffic flowing to the web application for common web application attacks. For applications that are not web-based, specific application firewalls should be deployed if such tools are available for the given application type. If the traffic is encrypted, the device should either sit behind the encryption or be capable of decrypting the traffic prior to analysis. If neither option is appropriate, a host-based web application firewall should be deployed.",
+        "level": 1
+      },
+      {
+        "marker": "63",
+        "text": "Does the organisation Remove sensitive data or systems not regularly accessed by the organization from the network. These systems shall only be used as stand-alone systems (disconnected from the network) by the business unit needing to occasionally use the system or completely virtualized and powered off until needed.",
+        "level": 1
+      },
+      {
+        "marker": "64",
+        "text": "Does the organisation Require all remote login access to the organization's network to encrypt data in transit and use multi-factor authentication (MFA).",
+        "level": 1
+      },
+      {
+        "marker": "65",
+        "text": "Does the organisation Require multi-factor authentication for all user accounts, on all systems, whether managed on-site or by a third-party provider.",
+        "level": 1
+      },
+      {
+        "marker": "66",
+        "text": "Does the organisation Segment the network based on the label or classification level of the information stored on the servers, locate all sensitive information on separated Virtual Local Area Networks (VLANs).",
+        "level": 1
+      },
+      {
+        "marker": "67",
+        "text": "Does the organisation Subscribe to URL categorization services to ensure that they are up-to-date with the most recent website category definitions available. Uncategorized sites shall be blocked by default.",
+        "level": 1
+      },
+      {
+        "marker": "68",
+        "text": "Does the organisation To lower the chance of spoofed or modified emails from valid domains, implement Domain-based Message Authentication, Reporting and Conformance (DMARC) policy and verification, starting by implementing the Sender Policy Framework (SPF) and the Domain Keys Identified Mail(DKIM) standards.",
+        "level": 1
+      },
+      {
+        "marker": "69",
+        "text": "Does the organisation Train the workforce on how to identify different forms of social engineering attacks, such as phishing, phone scams and impersonation calls.",
+        "level": 1
+      },
+      {
+        "marker": "70",
+        "text": "Does the organisation Train workforce members on the importance of enabling and utilizing secure authentication.",
+        "level": 1
+      },
+      {
+        "marker": "71",
+        "text": "Does the organisation Train workforce members to be aware of causes for unintentional data exposures, such as losing their mobile devices or emailing the wrong person due to autocomplete in email.",
+        "level": 1
+      },
+      {
+        "marker": "72",
+        "text": "Does the organisation Train workforce on how to identify and properly store, transfer, archive and destroy sensitive information.",
+        "level": 1
+      },
+      {
+        "marker": "73",
+        "text": "Does the organisation Uninstall or disable any unauthorized browser or email client plugins or add-on applications.",
+        "level": 1
+      },
+      {
+        "marker": "74",
+        "text": "Does the organisation Use a wireless intrusion detection system (WIDS) to detect and alert on unauthorized wireless access points connected to the network.",
+        "level": 1
+      },
+      {
+        "marker": "75",
+        "text": "Does the organisation Use an automated tool, such as host-based Data Loss Prevention, to enforce access controls to data even when data is copied off a system.",
+        "level": 1
+      },
+      {
+        "marker": "76",
+        "text": "Does the organisation Use DNS filtering services to help block access to known malicious domains.",
+        "level": 1
+      },
+      {
+        "marker": "77",
+        "text": "Does the organisation Use only standardized and extensively reviewed encryption algorithms.",
+        "level": 1
+      },
+      {
+        "marker": "78",
+        "text": "Does the organisation Use sandboxing to analyse and block inbound email attachments with malicious behaviour.",
+        "level": 1
+      },
+      {
+        "marker": "79",
+        "text": "Does the organisation Use vulnerability scanning and penetration testing tools in concert. The results of vulnerability scanning assessments should be used as a starting point to guide and focus penetration testing efforts.",
+        "level": 1
+      },
+      {
+        "marker": "80",
+        "text": "Does the organisation Utilize an active discovery tool to identify all sensitive information stored, processed, or transmitted by the organization's technology systems, including those located on-site or at a remote service provider, and update the organization's sensitive information inventory.",
+        "level": 1
+      },
+      {
+        "marker": "81",
+        "text": "Does the organisation Utilize approved whole disk encryption software to encrypt the hard drive of all mobile devices.",
+        "level": 1
+      },
+      {
+        "marker": "82",
+        "text": "Does the organisation Verify that the version of all software acquired from outside your organization is still supported by the developer or appropriately hardened based on developer security recommendations.",
+        "level": 1
+      },
+      {
+        "marker": "83",
+        "text": "Does the organisation Wherever possible, ensure that Red Team results are documented using open, machine-readable standards (e.g., SCAP). Devise a scoring method for determining the results of Red Team exercises so that results can be compared over time.",
+        "level": 1
+      },
+      {
+        "marker": "84",
+        "text": "Has the organization defined and set a procedure to implement a Security Operations Centre for centralised and coordinated monitoring and management of security related incident?",
+        "level": 1
+      },
+      {
+        "marker": "85",
+        "text": "Has the organization defined incidents, method of detection, methods of reporting incidents by employees, vendors and customers and periodicity of monitoring, collection/sharing of threat information, expected response in each scenario/incident type, allocate and communicate clear roles and responsibilities of personnel manning/handling such incidents, provide specialised training to such personnel, post incident review, periodically test incident response plans?",
+        "level": 1
+      },
+      {
+        "marker": "86",
+        "text": "Has the organization implemented measures to control use of VBA/macros in MS office documents, control permissible attachment types in email systems?",
+        "level": 1
+      },
+      {
+        "marker": "87",
+        "text": "Has the organization implemented mechanism to automatically identify unauthorised device connections to the organization's network and block such connections?",
+        "level": 1
+      },
+      {
+        "marker": "88",
+        "text": "Does the organisation conduct periodic tests for all the critical application, server, network devices and data bases?",
+        "level": 1
+      },
+      {
+        "marker": "89",
+        "text": "Does the organisation implement a process to communicate vulnerabilities to vendors?",
+        "level": 1
+      },
+      {
+        "marker": "90",
+        "text": "Does the organisation maintain tracker for closure and corrective action of VAPT?",
+        "level": 1
+      },
+      {
+        "marker": "91",
+        "text": "Whether a policy to ensure high availability and timely detection of attacks is defined and implemented ?",
+        "level": 1
+      },
+      {
+        "marker": "92",
+        "text": "Whether vulnerability assessment and penetration testing procedure and calendar are defined ?",
+        "level": 1
+      },
+      {
+        "marker": "93",
+        "text": "Is VAPT of internet-facing applications or infrastructure components conducted periodically",
+        "level": 1
+      },
+      {
+        "marker": "94",
+        "text": "Does Business applications including APIs or Web Services etc. undergo VAPT Testing including secure code review periodically & before go live.",
+        "level": 1
+      },
+      {
+        "marker": "95",
+        "text": "Is mandatory security testing conducted for all changes to internet facing information assets or systems and reported gaps closed before moving into production.",
+        "level": 1
+      },
+      {
+        "marker": "96",
+        "text": "Is External Blackbox Penetration Testing (PT) conducted for all internet facing information assets or systems once in a 6 months.",
+        "level": 1
+      },
+      {
+        "marker": "97",
+        "text": "Are High risk gaps, reported from the VAPT closed within the time period prescribed under guidelines followed by validation test.",
+        "level": 1
+      },
+      {
+        "marker": "98",
+        "text": "Are audit gaps reported in VAPT closed within the timeframe provided in the guidelines.",
+        "level": 1
+      },
+      {
+        "marker": "99",
+        "text": "Is the organizations information assets synchronized with a singular time source?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "100",
+    "Policy Name": "Detection Processes (DE.DP):",
+    "guidelines": [
+      {
+        "marker": "100",
+        "text": "Are roles and responsibilities for detection well defined to ensure accountability?",
+        "level": 1
+      },
+      {
+        "marker": "101",
+        "text": "Do detection activities comply with all applicable requirements?",
+        "level": 1
+      },
+      {
+        "marker": "102",
+        "text": "Has the organization put in place processes/mechanism to identify authorised hardware / mobile devices like Laptops, mobile phones, tablets, etc. and ensure that they are provided connectivity only when they meet the security requirements prescribed by the organization?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "103",
+    "Policy Name": "Asset Management (ID.AM):",
+    "guidelines": [
+      {
+        "marker": "103",
+        "text": "Does the Organisation use client certificates/server to authenticate hardware assets connecting to the organization's trusted network?",
+        "level": 1
+      },
+      {
+        "marker": "104",
+        "text": "Does the organisation Utilize port level access control, following 802.1x standards, to control which devices can authenticate to the network? The authentication system shall be tied into the hardware asset inventory data to ensure only authorized devices can connect to the network.",
+        "level": 1
+      },
+      {
+        "marker": "105",
+        "text": "Does the organization identify critical assets based on their sensitivity?",
+        "level": 1
+      },
+      {
+        "marker": "106",
+        "text": "Does the organization maintain an up-to-date inventory of its hardware, software, information assets, details of network resources and also maintain records of those personnel who are issued such assets?",
+        "level": 1
+      },
+      {
+        "marker": "107",
+        "text": "Has organization maintained an up-to-date centralised inventory of authorised software/applications/libraries, etc. ?",
+        "level": 1
+      },
+      {
+        "marker": "108",
+        "text": "Has the organization managed and protected data/information asset considering how the data/information are stored, transmitted, processed, accessed and put to use within/outside the organization's network, and level of risk they are exposed to depending on the sensitivity of the data/information?",
+        "level": 1
+      },
+      {
+        "marker": "109",
+        "text": "Has the organization put in place appropriate environmental controls for securing location of critical assets providing protection from natural threats?",
+        "level": 1
+      },
+      {
+        "marker": "110",
+        "text": "Has the organization put in place mechanism for monitoring any potential compromises or breach to environmental controls?",
+        "level": 1
+      },
+      {
+        "marker": "111",
+        "text": "Is it ensured that unauthorized assets are either removed from the network, quarantined or the inventory is updated in a timely manner?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "112",
+    "Policy Name": "Business Environment (ID.BE):",
+    "guidelines": [
+      {
+        "marker": "112",
+        "text": "Are Priorities for organizational mission, objectives, and activities w.r.t cybersecurity roles, responsibilities, and risk management decisions established and communicated?",
+        "level": 1
+      },
+      {
+        "marker": "113",
+        "text": "Are Resilience requirements to support delivery of critical services are established for all operating states? (e.g. under duress/attack, during recovery, normal operations)",
+        "level": 1
+      },
+      {
+        "marker": "114",
+        "text": "Has the organization established Standard Operating Procedures (SOP) for all major IT activities including for connecting devices to the network environment of the organization?",
+        "level": 1
+      },
+      {
+        "marker": "115",
+        "text": "Has the organization maintained up-to-date network architecture diagram at the organization level including wired/wireless networks?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "116",
+    "Policy Name": "Governance (ID.GV):",
+    "guidelines": [
+      {
+        "marker": "116",
+        "text": "Is official designated to assume overall responsibility for governance and monitoring of Information Security Designated CISO Designated / Virtual CISO Designated / Virtual CISO",
+        "level": 1
+      },
+      {
+        "marker": "117",
+        "text": "Does the organization form an IS RMC which shall be responsible to ensure that the policy remains updated at all times? IS RMC IT, Legal, HR, Risk, Business Ops IT, Legal, HR, Business Ops",
+        "level": 1
+      },
+      {
+        "marker": "118",
+        "text": "Is the annual audit plan and the reports presented to the Audit Committee of the Board of the organization?",
+        "level": 1
+      },
+      {
+        "marker": "119",
+        "text": "Does Cyber Security Policy include process of recovering from incidents through incident management & other appropriate recovery mechanisms?",
+        "level": 1
+      },
+      {
+        "marker": "120",
+        "text": "Does Cyber Security Policy include process on detecting incidents, anomalies and attacks via appropriate monitoring tools/process?",
+        "level": 1
+      },
+      {
+        "marker": "121",
+        "text": "Does Cyber Security Policy include process on protecting assets by deploying suitable controls, tools & measures?",
+        "level": 1
+      },
+      {
+        "marker": "122",
+        "text": "Does Cyber Security Policy include process on responding after identification of the incident, anomaly or attack?",
+        "level": 1
+      },
+      {
+        "marker": "123",
+        "text": "Does the organization implement any operation/process/monetary transactions through API follow best practices from international standards like ISO 27001, COBIT 5, etc? Are such practices periodically reviewed?",
+        "level": 1
+      },
+      {
+        "marker": "124",
+        "text": "Are cybersecurity roles and responsibilities coordinated and aligned with internal roles and external partners?",
+        "level": 1
+      },
+      {
+        "marker": "125",
+        "text": "Is there a Cyber Crisis Management Plan (CCMP) available? Are Cert-In / NCIIPC guidelines used for preparing Cyber Crisis Management Plan?",
+        "level": 1
+      },
+      {
+        "marker": "126",
+        "text": "Is there a SOC setup available which ensures continuous surveillance ? Yes Yes Limited/Shared",
+        "level": 1
+      },
+      {
+        "marker": "127",
+        "text": "Are the reporting procedures being taken to facilitate communication of unusual activities with designated Cyber Security officer ?",
+        "level": 1
+      },
+      {
+        "marker": "128",
+        "text": "Whether a comprehensive Cyber Security Policy is in place ?",
+        "level": 1
+      },
+      {
+        "marker": "129",
+        "text": "Whether a cyber risk management policy is available ?",
+        "level": 1
+      },
+      {
+        "marker": "130",
+        "text": "Whether Business Continuity Plan and Disaster Recovery Plan is in place ? Yes Yes Core Systems",
+        "level": 1
+      },
+      {
+        "marker": "131",
+        "text": "Whether IT architecture has been reviewed by the IT Sub Committee of the board ? Yes MD MD",
+        "level": 1
+      },
+      {
+        "marker": "132",
+        "text": "Whether the Board of the organization formed an internal technology committee of experts? Does the committee periodically review implementation of the Cyber Security policy ?",
+        "level": 1
+      },
+      {
+        "marker": "133",
+        "text": "For Cloud and Mobile deployment has the organisation considered the best practices relating to Cloud, Mobile Security and related areas?",
+        "level": 1
+      },
+      {
+        "marker": "134",
+        "text": "Is the commitment of Senior Management ensured?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "135",
+    "Policy Name": "Risk Assessment (ID.RA):",
+    "guidelines": [
+      {
+        "marker": "135",
+        "text": "Does the organization identify potential cyber risks (threats and vulnerabilities) along with the likelihood of such threats and impact on the business and deploy controls accordingly to suppress the criticality?",
+        "level": 1
+      },
+      {
+        "marker": "136",
+        "text": "Does the organization periodically assess whether all the network devices are configured appropriately to the desired level of network security?",
+        "level": 1
+      },
+      {
+        "marker": "137",
+        "text": "Are risk responses identified and prioritized?",
+        "level": 1
+      },
+      {
+        "marker": "138",
+        "text": "Are threats from both internal and external parties identified and documented?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "139",
+    "Policy Name": "Risk Management (ID.RM):",
+    "guidelines": [
+      {
+        "marker": "139",
+        "text": "Are Risk management processes established, managed, and agreed to by organizational stakeholders?",
+        "level": 1
+      },
+      {
+        "marker": "140",
+        "text": "Is Organizational risk tolerance is determined and clearly expressed?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "141",
+    "Policy Name": "Supply Chain Risk Management (ID.SC):",
+    "guidelines": [
+      {
+        "marker": "141",
+        "text": "Does vendors adhere to the applicable guidelines provided in the Cyber Security policy? Does the organization obtains the necessary self-certifications from them to ensure compliance with the policy provisions?",
+        "level": 1
+      },
+      {
+        "marker": "142",
+        "text": "Has the vendors implemented appropriate information security controls and cybersecurity framework?",
+        "level": 1
+      },
+      {
+        "marker": "143",
+        "text": "Vendors agreement documents are maintained and updated ?",
+        "level": 1
+      },
+      {
+        "marker": "144",
+        "text": "Are there process for monitoring third - party access to protected or sensitive information?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "145",
+    "Policy Name": "Identity Management, Authentication and Access Control (PR.AC):",
+    "guidelines": [
+      {
+        "marker": "145",
+        "text": "Are ICT infrastructure logs maintained for a rolling period of 180 days as per CERT-In directions?",
+        "level": 1
+      },
+      {
+        "marker": "146",
+        "text": "Are ICT infrastructure logs, Critical and Business data stored in India?",
+        "level": 1
+      },
+      {
+        "marker": "147",
+        "text": "Are third-party staff who are given access to the organization's critical systems, networks, and other computer resources subjected to strict supervision, monitoring, and access restrictions?",
+        "level": 1
+      },
+      {
+        "marker": "148",
+        "text": "Do all critical systems of the organization that is accessible over the internet have two- factor security (Such as VPNs, Firewall Controls, etc.)?",
+        "level": 1
+      },
+      {
+        "marker": "149",
+        "text": "Does the access control policy address strong password management control for access to systems, applications, networks and databases?",
+        "level": 1
+      },
+      {
+        "marker": "150",
+        "text": "Does the organization proactively deactivate access of privileges of users who are leaving the organization or whose access privileges have been withdrawn?",
+        "level": 1
+      },
+      {
+        "marker": "151",
+        "text": "Has the organization deployed security measures and controls to supervise staff with elevated access entitlements (Such as privileged users) to organization's critical systems? Has the organization also restricted the no. of privileged user to the least number and deployed periodic review mechanism/process against privileged users' activities? Are such privileged users restricted of access to system logs where their activities are being captured?",
+        "level": 1
+      },
+      {
+        "marker": "152",
+        "text": "Has the organization ensured that no personnel in the company have natural rights to access confidential data, applications, system resources or facilities by virtue of rank or position?",
+        "level": 1
+      },
+      {
+        "marker": "153",
+        "text": "Has the organization ensured that the perimeter of the critical equipment's room/area are physically secured and continuously monitored by employing physical, human, and procedural controls such as security guards, CCTVs, Card access systems, mantrap, bollards, etc?",
+        "level": 1
+      },
+      {
+        "marker": "154",
+        "text": "Has the organization formulated an internet access policy to monitor and regulate the use of internet & internet based services such as social media sites, cloud-based storage sites, etc. within the organization's critical IT infrastructure?",
+        "level": 1
+      },
+      {
+        "marker": "155",
+        "text": "Has the organization implemented access to IT systems, applications, databases and networks on a need-to-use basis and the principle of least privilege? Is the access granted using strong authentication mechanisms and only when it is required ?",
+        "level": 1
+      },
+      {
+        "marker": "156",
+        "text": "Has the organization implemented controls for providing identification and authentication of customers for access to partner systems using secure authentication technologies?",
+        "level": 1
+      },
+      {
+        "marker": "157",
+        "text": "Has the organization implemented controls to minimize invalid login counts, deactivate dormant accounts?",
+        "level": 1
+      },
+      {
+        "marker": "158",
+        "text": "Is physical access to the critical systems of the organization restricted to the minimum number of authorized officials? Are third party staffs strictly monitored and physically accompanied all the time by the authorized employee of the organization while third party staff has been given physical access to critical systems ?",
+        "level": 1
+      },
+      {
+        "marker": "159",
+        "text": "Is physical access to the critical systems of the organization revoked immediately if the same is no longer required?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "160",
+    "Policy Name": "Awareness and Training (PR.AT):",
+    "guidelines": [
+      {
+        "marker": "160",
+        "text": "Are the history and versions of training content maintained?",
+        "level": 1
+      },
+      {
+        "marker": "161",
+        "text": "Are the targeted awareness/training for key personnel conducted periodically?",
+        "level": 1
+      },
+      {
+        "marker": "162",
+        "text": "Are the training programs reviewed and updated periodically?",
+        "level": 1
+      },
+      {
+        "marker": "163",
+        "text": "Are security policy/ies covering secure and acceptable use of network/assets including customer information/data defined and communicated to users/employees, vendors & partners, and also educating them about cybersecurity risks and protection measures at their level.",
+        "level": 1
+      },
+      {
+        "marker": "164",
+        "text": "Do users indicate that they understand their responsibilities?",
+        "level": 1
+      },
+      {
+        "marker": "165",
+        "text": "Is awareness level evaluated periodically? Yes Annual Once in 2 years",
+        "level": 1
+      },
+      {
+        "marker": "166",
+        "text": "Is there additional training for leaders to understand their roles in the event of a security incident?",
+        "level": 1
+      },
+      {
+        "marker": "167",
+        "text": "Is there a process to handle if a user does not complete the training?",
+        "level": 1
+      },
+      {
+        "marker": "168",
+        "text": "Is someone responsible for creating the security training for the organization?",
+        "level": 1
+      },
+      {
+        "marker": "169",
+        "text": "Has the Organization periodically participated in national/ sectoral/ organisational Cyber Security Exercises?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "170",
+    "Policy Name": "Data Security (PR.DS):",
+    "guidelines": [
+      {
+        "marker": "170",
+        "text": "Are open ports on network and systems which are not in use blocked ?",
+        "level": 1
+      },
+      {
+        "marker": "171",
+        "text": "Can the application be set to automatically log a user off the application after a predefined period of inactivity?",
+        "level": 1
+      },
+      {
+        "marker": "172",
+        "text": "Can the application force password expiration and prevent users from reusing a password?",
+        "level": 1
+      },
+      {
+        "marker": "173",
+        "text": "Can the system administrator enforce password policy and/or complexity such as minimum length, numbers and alphabet requirements, and upper and lower case constraint, etc.?",
+        "level": 1
+      },
+      {
+        "marker": "174",
+        "text": "Does the application force \"new\" users to change their password upon first login into the application?",
+        "level": 1
+      },
+      {
+        "marker": "175",
+        "text": "Does the application prohibit users from logging into the application on more than one workstation at the same time with the same user ID?",
+        "level": 1
+      },
+      {
+        "marker": "176",
+        "text": "Does the application support integration with the enterprise identity management system?",
+        "level": 1
+      },
+      {
+        "marker": "177",
+        "text": "Does the organization authorize data storage devices within their IT infrastructure through appropriate validation process?",
+        "level": 1
+      },
+      {
+        "marker": "178",
+        "text": "Is there a process by which the organization maintains the evidence of media disposal?",
+        "level": 1
+      },
+      {
+        "marker": "179",
+        "text": "has there been a implementation of a data-disposal and data-retention policy?",
+        "level": 1
+      },
+      {
+        "marker": "180",
+        "text": "Are there processes for media formatting?",
+        "level": 1
+      },
+      {
+        "marker": "181",
+        "text": "Is there measurement a client system's vulnerabilities?",
+        "level": 1
+      },
+      {
+        "marker": "182",
+        "text": "Is user authentication controlled by means other than user account and password or PIN?",
+        "level": 1
+      },
+      {
+        "marker": "183",
+        "text": "Are various security mechanism used to share the data with third parties?",
+        "level": 1
+      },
+      {
+        "marker": "184",
+        "text": "are the different technologies implemented for the encryption of data?",
+        "level": 1
+      },
+      {
+        "marker": "185",
+        "text": "Are appropriate technologies implemented for data mobility security?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "186",
+    "Policy Name": "Information Protection Processes and Procedures (PR.IP):",
+    "guidelines": [
+      {
+        "marker": "186",
+        "text": "Are duplicate copies of PC software and documentation maintained off-location?",
+        "level": 1
+      },
+      {
+        "marker": "187",
+        "text": "Are Physically or logically segregated systems used to isolate and run software that is required for business operations but incur higher risk for the organization.",
+        "level": 1
+      },
+      {
+        "marker": "188",
+        "text": "Are the contents of the Web site backed-up to ensure an orderly recovery if the site is corrupted?",
+        "level": 1
+      },
+      {
+        "marker": "189",
+        "text": "Are there methods to prevent unauthorized access by other groups into individual files and department-shared files?",
+        "level": 1
+      },
+      {
+        "marker": "190",
+        "text": "Are there procedures for limiting access to LAN and network operating software?",
+        "level": 1
+      },
+      {
+        "marker": "191",
+        "text": "Are updates to the Web site independently reviewed, approved and tested?",
+        "level": 1
+      },
+      {
+        "marker": "192",
+        "text": "Does information security policy cover use of devices such as mobile phones, faxes, photocopiers, scanners, etc., within their critical IT infrastructure, that can be used for capturing and transmission of sensitive data?",
+        "level": 1
+      },
+      {
+        "marker": "193",
+        "text": "Does the organisation utilize application whitelisting technology on all assets to ensure that only authorized software executes and all unauthorized software is blocked from executing on assets.?",
+        "level": 1
+      },
+      {
+        "marker": "194",
+        "text": "Does the organisation utilize software inventory tools throughout the organization to automate the documentation of all software on business systems.",
+        "level": 1
+      },
+      {
+        "marker": "195",
+        "text": "Does the organization have a documented disaster recovery plan for processing critical jobs in the event of a major hardware or software failure?",
+        "level": 1
+      },
+      {
+        "marker": "196",
+        "text": "Does the organization's application whitelisting software ensure that only authorized software libraries (such as *.dll, *.ocx, *.so, etc.) are allowed to load into a system process.",
+        "level": 1
+      },
+      {
+        "marker": "197",
+        "text": "Does the organization's application whitelisting software must ensure that only authorized, digitally signed scripts (such as *.ps1, *.py, macros, etc.) are allowed to run on a system.",
+        "level": 1
+      },
+      {
+        "marker": "198",
+        "text": "Is a periodic inventory taken to verify that the appropriate backup files are being maintained?",
+        "level": 1
+      },
+      {
+        "marker": "199",
+        "text": "Is appropriate hardware backup available?",
+        "level": 1
+      },
+      {
+        "marker": "200",
+        "text": "Is it ensured that only software applications or operating systems currently supported by the software's vendor are added to the organization's authorized software inventory? Unsupported software should be tagged as unsupported in the inventory system.",
+        "level": 1
+      },
+      {
+        "marker": "201",
+        "text": "Is it ensured that the software inventory system should be tied into the hardware asset inventory so all devices and associated software are tracked from a single location?",
+        "level": 1
+      },
+      {
+        "marker": "202",
+        "text": "Is the use of remote access software restricted?",
+        "level": 1
+      },
+      {
+        "marker": "203",
+        "text": "Is there documentation describing data, programs, hardware, and system requirements?",
+        "level": 1
+      },
+      {
+        "marker": "204",
+        "text": "Are policies and procedures being used to protect critical information at different layers of security?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "205",
+    "Policy Name": "Maintenance (PR.MA):",
+    "guidelines": [
+      {
+        "marker": "205",
+        "text": "Is there a process to determine after how many days of identification, patches would be fixed?",
+        "level": 1
+      },
+      {
+        "marker": "206",
+        "text": "Are remote maintenance of organizational assets approved, logged, and performed in a manner that prevents unauthorized access?",
+        "level": 1
+      },
+      {
+        "marker": "207",
+        "text": "Are Defined parameters taken for prioritizing the patches need to be installed?",
+        "level": 1
+      },
+      {
+        "marker": "208",
+        "text": "Are maintenance and repair of organizational assets logged whenever performed, with approved and controlled tools?",
+        "level": 1
+      },
+      {
+        "marker": "209",
+        "text": "Is there a process to deploy critical patches in a test environment?",
+        "level": 1
+      },
+      {
+        "marker": "210",
+        "text": "Are the approved patch management policy have been implemented?",
+        "level": 1
+      },
+      {
+        "marker": "211",
+        "text": "Have perimeters been defined for classifying patches?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "212",
+    "Policy Name": "Protective Technology (PR.PT):",
+    "guidelines": [
+      {
+        "marker": "212",
+        "text": "Are adequate measures taken to isolate and secure the perimeter and connectivity of the servers running monetary transactions applications/process?",
+        "level": 1
+      },
+      {
+        "marker": "213",
+        "text": "Does the organization Continuously monitor the release of patches by various vendors / OEMs, advisories issued by CERT-in and other similar agencies and expeditiously apply the security patches as per the patch management policy?",
+        "level": 1
+      },
+      {
+        "marker": "214",
+        "text": "Has the organization deployed controls like host / network / application based IDS systems, customized kernels for Linux, anti-virus and anti-malware software etc., to prevent from virus / malware / ransomware attacks?",
+        "level": 1
+      },
+      {
+        "marker": "215",
+        "text": "Has the organization documented and implemented secure mail and messaging systems, including those used by organization's partners & vendors, that include measures to prevent email spoofing, identical mail domains, protection of attachments, malicious links etc.?",
+        "level": 1
+      },
+      {
+        "marker": "216",
+        "text": "Has the organization established baseline standards to facilitate consistent application of security configurations to operating systems, databases, network devices and enterprise mobile devices within their IT environment? Are LAN and wireless networks secured within organizations premises by deploying proper controls?",
+        "level": 1
+      },
+      {
+        "marker": "217",
+        "text": "Has the organization implemented mechanism to control installation of software/applications on end-user PCs, laptops, workstations, servers, mobile devices, etc. and mechanism to block /prevent and identify installation and running of unauthorised software/applications on such devices/systems?",
+        "level": 1
+      },
+      {
+        "marker": "218",
+        "text": "Has the organization installed network security devices, such as firewalls, proxy servers, intrusion detection and prevention systems (IDS) to protect their IT infrastructure which is exposed to the internet, from security exposures originating from internal and external sources?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "219",
+    "Policy Name": "Communications (RC.CO):",
+    "guidelines": [
+      {
+        "marker": "219",
+        "text": "Are recovery activities communicated to internal and external stakeholders as well as executive and management team?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "220",
+    "Policy Name": "Improvements (RC.IM):",
+    "guidelines": [
+      {
+        "marker": "220",
+        "text": "Are recovery strategies updated periodically?",
+        "level": 1
+      },
+      {
+        "marker": "221",
+        "text": "Does recovery plans incorporate lessons learned?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "222",
+    "Policy Name": "Recovery Planning (RC.RP):",
+    "guidelines": [
+      {
+        "marker": "222",
+        "text": "Is recovery plan executed during or after a cybersecurity incident?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "223",
+    "Policy Name": "Analysis (RS.AN):",
+    "guidelines": [
+      {
+        "marker": "223",
+        "text": "Are processes established to receive, analyse and respond to vulnerabilities disclosed to the organization from internal and external sources? (e.g. internal testing, security bulletins, or security researchers)",
+        "level": 1
+      },
+      {
+        "marker": "224",
+        "text": "Does the organisation have a process to ensure that impact of an incident analysed?",
+        "level": 1
+      },
+      {
+        "marker": "225",
+        "text": "Does the organisation have a process to ensure that Notifications from detection systems are investigated ?",
+        "level": 1
+      },
+      {
+        "marker": "226",
+        "text": "Does the organisation have a process to ensure that forensics are performed?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "227",
+    "Policy Name": "Communications (RS.CO):",
+    "guidelines": [
+      {
+        "marker": "227",
+        "text": "Are all the cyber attacks related incidents captured and logged?",
+        "level": 1
+      },
+      {
+        "marker": "228",
+        "text": "Are the cyber related incident reported to higher authority on periodic basis?",
+        "level": 1
+      },
+      {
+        "marker": "229",
+        "text": "Are cyber incidents reported to CERT-In within 6 hours of noticing or being brought to notice about such incidents?",
+        "level": 1
+      },
+      {
+        "marker": "230",
+        "text": "Are third parties contractually required to protect the information that is shared with them as part of an incident?",
+        "level": 1
+      },
+      {
+        "marker": "231",
+        "text": "Are Contact details of Ministries, stakeholders, vendors and agencies like NCIIPC & CERTIn for incident resolutions up to date and documented?",
+        "level": 1
+      },
+      {
+        "marker": "232",
+        "text": "Are the timelines prescribed for reporting incidents to external organizations including IRDAI, CERT-IN strictly adhered to?",
+        "level": 1
+      },
+      {
+        "marker": "233",
+        "text": "Is root cause analysis of the incident and Action taken report submitted to the concerned insurer on demand.",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "234",
+    "Policy Name": "Improvements (RS.IM):",
+    "guidelines": [
+      {
+        "marker": "234",
+        "text": "Are Response strategies updated periodically?",
+        "level": 1
+      },
+      {
+        "marker": "235",
+        "text": "Are the Board members provided with training programmes on IT Risk / Cybersecurity Risk and evolving best practices in this regard so as to cover all the Board members at least once a year.",
+        "level": 1
+      },
+      {
+        "marker": "236",
+        "text": "Are top management sensitised on various technological developments and cyber security related developments periodically?",
+        "level": 1
+      },
+      {
+        "marker": "237",
+        "text": "Are lessons learned captured and shared?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "238",
+    "Policy Name": "Mitigation (RS.MI):",
+    "guidelines": [
+      {
+        "marker": "238",
+        "text": "Has the organization defined the incident management response procedure ?",
+        "level": 1
+      },
+      {
+        "marker": "239",
+        "text": "Are newly identified vulnerabilities are mitigated or documented as accepted risks?",
+        "level": 1
+      },
+      {
+        "marker": "240",
+        "text": "Are the corrective action procedure for all the vulnerabilities identified in VAPT?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "241",
+    "Policy Name": "Response Planning (RS.RP):",
+    "guidelines": [
+      {
+        "marker": "241",
+        "text": "Are the plans tested quarterly to include management and recovering from backups?",
+        "level": 1
+      },
+      {
+        "marker": "242",
+        "text": "Does the organisation Compare all network device configuration against approved security configurations defined for each network device in use and alert when any deviations are discovered.",
+        "level": 1
+      },
+      {
+        "marker": "243",
+        "text": "Does the organisation Ensure that all backups have at least one backup destination that is not continuously addressable through operating system calls / offline backup ?",
+        "level": 1
+      },
+      {
+        "marker": "244",
+        "text": "Does the organisation Ensure that all of the organization's key / critical systems are backed up as a complete system, through processes such as imaging, to enable the quick recovery of an entire system.",
+        "level": 1
+      },
+      {
+        "marker": "245",
+        "text": "Does the organisation Install the latest stable version of any security-related updates on all network devices.",
+        "level": 1
+      },
+      {
+        "marker": "246",
+        "text": "Does the organisation Maintain standard, documented security configuration standards for all authorized network devices.",
+        "level": 1
+      },
+      {
+        "marker": "247",
+        "text": "Does the organisation Test data integrity on backup media on a regular basis by performing a data restoration process to ensure that the backup is properly working. Bi-annually Bi-annually",
+        "level": 1
+      },
+      {
+        "marker": "248",
+        "text": "Has the business impact analysis conducted?",
+        "level": 1
+      },
+      {
+        "marker": "249",
+        "text": "Has the organization defined the business continuity plan and procedure?",
+        "level": 1
+      },
+      {
+        "marker": "250",
+        "text": "Has the organization ensured that RPO(Recovery point objective) and RTO (Recovery point objective) are inline with the policy?",
+        "level": 1
+      },
+      {
+        "marker": "251",
+        "text": "Are the incidents responded and analysed?",
+        "level": 1
+      },
+      {
+        "marker": "252",
+        "text": "Are the security incidents analysed and corrective actions implemented for continual improvement ?",
+        "level": 1
+      },
+      {
+        "marker": "253",
+        "text": "Is the recovery plan understood and communicated through all security training? Are employee responsibilities and roles explicitly stated in the plan and communicated?",
+        "level": 1
+      },
+      {
+        "marker": "254",
+        "text": "Is there an incident response / crisis team with clearly defined roles and responsibilities?",
+        "level": 1
+      },
+      {
+        "marker": "255",
+        "text": "Is Cyber Crisis plan implemented and exercised or rehearsed periodically",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "256",
+    "Policy Name": "Work From Remote Location (WFRL):",
+    "guidelines": [
+      {
+        "marker": "256",
+        "text": "Does the Board approved Cyber Security Policy (Policy) of Regulated Entity address risks associated with Work From Remote Location (WFRL) risks?",
+        "level": 1
+      },
+      {
+        "marker": "257",
+        "text": "Does the Policy confirms use of secure network with strong protocols and Wi-Fi passwords at remote location?",
+        "level": 1
+      },
+      {
+        "marker": "258",
+        "text": "Does it mandates passwords change periodically?",
+        "level": 1
+      },
+      {
+        "marker": "259",
+        "text": "Are users provided with authorized assets of the organization which are hardened as per security policy for strong password authentication?",
+        "level": 1
+      },
+      {
+        "marker": "260",
+        "text": "Are servers, applications and networks hardened and secured as per standardized security policy settings?",
+        "level": 1
+      },
+      {
+        "marker": "261",
+        "text": "Are device controls implemented on user systems and Information and Communication Technology (ICT) infrastructure systems to block admin level access, unauthorized installation or changes to software, USB and other media, peripherals?",
+        "level": 1
+      },
+      {
+        "marker": "262",
+        "text": "Are user systems enabled with Antivirus, Endpoint protection controls, data encryption and Data Loss Prevention mechanisms?",
+        "level": 1
+      },
+      {
+        "marker": "263",
+        "text": "Does these controls pervade across all the users from all functions",
+        "level": 1
+      },
+      {
+        "marker": "264",
+        "text": "Are user systems and organization ICT infrastructure regularly updated with security patches and fixes. (Auditor to mention the latest update date)",
+        "level": 1
+      },
+      {
+        "marker": "265",
+        "text": "Are workflow approvals, deviations or exceptions captured as per Change Management Procedures.",
+        "level": 1
+      },
+      {
+        "marker": "266",
+        "text": "Are secure remote access mechanisms of Virtual Private Network (VPN), Internet Proxy or Virtual Device Interface (VDI) provisioned for WFRL users accessing organizational data assets and applications?",
+        "level": 1
+      },
+      {
+        "marker": "267",
+        "text": "Is the audit log monitoring and analysis provisioned on organizational ICT infrastructure as a control for unauthorized access risks and cyber threats?",
+        "level": 1
+      },
+      {
+        "marker": "268",
+        "text": "Are users provided with assets authorized by the Insurer which are hardened as per the Insurers security policy settings for strong password authentication?",
+        "level": 1
+      },
+      {
+        "marker": "269",
+        "text": "Does the policy, spell controls and procedures related to secure access of organizational data assets and applications from user-owned devices like mobile phones, tablets or other Bring Your Own Device (BYOD) of the Insurer?",
+        "level": 1
+      },
+      {
+        "marker": "270",
+        "text": "Do data containerization, Multifactor authentication and remote data wipe have been done to prevent data tampering and misuse of lost mobile/tablet devices during the period when WFRL has been permitted by the Insurer?",
+        "level": 1
+      },
+      {
+        "marker": "271",
+        "text": "Are users mandated to back-up critical data periodically (Policy shall mandate periodicity) on secure location in organization systems?",
+        "level": 1
+      },
+      {
+        "marker": "272",
+        "text": "Are Non-disclosure agreements / Undertaking on data security and confidentiality signed at the time of employee/ consultant/ third-party vendor on boarding before permitting Operations to be commenced at WFRL?",
+        "level": 1
+      },
+      {
+        "marker": "273",
+        "text": "Are users provided with assets authorized by the Insurer and are hardened as per security policy settings and strong password authentication?",
+        "level": 1
+      },
+      {
+        "marker": "274",
+        "text": "Is there an audit of Privileged user identity access authentication taken for administrative purposes?",
+        "level": 1
+      },
+      {
+        "marker": "275",
+        "text": "Is there an Audit of security information and events monitoring of audit logs analysis and incident response in place?",
+        "level": 1
+      },
+      {
+        "marker": "276",
+        "text": "Are controls in place to identify unauthorized access, malicious code execution, suspicious activities or behaviour, credential theft, presence of advance persistent threats like remote access toolkits and such cyber risks to organizational ICT infrastructure?",
+        "level": 1
+      },
+      {
+        "marker": "277",
+        "text": "Are email services secured to prevent spam, spoofed mails and malware filtering?",
+        "level": 1
+      },
+      {
+        "marker": "278",
+        "text": "Are users trained to handle spam, phishing scam and fraudulent emails?",
+        "level": 1
+      },
+      {
+        "marker": "279",
+        "text": "Are suspicious or malicious domains on the internet detected and blocked on network firewall, web proxy filtering, intrusion prevention systems?",
+        "level": 1
+      },
+      {
+        "marker": "280",
+        "text": "Are device controls implemented on user systems and ICT infrastructure systems to block unauthorized internet domains, unauthorized software installation or changes to configuration, USB and any other media, peripherals?",
+        "level": 1
+      },
+      {
+        "marker": "281",
+        "text": "Are user systems and organization ICT infrastructure regularly updated with security patches and fixes? (Auditor to mention the latest update date)",
+        "level": 1
+      },
+      {
+        "marker": "282",
+        "text": "Are activities like walkthrough and interviews performed using approved remote access software over secure and hardened systems of auditee and auditor organizations?",
+        "level": 1
+      },
+      {
+        "marker": "283",
+        "text": "Are evidences and artefacts classified, securely demonstrated to concerned stakeholders and not shared out of authorized domains?",
+        "level": 1
+      },
+      {
+        "marker": "284",
+        "text": "Are project implementation documents, MIS reports classified and shared on Need-to- know basis?",
+        "level": 1
+      },
+      {
+        "marker": "285",
+        "text": "Are plans and procedures set in place by the organization for Cybersecurity incident response and Crisis management activities?",
+        "level": 1
+      },
+      {
+        "marker": "286",
+        "text": "Is Cyber Security Project management performed remotely?",
+        "level": 1
+      },
+      {
+        "marker": "287",
+        "text": "Confirm whether there are hardening procedures to check / scan systems brought back to Office?",
+        "level": 1
+      },
+      {
+        "marker": "288",
+        "text": "Confirm whether if all patches, AV, End Point Protection, Data Encryption mechanisms are checked to ensure its appropriate functioning?",
+        "level": 1
+      },
+      {
+        "marker": "289",
+        "text": "Are user systems and organization ICT infrastructure systems regularly updated with security patches and fixes?",
+        "level": 1
+      },
+      {
+        "marker": "290",
+        "text": "Is the security event audit log monitoring and analysis provisioned on Insurers ICT infrastructure?",
+        "level": 1
+      },
+      {
+        "marker": "291",
+        "text": "Are security patch updates reviewed and periodically applied on ICT infrastructure to prevent Distributed Denial of Services(DDoS) attacks?",
+        "level": 1
+      },
+      {
+        "marker": "292",
+        "text": "In the case of disruption can IT support be accessed by investment application users through portal, help desk (phone) or email or visit to office?",
+        "level": 1
+      },
+      {
+        "marker": "293",
+        "text": "Are backups reviewed periodically and procedures aligned to minimize downtime impact?",
+        "level": 1
+      },
+      {
+        "marker": "294",
+        "text": "Is DR Drill performed to ensure adherence to Business Continuity metrics? (DR Drill should have been done on a normal working day)",
+        "level": 1
+      },
+      {
+        "marker": "295",
+        "text": "Is data restoration testing performed on periodic basis to ensure integrity of backups? Bi-annually Bi-annually",
+        "level": 1
+      },
+      {
+        "marker": "296",
+        "text": "Are alternative site options and resource availability planned as a part of Business Continuity and tested for same?",
+        "level": 1
+      },
+      {
+        "marker": "297",
+        "text": "Are Secondary Network Connectivity and IT infrastructure is provisioned and tested for the critical applications and services?",
+        "level": 1
+      },
+      {
+        "marker": "298",
+        "text": "Is it possible to access systems without user authentication or by-passing authentication? (Auditor shall specifically confirm that that users cannot bypass security)",
+        "level": 1
+      },
+      {
+        "marker": "299",
+        "text": "Are applications accessible ONLY to authorised users through a secured VPN or VDI access?",
+        "level": 1
+      },
+      {
+        "marker": "300",
+        "text": "Are users authenticated and authorised by a domain policy server?",
+        "level": 1
+      },
+      {
+        "marker": "301",
+        "text": "Are Logs of application IT infrastructure are collected and analysed by 24X7 Security Operation Centre (SOC) team?",
+        "level": 1
+      },
+      {
+        "marker": "302",
+        "text": "Is Continuous (Auditor shall specifically comment on the Periodicity interval) monitoring of IT logs to review unauthorized Login/Logout by users, access violations etc. done through Security Information and Event Monitoring (SIEM) and monitored by Security Operations Centre (SOC)?",
+        "level": 1
+      },
+      {
+        "marker": "303",
+        "text": "Are Enterprise wide monitoring of Information security incidents done by SOC team on 24X7 basis?",
+        "level": 1
+      },
+      {
+        "marker": "304",
+        "text": "Are ICT infrastructure logs maintained as per regulatory guidelines?",
+        "level": 1
+      },
+      {
+        "marker": "305",
+        "text": "Are Installation of unapproved software and utilities barred by centrally enforced policy?",
+        "level": 1
+      },
+      {
+        "marker": "306",
+        "text": "Are users using only Organization approved collaboration software?",
+        "level": 1
+      },
+      {
+        "marker": "307",
+        "text": "Is there a preventive control to block Unauthorized Collaboration tools on the firewall/network security devices?",
+        "level": 1
+      },
+      {
+        "marker": "308",
+        "text": "Are Cybersecurity awareness circulars and advisories regularly sent to employees, third party vendor and consultants.",
+        "level": 1
+      },
+      {
+        "marker": "309",
+        "text": "Does the Organization has a Dealing room policy and Standard operating policy to supervise controls over the dealing activities during WFRL?",
+        "level": 1
+      },
+      {
+        "marker": "310",
+        "text": "Are all agreements/documents with third parties digitally signed using a special tool?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "311",
+    "Policy Name": "Work From Remote Location - Investment (WFRL.IN):",
+    "guidelines": [
+      {
+        "marker": "311",
+        "text": "Are Recorded lines working and and well-maintained condition?",
+        "level": 1
+      },
+      {
+        "marker": "312",
+        "text": "Does Mid-office check voice recording as per a defined process in Standard Operating Procedure (SOP)?",
+        "level": 1
+      },
+      {
+        "marker": "313",
+        "text": "Are Dealers provided with a dedicated and secured recording line during WFH for placing the calls to the brokers.",
+        "level": 1
+      },
+      {
+        "marker": "314",
+        "text": "Is Voice logger used for recording of calls made from office location?",
+        "level": 1
+      },
+      {
+        "marker": "315",
+        "text": "Is Back up/storage of call recordings enabled as a part of proof of transaction that can be accessed anytime?",
+        "level": 1
+      },
+      {
+        "marker": "316",
+        "text": "Does the SOP define process to handle disruption in communication links between the dealers and brokers?",
+        "level": 1
+      },
+      {
+        "marker": "317",
+        "text": "Are such communications logged /recorded?",
+        "level": 1
+      },
+      {
+        "marker": "318",
+        "text": "Does the Mid-Office independently review these logs / records ?",
+        "level": 1
+      },
+      {
+        "marker": "319",
+        "text": "Are appropriate prior approvals / authorisations taken to process such transactions?",
+        "level": 1
+      },
+      {
+        "marker": "320",
+        "text": "Do Dealers execute ALL transactions only through recorded telephone lines?",
+        "level": 1
+      },
+      {
+        "marker": "321",
+        "text": "Are all authorized Bloomberg terminals / Bloomberg anywhere ID's / NDS terminals/TREPS Terminals/Emails only and are completely disabled for SMS / Chat facilities?",
+        "level": 1
+      },
+      {
+        "marker": "322",
+        "text": "Confirm that Bloomberg terminals are accessible through multi factor authentication and are disabled for SMS / Chat facilities.",
+        "level": 1
+      },
+      {
+        "marker": "323",
+        "text": "In the event of disruption of communication link, are there defined policies / processes to guide the officials of the Investments Function to process transactions with appropriate approvals?",
+        "level": 1
+      },
+      {
+        "marker": "324",
+        "text": "Confirm specifically that investment transactions are executed with all mandates defined as a part of Dealing room Work flow / SOP with requisite approvals",
+        "level": 1
+      },
+      {
+        "marker": "325",
+        "text": "Do Dealers execute all transactions via recorded telephone lines or authorized Bloomberg terminals / Bloomberg anywhere ID's / NDS terminals/TREPS terminals/Emails only?",
+        "level": 1
+      },
+      {
+        "marker": "326",
+        "text": "Confirm specifically that in addition to the recorded lines the dealers places the orders only through empanelled brokers ONLY through authorized communication modes as per SOP/Dealing room policy?",
+        "level": 1
+      },
+      {
+        "marker": "327",
+        "text": "Are Contingency policy and plans, revised and tested periodically for an effective business continuity?",
+        "level": 1
+      },
+      {
+        "marker": "328",
+        "text": "Is Secondary network connectivity and IT infrastructure provisioned and tested for the critical applications and services? Check for are any SPoFs - Single Point of Failure",
+        "level": 1
+      },
+      {
+        "marker": "329",
+        "text": "Are Disaster Recovery (DR) Drills performed to verify the availability of applications, processes and resources at remote backup site. Are issues identified during DR testing addressed? Bi-annually Bi-annually",
+        "level": 1
+      },
+      {
+        "marker": "330",
+        "text": "Is IT support accessed by Investment application users by way of portal, helpdesk or visit to office.",
+        "level": 1
+      },
+      {
+        "marker": "331",
+        "text": "Are Backup/Alternative locations and resources identified within Investment function to ensure business continuity?",
+        "level": 1
+      },
+      {
+        "marker": "332",
+        "text": "Is Email facility enabled with empanelled broker, counter parties, custodian etc.",
+        "level": 1
+      },
+      {
+        "marker": "333",
+        "text": "Are Emails shared ONLY through authorized company email addresses registered with concerned counterparties?",
+        "level": 1
+      },
+      {
+        "marker": "334",
+        "text": "Is Voice recording analysis and rate scan done on a regular basis to supervise trades and transaction price as defined in dealing room policy?",
+        "level": 1
+      },
+      {
+        "marker": "335",
+        "text": "Is there a supervisory monitoring process check list which includes transaction price monitoring and trade monitoring etc.?",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "336",
+    "Policy Name": "Information Technology (Intermediary Guidelines and Digital Media Ethics Code)",
+    "guidelines": [
+      {
+        "marker": "336",
+        "text": "Rules, 2021 (IGDM) Has the intermediary prominently published on its website, mobile based application or both, as the case may be, the rules and regulations, privacy policy and user agreement for access or usage of its computer resource by any person?",
+        "level": 1
+      },
+      {
+        "marker": "337",
+        "text": "Rules, 2021 (IGDM) Has the rules and regulations, privacy policy or user agreement of the intermediary informed the user of its computer resource not to host, display, upload, modify, publish, transmit, store, update or share any information that (i) belongs to another person and to which the user does not have any right; (ii) is defamatory, obscene, pornographic, paedopholic, invasive of another privacy including bodily privacy, insulting or harassing on the basis of gender, libellous, racially or ethnically objectionable, relating or encouraging money laundering or gambling, or otherwise inconsistent with or contrary to the laws in force; (iii) is harmful to child; (iv) infringes any patent, trademark, copyright or other proprietary rights; (v) violates any law for the time being in force; (vi) deceives or misleads the addressee about the origin of the message or knowingly and intentionally communicates any information which is patently false or misleading in nature but may reasonably be perceived as a fact; (vii) impersonates another person; (viii) threatens the unity, integrity, defence, security or sovereignty of India, friendly relations with foreign States, or public order, or causes incitement to the commission of any cognisable offence or prevents investigation of any offence or is insulting other nation; (ix) contains software virus or any other computer code, file or program designed to interrupt, destroy or limit the functionality of any computer resource; (x) is patently false and untrue, and is written or published in any form, with the intent to mislead or harass a person, entity or agency for financial gain or to cause any injury to any person;",
+        "level": 1
+      },
+      {
+        "marker": "338",
+        "text": "Rules, 2021 (IGDM) Has the intermediary periodically informed its users, at least once every year, that in case of non-compliance with rules and regulations, privacy policy or user agreement for access or usage of the computer resource of such intermediary, it has the right to terminate the access or usage rights of the users to the computer resource immediately or remove non-compliant information or both, as the case may be",
+        "level": 1
+      },
+      {
+        "marker": "340",
+        "text": "Rules, 2021 (IGDM) Has the intermediary periodically, and at least once in a year, informed its users of its rules and regulations, privacy policy or user agreement or any change in the rules and regulations, privacy policy or user agreement, as the case may be",
+        "level": 1
+      },
+      {
+        "marker": "341",
+        "text": "Rules, 2021 (IGDM) If the intermediary collected information from a user for registration on the computer resource, has it retained his information for a period of one hundred and eighty days after any cancellation or withdrawal of his registration, as the case may be;",
+        "level": 1
+      },
+      {
+        "marker": "342",
+        "text": "Rules, 2021 (IGDM) Has the intermediary taken all reasonable measures to secure its computer resource and information contained therein following the reasonable security practices and procedures as prescribed in the Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Information) Rules, 2011",
+        "level": 1
+      },
+      {
+        "marker": "345",
+        "text": "Rules, 2021 (IGDM) Is the intermediary aware that it shall not knowingly deploy or install or modify technical configuration of computer resource or become party to any act that may change or has the potential to change the normal course of operation of the computer resource than what it is supposed to perform thereby circumventing any law for the time being in force",
+        "level": 1
+      },
+      {
+        "marker": "346",
+        "text": "Rules, 2021 (IGDM) Has the intermediary prominently published on its website,mobile based application or both,as the case may be, the name of the Grievance Officer and his contact details as well as mechanism by which a user or a victim may make complaint against violation of the provisions of this rule or any other matters pertaining to the computer resources made available by it, and the Grievance Officer shall - (i) acknowledge the complaint within twenty four hours anddispose offsuch complaint within a period of fifteen days from the date of its receipt; (ii) receive and acknowledge any order, notice or direction issued by the Appropriate Government, any competent authority or a court of competent jurisdiction.",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "344",
+    "Policy Name": "Information Technology Has the intermediary reported cyber security incidents and share related information with the Indian Computer Emergency Response Team in accordance with the policies and procedures as mentioned in the Information Technology (The Indian Computer Emergency Response Team and Manner of Performing Functions and Duties)",
+    "guidelines": [
+      {
+        "marker": "344",
+        "text": "Rules, 2013.",
+        "level": 1
+      }
+    ]
+  },
+  {
+    "Policy Number": "348",
+    "Policy Name": "Information Technology (Intermediary Guidelines and Digital Media EthicsCode)",
+    "guidelines": [
+      {
+        "marker": "348",
+        "text": "Rules, 2021 (IGDM) Has the intermediary implemented a mechanism for the receiptof complaints under clause (b) of this sub-rule which may enable the individual or person toprovide details, as may be necessary, in relation to such content or communication link",
+        "level": 1
+      }
+    ]
+  }
+]

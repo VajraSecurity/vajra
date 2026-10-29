@@ -1,0 +1,74 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common Administrative Tools",
+"name": "Common Administrative Tools",
+"type": "REG_SZ",
+"data": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Administrative Tools"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common AppData",
+"name": "Common AppData",
+"type": "REG_SZ",
+"data": "C:\\ProgramData"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common Desktop",
+"name": "Common Desktop",
+"type": "REG_SZ",
+"data": "C:\\Users\\Public\\Desktop"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common Documents",
+"name": "Common Documents",
+"type": "REG_SZ",
+"data": "C:\\Users\\Public\\Documents"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common Programs",
+"name": "Common Programs",
+"type": "REG_SZ",
+"data": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common Start Menu",
+"name": "Common Start Menu",
+"type": "REG_SZ",
+"data": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common Startup",
+"name": "Common Startup",
+"type": "REG_SZ",
+"data": "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\Common Templates",
+"name": "Common Templates",
+"type": "REG_SZ",
+"data": "C:\\ProgramData\\Microsoft\\Windows\\Templates"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\CommonMusic",
+"name": "CommonMusic",
+"type": "REG_SZ",
+"data": "C:\\Users\\Public\\Music"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\CommonPictures",
+"name": "CommonPictures",
+"type": "REG_SZ",
+"data": "C:\\Users\\Public\\Pictures"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\CommonVideo",
+"name": "CommonVideo",
+"type": "REG_SZ",
+"data": "C:\\Users\\Public\\Videos"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders\\OEM Links",
+"name": "OEM Links",
+"type": "REG_SZ",
+"data": "C:\\ProgramData\\OEM\\Links"
+}
+]

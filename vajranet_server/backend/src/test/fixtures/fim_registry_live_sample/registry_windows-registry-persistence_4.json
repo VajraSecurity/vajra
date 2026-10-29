@@ -1,0 +1,2324 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.NET CLR Data\\Linkage",
+"name": "Linkage",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\.NET CLR Data\\Performance",
+"name": "Performance",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\SharedState",
+"name": "SharedState",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\Enum",
+"name": "Enum",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "System32\\drivers\\ACPI.sys"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@acpi.inf,%ACPI.SvcDesc%;Microsoft ACPI Driver"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\Owners",
+"name": "Owners",
+"type": "REG_MULTI_SZ",
+"data": "acpi.inf"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\Tag",
+"name": "Tag",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\ACPI\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "Core"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\BootFlags",
+"name": "BootFlags",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\drivers\\afd.sys,-1000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\drivers\\afd.sys,-1000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "PNP_TDI"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "\\SystemRoot\\system32\\drivers\\afd.sys"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\AFD\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "AudioEndpointBuilder,RpcSs"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\audiosrv.dll,-201"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\audiosrv.dll,-200"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000001000000C0D401000100000020BF0200"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "AudioGroup"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT AUTHORITY\\LocalService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeImpersonatePrivilege,SeIncreaseWorkingSetPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "16"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\Performance",
+"name": "Performance",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RpcSs"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\qmgr.dll,-1001"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\qmgr.dll,-1000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000001000000C0D401000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeCreateGlobalPrivilege,SeImpersonatePrivilege,SeTcbPrivilege,SeAssignPrimaryTokenPrivilege,SeIncreaseQuotaPrivilege,SeDebugPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\BITS\\DelayedAutostart",
+"name": "DelayedAutostart",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\TriggerInfo",
+"name": "TriggerInfo",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RpcSs"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\cryptsvc.dll,-1002"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\cryptsvc.dll,-1001"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000000000000000000000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k NetworkService -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT Authority\\NetworkService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\CryptSvc\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "16"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Configurations",
+"name": "Configurations",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Linkage",
+"name": "Linkage",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Parametersv6",
+"name": "Parametersv6",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "NSI,Afd"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\dhcpcore.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\dhcpcore.dll,-100"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "805101000000000000000000030000001400000001000000C0D4010001000000E09304000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "TDI"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNetworkRestricted -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT Authority\\LocalService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\ServiceDll",
+"name": "ServiceDll",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\dhcpcore.dll"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dhcp\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\InterfaceSpecificParameters",
+"name": "InterfaceSpecificParameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\mDNS",
+"name": "mDNS",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Performance",
+"name": "Performance",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\TriggerInfo",
+"name": "TriggerInfo",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "nsi,Afd"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\dnsapi.dll,-102"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\dnsapi.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "805101000000000000000000030000001400000001000000E803000001000000E803000001000000E8030000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "TDI"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k NetworkService -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT AUTHORITY\\NetworkService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeCreateGlobalPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "16"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application",
+"name": "Application",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\HardwareEvents",
+"name": "HardwareEvents",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Internet Explorer",
+"name": "Internet Explorer",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Key Management Service",
+"name": "Key Management Service",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\State",
+"name": "State",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\System",
+"name": "System",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Windows PowerShell",
+"name": "Windows PowerShell",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\wevtsvc.dll,-201"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\wevtsvc.dll,-200"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000001000000C0D401000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\FailureActionsOnNonCrashFailures",
+"name": "FailureActionsOnNonCrashFailures",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "Event Log"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\svchost.exe -k LocalServiceNetworkRestricted -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT AUTHORITY\\LocalService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\PlugPlayServiceType",
+"name": "PlugPlayServiceType",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeImpersonatePrivilege,SeAuditPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\EventLog\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\Performance",
+"name": "Performance",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RpcEptMapper,DcomLaunch,RpcSs"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%windir%\\system32\\lsm.dll,-1002"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%windir%\\system32\\lsm.dll,-1001"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "COM Infrastructure"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k DcomLaunch -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\MitigationFlags",
+"name": "MitigationFlags",
+"type": "REG_DWORD",
+"data": "50"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LSM\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Aliases",
+"name": "Aliases",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\AlternativePorts",
+"name": "AlternativePorts",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\AutotunedParameters",
+"name": "AutotunedParameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Certs",
+"name": "Certs",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\DefaultSecurity",
+"name": "DefaultSecurity",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Linkage",
+"name": "Linkage",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\ShareProviders",
+"name": "ShareProviders",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Shares",
+"name": "Shares",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\TriggerInfo",
+"name": "TriggerInfo",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "SamSS,Srv2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\srvsvc.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\srvsvc.dll,-100"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000001000000C0D401000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeImpersonatePrivilege,SeAuditPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanServer\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\Linkage",
+"name": "Linkage",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\NetworkProvider",
+"name": "NetworkProvider",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "MRxSmb20,NSI,Bowser"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\wkssvc.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\wkssvc.dll,-100"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000001000000C0D401000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "NetworkProvider"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT AUTHORITY\\NetworkService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeImpersonatePrivilege,SeAuditPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\LanmanWorkstation\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "LanmanWorkstation"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\netlogon.dll,-103"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\netlogon.dll,-102"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "MS_WindowsRemoteValidation"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\lsass.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Netlogon\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\umpnpmgr.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\umpnpmgr.dll,-200"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "000000000000000000000000010000001400000001000000983A0000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\FailureActionsOnNonCrashFailures",
+"name": "FailureActionsOnNonCrashFailures",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "PlugPlay"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k DcomLaunch -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\MitigationFlags",
+"name": "MitigationFlags",
+"type": "REG_DWORD",
+"data": "50"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\SvcHostSplitDisable",
+"name": "SvcHostSplitDisable",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\PlugPlay\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\umpo.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\umpo.dll,-100"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "00000000000000000000000003000000140000000200000060EA00000200000060EA00000200000060EA0000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "Plugplay"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k DcomLaunch -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\MitigationFlags",
+"name": "MitigationFlags",
+"type": "REG_DWORD",
+"data": "50"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeTcbPrivilege,SeSecurityPrivilege,SeAssignPrimaryTokenPrivilege,SeTakeOwnershipPrivilege,SeLoadDriverPrivilege,SeBackupPrivilege,SeRestorePrivilege,SeImpersonatePrivilege,SeAuditPrivilege,SeChangeNotifyPrivilege,SeUndockPrivilege,SeDebugPrivilege,SeSystemEnvironmentPrivilege,SeCreateGlobalPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\SvcHostSplitDisable",
+"name": "SvcHostSplitDisable",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Power\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RpcEptMapper,DcomLaunch"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@combase.dll,-5011"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@combase.dll,-5010"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "00000000000000000000000001000000000000000200000060EA0000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "COM Infrastructure"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k rpcss -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\MitigationFlags",
+"name": "MitigationFlags",
+"type": "REG_DWORD",
+"data": "50"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT AUTHORITY\\NetworkService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\SvcHostSplitDisable",
+"name": "SvcHostSplitDisable",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\RpcSs\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "EventSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\Sens.dll,-201"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\Sens.dll,-200"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "805101000000000000000000030000001400000001000000C0D4010001000000E09304000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "ProfSvc_Group"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcsRedirectionGuard -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeAuditPrivilege,SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege,SeTcbPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SENS\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RPCSS"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\samsrv.dll,-2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\samsrv.dll,-1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "MS_WindowsLocalValidation"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\lsass.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SamSs\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\TriggerInfo",
+"name": "TriggerInfo",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\AtTaskMaxHours",
+"name": "AtTaskMaxHours",
+"type": "REG_DWORD",
+"data": "72"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RPCSS,SystemEventsBroker"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\schedsvc.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\schedsvc.dll,-100"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "805101000000000000000000030000001400000004000000000000000100000060EA00000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "SchedulerGroup"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\MitigationFlags",
+"name": "MitigationFlags",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeIncreaseQuotaPrivilege,SeChangeNotifyPrivilege,SeImpersonatePrivilege,SeAssignPrimaryTokenPrivilege,SeTcbPrivilege,SeRestorePrivilege,SeBackupPrivilege,SeSecurityPrivilege,SeTakeOwnershipPrivilege,SeLoadDriverPrivilege,SeSystemProfilePrivilege,SeSystemTimePrivilege,SeProfileSingleProcessPrivilege,SeIncreaseBasePriorityPrivilege,SeCreatePageFilePrivilege,SeCreatePermanentPrivilege,SeShutdownPrivilege,SeDebugPrivilege,SeAuditPrivilege,SeSystemEnvironmentPrivilege,SeUndockPrivilege,SeManageVolumePrivilege,SeIncreaseWorkingSetPrivilege,SeTimeZonePrivilege,SeCreateSymbolicLinkPrivilege,SeLockMemoryPrivilege,SeCreateGlobalPrivilege,SeDelegateSessionUserImpersonatePrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\SvcMemHardLimitInMB",
+"name": "SvcMemHardLimitInMB",
+"type": "REG_DWORD",
+"data": "10"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\SvcMemMidLimitInMB",
+"name": "SvcMemMidLimitInMB",
+"type": "REG_DWORD",
+"data": "6"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\SvcMemSoftLimitInMB",
+"name": "SvcMemSoftLimitInMB",
+"type": "REG_DWORD",
+"data": "4"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Schedule\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\Performance",
+"name": "Performance",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RPCSS,http"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\spoolsv.exe,-2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\spoolsv.exe,-1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "100E000000000000000000000300000014000000010000008813000001000000881300000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "SpoolerGroup"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\spoolsv.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeTcbPrivilege,SeImpersonatePrivilege,SeAuditPrivilege,SeChangeNotifyPrivilege,SeAssignPrimaryTokenPrivilege,SeLoadDriverPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Spooler\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "272"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\Performance",
+"name": "Performance",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RPCSS"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\termsrv.dll,-267"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\termsrv.dll,-268"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA00000100000060EA00000000000060EA0000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT Authority\\NetworkService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeAssignPrimaryTokenPrivilege,SeAuditPrivilege,SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege,SeIncreaseQuotaPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\TermService\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\themeservice.dll,-8193"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\System32\\themeservice.dll,-8192"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA00000100000060EA00000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "ProfSvc_Group"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\svchost.exe -k netsvcs -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeAssignPrimaryTokenPrivilege,SeDebugPrivilege,SeImpersonatePrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Themes\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\Config",
+"name": "Config",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\SecureTimeLimits",
+"name": "SecureTimeLimits",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\TimeProviders",
+"name": "TimeProviders",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\TriggerInfo",
+"name": "TriggerInfo",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\w32time.dll,-201"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\w32time.dll,-200"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000001000000C0D401000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k LocalService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT AUTHORITY\\LocalService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeAuditPrivilege,SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeSystemTimePrivilege,SeImpersonatePrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\W32Time\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RpcSs"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%ProgramFiles%\\Windows Defender\\MpAsDesc.dll,-240"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%ProgramFiles%\\Windows Defender\\MpAsDesc.dll,-310"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA00000100000060EA00000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "\"C:\\Program Files\\Windows Defender\\MsMpEng.exe\""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\LaunchProtected",
+"name": "LaunchProtected",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeImpersonatePrivilege,SeBackupPrivilege,SeRestorePrivilege,SeDebugPrivilege,SeChangeNotifyPrivilege,SeLoadDriverPrivilege,SeSecurityPrivilege,SeShutdownPrivilege,SeIncreaseQuotaPrivilege,SeAssignPrimaryTokenPrivilege,SeTcbPrivilege,SeIncreaseBasePriorityPrivilege,SeSystemEnvironmentPrivilege,SeTakeOwnershipPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinDefend\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "16"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\DelayedAutoStart",
+"name": "DelayedAutoStart",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "RPCSS,HTTP,NSI"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%Systemroot%\\system32\\wsmsvc.dll,-102"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%Systemroot%\\system32\\wsmsvc.dll,-101"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "805101000000000000000000030000001400000001000000C0D4010001000000E09304000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\System32\\svchost.exe -k NetworkService -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT AUTHORITY\\NetworkService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeAssignPrimaryTokenPrivilege,SeAuditPrivilege,SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\WinRM\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "mpsdrv,bfe,nsi"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\FirewallAPI.dll,-23091"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%SystemRoot%\\system32\\FirewallAPI.dll,-23090"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000200000060EA00000200000060EA00000200000060EA0000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\Group",
+"name": "Group",
+"type": "REG_SZ",
+"data": "NetworkProvider"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k LocalServiceNoNetworkFirewall -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "NT Authority\\LocalService"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeAssignPrimaryTokenPrivilege,SeAuditPrivilege,SeChangeNotifyPrivilege,SeCreateGlobalPrivilege,SeImpersonatePrivilege,SeIncreaseQuotaPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\SvcHostSplitDisable",
+"name": "SvcHostSplitDisable",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\SvcMemHardLimitInMB",
+"name": "SvcMemHardLimitInMB",
+"type": "REG_DWORD",
+"data": "27"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\SvcMemMidLimitInMB",
+"name": "SvcMemMidLimitInMB",
+"type": "REG_DWORD",
+"data": "20"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\SvcMemSoftLimitInMB",
+"name": "SvcMemSoftLimitInMB",
+"type": "REG_DWORD",
+"data": "12"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\mpssvc\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\Parameters",
+"name": "Parameters",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\Security",
+"name": "Security",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\TriggerInfo",
+"name": "TriggerInfo",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\DependOnService",
+"name": "DependOnService",
+"type": "REG_MULTI_SZ",
+"data": "rpcss"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\Description",
+"name": "Description",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\wuaueng.dll,-106"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\DisplayName",
+"name": "DisplayName",
+"type": "REG_SZ",
+"data": "@%systemroot%\\system32\\wuaueng.dll,-105"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\ErrorControl",
+"name": "ErrorControl",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\FailureActions",
+"name": "FailureActions",
+"type": "REG_BINARY",
+"data": "80510100000000000000000003000000140000000100000060EA000000000000000000000000000000000000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\ImagePath",
+"name": "ImagePath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\svchost.exe -k netsvcs -p"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\ObjectName",
+"name": "ObjectName",
+"type": "REG_SZ",
+"data": "LocalSystem"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\RequiredPrivileges",
+"name": "RequiredPrivileges",
+"type": "REG_MULTI_SZ",
+"data": "SeAuditPrivilege,SeCreateGlobalPrivilege,SeCreatePageFilePrivilege,SeTcbPrivilege,SeAssignPrimaryTokenPrivilege,SeImpersonatePrivilege,SeIncreaseQuotaPrivilege,SeShutdownPrivilege,SeDebugPrivilege,SeBackupPrivilege,SeRestorePrivilege,SeSecurityPrivilege,SeTakeOwnershipPrivilege,SeLoadDriverPrivilege,SeManageVolumePrivilege,SeSystemEnvironmentPrivilege,SeCreateSymbolicLinkPrivilege,SeIncreaseBasePriorityPrivilege"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\ServiceSidType",
+"name": "ServiceSidType",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\Start",
+"name": "Start",
+"type": "REG_DWORD",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\SvcMemHardLimitInMB",
+"name": "SvcMemHardLimitInMB",
+"type": "REG_DWORD",
+"data": "246"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\SvcMemMidLimitInMB",
+"name": "SvcMemMidLimitInMB",
+"type": "REG_DWORD",
+"data": "167"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\SvcMemSoftLimitInMB",
+"name": "SvcMemSoftLimitInMB",
+"type": "REG_DWORD",
+"data": "88"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\wuauserv\\Type",
+"name": "Type",
+"type": "REG_DWORD",
+"data": "32"
+}
+]

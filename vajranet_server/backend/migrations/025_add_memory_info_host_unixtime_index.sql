@@ -1,0 +1,38 @@
+-- Fleet DB: index on memory_info (host_identifier, unixtime) — the node-detail
+-- memory graph.
+--
+-- Additive: it changes which plan Postgres picks, and no application query text
+-- changed alongside it, so results and ordering are unaffected.
+--
+-- controllers/windows/memory_info.ts's nodes_memory_health returns at most ten
+-- 30-second buckets covering the last five minutes for one host. The query has
+-- already been taken as far as a rewrite can go: the host and the id window are
+-- pinned into MATERIALIZED CTEs so the scan rides idx_memory_info_host_id
+-- (host_identifier, id DESC) rather than walking the primary key. That index
+-- cannot bound `unixtime`, so Postgres still reads every one of the host's rows
+-- inside the id window and discards all but the couple of dozen in the
+-- five-minute window. Closing that gap needs this index; it is not something a
+-- query change can reach.
+--
+-- Measured on production against the busiest host (524,117 rows): 485 ms and
+-- 34,430 buffers to return 10 rows. With (host_identifier, unixtime) the same
+-- request becomes a bounded range scan over ~22 rows, with `id > min_id` applied
+-- as a cheap heap filter.
+--
+-- Why it is worth the space: NodesViewMemoryGraph.tsx refetches every 10
+-- seconds for as long as the node-detail view is open, so an open tab costs
+-- ~34,400 buffers every 10 seconds, per viewer.
+--
+-- Cost. memory_info is append-only telemetry (11,100,763 inserts over its
+-- lifetime, zero updates), so this is insert-time maintenance only, with no
+-- HOT-update or bloat interaction. The index is expected to be around 800 MB,
+-- matching the existing idx_memory_info_host_id on identical column widths,
+-- against a 2,763 MB table. That size is the one real cost here: if disk
+-- headroom is tight, this is the migration to defer — the query is correct
+-- without it, just slow.
+--
+-- CONCURRENTLY so the build takes no write lock (the osquery TLS server inserts
+-- into this table continuously) and therefore cannot run inside a transaction
+-- block — apply with autocommit on, e.g. `psql -f 025_...sql`.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_memory_info_host_unixtime
+  ON memory_info (host_identifier, unixtime);

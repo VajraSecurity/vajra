@@ -1,0 +1,24 @@
+# The docker build context is the whole repo root, so without this the
+# node_modules/ of BOTH apps (~1.1GB) and .git would be sent to the docker
+# daemon on every build. Mirrors .gitignore plus VCS/CI-only directories.
+node_modules/
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+.git/
+.github/
+
+.env
+.env.local
+.env.*.local
+
+logs/
+*.log
+
+test-results/
+
+.DS_Store
+Thumbs.db

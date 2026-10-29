@@ -1,0 +1,1249 @@
+[
+  {
+    "title": "Security Domain Policies",
+    "policies": [
+      {
+        "policyNumber": "1.1",
+        "policyName": "Data Classification",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To provide a framework for information owners to determine and classify the sensitivity levels for the information that Organization uses, processes, and stores.",
+            "level": 1,
+            "children": [
+              {
+                "marker": "2",
+                "text": "Scope: This policy applies to information systems, including IT applications, IT infrastructure and physical information channels, and the information assets that Organization uses, process, and stores using those systems.",
+                "level": 1,
+                "children": [
+                  {
+                    "marker": "3",
+                    "text": "Policy: The Information Owner shall only classify information assets within their purview using one of the following four classification levels.",
+                    "level": 1,
+                    "children": [
+                      {
+                        "marker": "3.1",
+                        "text": "Data Ownership: All information assets within Organization shall have a designated owner.",
+                        "level": 2
+                      },
+                      {
+                        "marker": "3.3",
+                        "text": "Data Classification Process: Information owners shall ensure that information assets are assigned a classification rating (Confidential, Restricted, Internal, Public) that properly indicates business value and criticality.",
+                        "level": 2,
+                        "children": [
+                          {
+                            "marker": "3.3.1",
+                            "text": "Confidential: Personal or company information classified as highly sensitive by senior management or law.",
+                            "level": 3
+                          },
+                          {
+                            "marker": "3.4.1",
+                            "text": "Confidential Information",
+                            "level": 3,
+                            "children": [
+                              {
+                                "marker": "3.4.1.1",
+                                "text": "Labeling Requirements",
+                                "level": 4,
+                                "children": [
+                                  {
+                                    "marker": "1",
+                                    "text": "Any device or object (including portable devices) that contains CONFIDENTIAL information shall be labelled as \"CONFIDENTIAL\".",
+                                    "level": 5
+                                  },
+                                  {
+                                    "marker": "2",
+                                    "text": "Systems that contain CONFIDENTIAL information shall be identified and mentioned in \"Asset Library\".",
+                                    "level": 5
+                                  },
+                                  {
+                                    "marker": "3",
+                                    "text": "Storage repositories that maintain CONFIDENTIAL information shall be known and controls implemented to effectively protect the information.",
+                                    "level": 5
+                                  },
+                                  {
+                                    "marker": "4",
+                                    "text": "Emails that contain CONFIDENTIAL information shall, at a minimum, contain \"CONFIDENTIAL\" in the subject line, header, or footer.",
+                                    "level": 5
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.2",
+        "policyName": "Asset Management",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define practices for identification and cataloguing of Information Systems involved in usage, maintenance and disposal of information assets in order to protect information used by Organization and achieve efficient and effective service delivery.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy applies to all information systems being used by Organization or involved in creation, storage, transmission or destruction of Organization’s information.",
+            "level": 1,
+            "children": [
+              {
+                "marker": "2.1",
+                "text": "Software assets",
+                "level": 2
+              },
+              {
+                "marker": "2.2",
+                "text": "Physical assets",
+                "level": 2
+              },
+              {
+                "marker": "2.3",
+                "text": "People",
+                "level": 2
+              }
+            ]
+          },
+          {
+            "marker": "3",
+            "text": "Policy: Organization’s information assets including hardware, software and physical assets shall be managed in accordance with information asset protection objectives throughout their lifecycle.",
+            "level": 1,
+            "children": [
+              {
+                "marker": "3.1",
+                "text": "Information Asset Profiling: Information assets shall be classified using either quantitative or qualitative methodology chosen by management.",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.1.1",
+                    "text": "Data Information systems/equipment containing the data including paper format on which data might be stored in printed form.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.2",
+                    "text": "Data will be classified as per data classification policy.",
+                    "level": 3
+                  }
+                ]
+              },
+              {
+                "marker": "3.2",
+                "text": "Lifecycle Processes",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.2.1",
+                    "text": "Asset Acquisition / Purchase",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.2",
+                    "text": "Asset Tracking",
+                    "level": 3,
+                    "children": [
+                      {
+                        "marker": "3.2.2.1",
+                        "text": "Asset Labeling",
+                        "level": 4
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.3",
+        "policyName": "Access Control",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To provide a set of practices for access to Organization's information and information systems (Operating Systems, Applications, Databases, Network Equipment and others). Access controls shall be based on principles of User Authorization, Accountability, least privilege access, need-to-know, segregation of duties and individual accountability.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy shall apply to all environments requiring logical access to information assets such as systems where information is stored or processed, communication and network connections through which information is transmitted or applications through which information is accessed.",
+            "level": 1,
+            "children": [
+              {"marker": "1", "text": "Communications and network connections include but are not limited to network devices such as routers and firewalls.", "level": 2},
+              {"marker": "2", "text": "Systems include but are not limited to servers and mainframes, storage tapes or drives, databases and applications.", "level": 2},
+              {"marker": "3", "text": "Both physical and logical access controls shall be implemented and maintained to protect information assets against unauthorized access.", "level": 2},
+              {"marker": "4", "text": "This policy applies to employees, contractors, service providers and visitors accessing Organization's information assets.", "level": 2}
+            ]
+          },
+          {
+            "marker": "3",
+            "text": "Policy: All user accesses to Organization's information assets shall be specifically and individually authorized based on business need.",
+            "level": 1,
+            "children": [
+              {"marker": "1", "text": "Security controls shall ensure that only authorized individuals can access Organization's information assets.", "level": 2},
+              {"marker": "2", "text": "Procedures shall ensure appropriate access control to protect information from unauthorized access, modification, disclosure or destruction and maintain confidentiality, integrity and availability.", "level": 2},
+              {"marker": "3", "text": "Any breach of this policy shall be considered an incident and treated as per the incident management policy.", "level": 2},
+              {
+                "marker": "3.1",
+                "text": "User Identification and Accounts",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "A User-ID or account shall be assigned to each individual to authorize a defined level of access to information assets and shall be protected through authentication.", "level": 3},
+                  {"marker": "2", "text": "Each User-ID or account shall uniquely identify only one user or process. Users shall be accountable for all actions associated with their User-ID and shall not share or misuse IDs.", "level": 3},
+                  {"marker": "3", "text": "Where individual User-IDs and passwords cannot be implemented due to technological limitations or process design, alternative solutions for restricting and auditing access privileges shall be evaluated and implemented.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.2",
+                "text": "Group / Generic User-IDs",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Generic and group User-IDs shall be avoided wherever possible. Where unavoidable, use shall require exception approval, risk assessment and accountability to a designated Group ID owner. Group IDs shall be short term and have an expiration date.", "level": 3},
+                  {"marker": "2", "text": "Generic User-IDs shall only be created due to technological limitations or business exigencies. An owner shall be identified and held accountable. Where shared, alternative accountability mechanisms shall be implemented.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.3",
+                "text": "User-ID Creation and Maintenance",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "User-IDs shall be non-transferable and individuals shall not have multiple accounts within the same computing environment.", "level": 3},
+                  {"marker": "2", "text": "Access to Organization's environment shall be granted only upon HR intimation and through a formal user registration process with approval from authorized personnel.", "level": 3},
+                  {"marker": "3", "text": "Users shall follow a formal de-registration process for revocation of access to information systems and services. HR shall initiate revocation and confirmation shall be sent as part of exit clearance.", "level": 3},
+                  {"marker": "4", "text": "Access levels granted to users shall enforce segregation of duties and follow the need-to-know principle. Where segregation cannot be enforced logically, non-IT controls shall be implemented.", "level": 3},
+                  {"marker": "5", "text": "Initial passwords shall be securely provided and users shall be forced to change passwords immediately after first login.", "level": 3},
+                  {"marker": "6", "text": "Administrative passwords for critical systems shall be securely managed and all passwords shall be encrypted during transmission and storage.", "level": 3},
+                  {"marker": "7", "text": "Password requirements shall follow the Password Standard. Exceptions shall require prior authorization, risk assessment and mitigating controls.", "level": 3},
+                  {"marker": "8", "text": "Users shall change passwords at first log-on and every 45 days thereafter.", "level": 3},
+                  {"marker": "9", "text": "Previously used passwords shall be recorded to prevent reuse and password files shall be stored separately from application system data.", "level": 3},
+                  {"marker": "10", "text": "Department Heads shall periodically review access rights and privileges assigned to users or groups and address exceptions promptly.", "level": 3},
+                  {"marker": "11", "text": "Department Heads shall maintain a central record of access rights granted to User-IDs for accessing information systems and services.", "level": 3},
+                  {"marker": "12", "text": "Upon employee transfer between functions, previous access rights shall be revoked and new access shall be granted according to the new role.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.4",
+                "text": "User Authorization",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "1",
+                    "text": "Users shall be authorized on Organization's information systems at multiple levels.",
+                    "level": 3,
+                    "children": [
+                      {"marker": "1", "text": "Physical access", "level": 4},
+                      {"marker": "2", "text": "Network", "level": 4},
+                      {"marker": "3", "text": "Infrastructure", "level": 4},
+                      {"marker": "4", "text": "Endpoints", "level": 4},
+                      {"marker": "5", "text": "Applications", "level": 4},
+                      {"marker": "6", "text": "Cloud (where applicable)", "level": 4}
+                    ]
+                  },
+                  {"marker": "2", "text": "Authorization mechanisms at each level shall remain independent of previous or subsequent authorization levels.", "level": 3},
+                  {"marker": "3", "text": "Users shall be authenticated and authorized through a domain policy server.", "level": 3},
+                  {"marker": "4", "text": "Management and employees shall control access to facilities and ensure all persons entering facilities are properly identified and authorized.", "level": 3},
+                  {"marker": "5", "text": "All network services shall be identified and documented. Logical access to network equipment shall be restricted to authorized users only.", "level": 3},
+                  {"marker": "6", "text": "Access to endpoints and applications shall only be permitted after authorization of user credentials by the host operating system or application.", "level": 3},
+                  {"marker": "7", "text": "Applications shall support integration with the enterprise identity management system.", "level": 3},
+                  {"marker": "8", "text": "Single-factor authentication shall be sufficient for Organization-owned assets. Two-factor authentication shall be mandatory for non-Organization assets.", "level": 3},
+                  {"marker": "9", "text": "Cloud-hosted applications shall accept authorization validated by Organization-owned authorization services or require two-factor authentication.", "level": 3},
+                  {"marker": "10", "text": "Access requirements shall be identified by the Business Owner.", "level": 3},
+                  {"marker": "11", "text": "Business Heads shall ensure access levels granted are appropriate to Organization's purpose.", "level": 3},
+                  {"marker": "12", "text": "Users shall re-authenticate after a specified period of inactivity.", "level": 3},
+                  {"marker": "13", "text": "Organization shall establish emergency access granting procedures.", "level": 3},
+                  {"marker": "14", "text": "Organization shall establish methods to prevent unauthorized access into individual files and department-shared files.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.5",
+                "text": "Privileged User Accounts",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Privileged user accounts are administrative accounts with elevated access to applications, operating systems, databases, network devices and other information systems, including Administrator, root or equivalent accounts capable of modifying users, privileges or logs.", "level": 3},
+                  {"marker": "2", "text": "Privileges associated with each type of information system such as operating systems, business applications, databases and network elements shall be identified and documented.", "level": 3},
+                  {"marker": "3", "text": "Privileged user accounts shall only be granted to individuals with specific business justification and authorized approval.", "level": 3},
+                  {"marker": "4", "text": "Privileges shall be allocated on a need-to-have basis and strictly adhere to privilege authorization processes.", "level": 3},
+                  {"marker": "5", "text": "Individuals granted privileged access shall possess appropriate skill levels to perform security or administrative duties.", "level": 3},
+                  {"marker": "6", "text": "Use of Privileged User IDs shall be minimized and all privileged logon activity shall be securely logged.", "level": 3},
+                  {"marker": "7", "text": "Separate mechanisms for privileged and routine activities shall be used wherever feasible. Users shall log out of privileged environments when performing routine activities.", "level": 3},
+                  {"marker": "8", "text": "Audit logging of privileged user activities shall be maintained and periodically reviewed.", "level": 3},
+                  {"marker": "9", "text": "Sharing of privileged IDs and access credentials shall be prohibited.", "level": 3},
+                  {"marker": "10", "text": "Vendors and contractors shall not receive privileged access without close supervision, monitoring and documented business justification.", "level": 3},
+                  {"marker": "11", "text": "An authorization process and record of all allocated privileges shall be maintained.", "level": 3},
+                  {"marker": "12", "text": "Rules governing software installation by users shall be established and implemented.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.6",
+                "text": "Secure Log-on",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "The log-on process shall not provide any information that would aid an unauthorized user to successfully log on.", "level": 3},
+                  {"marker": "2", "text": "Log-on data shall only be validated after it has been fully entered.", "level": 3},
+                  {"marker": "3", "text": "The log-on process shall not reveal which part of the log-on data is valid or invalid.", "level": 3},
+                  {"marker": "4", "text": "Account lockout shall be enforced after the retry limit is reached.", "level": 3},
+                  {"marker": "5", "text": "The log-on process shall display a warning notice that the computer should only be accessed by authorized users.", "level": 3},
+                  {"marker": "6", "text": "Logs of unsuccessful and successful log-on attempts shall be maintained.", "level": 3},
+                  {"marker": "7", "text": "The log-on process shall not transmit passwords in clear text over a network.", "level": 3},
+                  {"marker": "8", "text": "Inactive sessions shall be terminated after a defined period of inactivity, especially in high-risk locations or on mobile devices.", "level": 3},
+                  {
+                    "marker": "3.6.1",
+                    "text": "Review of Access Rights",
+                    "level": 3,
+                    "children": [
+                      {"marker": "1", "text": "User access rights shall be reviewed regularly and after changes such as promotion, demotion or termination of employment.", "level": 4},
+                      {"marker": "2", "text": "User access rights shall be reviewed and reallocated when employees move between roles within the organization.", "level": 4},
+                      {"marker": "3", "text": "Privileged access authorizations shall be reviewed more frequently and changes to privileged accounts shall be logged for periodic review.", "level": 4},
+                      {"marker": "4", "text": "Privilege allocations shall be checked regularly to ensure unauthorized privileges have not been obtained.", "level": 4}
+                    ]
+                  }
+                ]
+              },
+              {
+                "marker": "3.7",
+                "text": "Remote Access",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Remote access to employees, vendors and contractors shall be provided only on a need-to-know and need-to-do basis.", "level": 3},
+                  {"marker": "2", "text": "Remote access requests for third-party vendors or consultants shall require business justification and approval from the sponsoring manager, Head – IT and Group CISO.", "level": 3},
+                  {"marker": "3", "text": "Use of remote access software shall be restricted.", "level": 3},
+                  {"marker": "4", "text": "Vendor users or general users shall not be assigned administrative privileges on SSL VPN appliances. Third-party privileged access shall be monitored and revoked immediately upon termination.", "level": 3},
+                  {"marker": "5", "text": "Third-party User-IDs shall expire within a maximum of 15 days unless approved otherwise. Renewal shall require re-approval.", "level": 3},
+                  {"marker": "6", "text": "Remote access solutions shall support strong end-to-end encryption as defined in Organization's Cryptographic Controls policy.", "level": 3},
+                  {"marker": "7", "text": "Remote log-on procedures shall ensure secure encrypted transmission and establish secure network channels.", "level": 3},
+                  {"marker": "8", "text": "Organization security solutions and controls shall not be disabled or circumvented.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.8",
+                "text": "Compliance and Audit",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Periodic audits shall be conducted to ensure compliance with this policy.", "level": 3},
+                  {"marker": "2", "text": "Remote Access System Owners shall maintain evidence of all requests for granting remote access.", "level": 3},
+                  {"marker": "3", "text": "Notifications for initiating revocation of remote access shall be maintained.", "level": 3},
+                  {"marker": "4", "text": "Evidence for granting, revoking or changing remote access privileges shall be maintained in repositories such as Change Management Systems.", "level": 3},
+                  {"marker": "5", "text": "SOPs and system design documents for remote access systems shall be maintained.", "level": 3},
+                  {"marker": "6", "text": "All changes to remote access system configurations shall be documented.", "level": 3},
+                  {"marker": "7", "text": "Patch upgrades performed on remote access systems shall be documented.", "level": 3},
+                  {"marker": "8", "text": "On a monthly basis, system owners shall ensure accounts active within remote access solutions are accurate and discrepancies are resolved promptly.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.9",
+                "text": "Access to Program Source Code",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Access to program source code and associated items such as designs, specifications, verification plans and validation plans shall be strictly controlled to prevent unauthorized functionality and maintain confidentiality.", "level": 3},
+                  {"marker": "2", "text": "Program source libraries shall not be held in operational systems and shall be managed according to established procedures.", "level": 3},
+                  {"marker": "3", "text": "IT support personnel shall not have unrestricted access to program source libraries.", "level": 3},
+                  {"marker": "4", "text": "Updating program source libraries and issuing program sources to programmers shall only occur after proper authorization.", "level": 3},
+                  {"marker": "5", "text": "Audit logs of all access to program source libraries shall be maintained and program listings shall be stored securely.", "level": 3}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.4",
+        "policyName": "Human Resource Security",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define Organization’s desired practices concerning human resource security.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: Human resources are an integral element of Organization’s security framework requiring knowledgeable personnel and technology-enabled controls.",
+            "level": 1,
+            "children": [
+              {"marker": "1", "text": "Weak human resource security processes can result in security breaches, financial frauds, reputational damage and regulatory non-compliance.", "level": 2},
+              {"marker": "2", "text": "This policy applies to all employees, contractors and third-party users using Organization’s Information Technology resources.", "level": 2},
+              {"marker": "3", "text": "Human resource security applies to pre-employment, duration of employment and termination of employment.", "level": 2}
+            ]
+          },
+          {
+            "marker": "3",
+            "text": "Policy: Organization shall ensure that users joining, moving within or leaving the Organization are aware of their information security roles and responsibilities.",
+            "level": 1,
+            "children": [
+              {"marker": "1", "text": "HR practices shall support information security objectives before employment, during onboarding, throughout employment and at exit.", "level": 2},
+              {"marker": "2", "text": "The policy aims to reduce risks arising from theft, fraud or misuse of information and network assets/facilities.", "level": 2},
+              {"marker": "3", "text": "Any breach of this policy shall be considered an incident and treated as per the incident management policy.", "level": 2},
+              {
+                "marker": "3.1",
+                "text": "Prior to Employment",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Job roles and responsibilities shall be documented and include general and specific responsibilities for implementing or maintaining information security.", "level": 3},
+                  {"marker": "2", "text": "Employees, contractors and third-party service providers shall understand their job roles and responsibilities.", "level": 3},
+                  {"marker": "3", "text": "Background checks shall be performed on personnel performing sensitive or critical job roles before selection or transfer.", "level": 3},
+                  {"marker": "4", "text": "Third-party personnel shall undergo background verification by their respective organizations and assurance shall be provided to Organization.", "level": 3},
+                  {"marker": "5", "text": "Information provided during recruitment shall be subject to verification procedures.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.2",
+                "text": "On-Boarding and During Employment",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Employees, contractors and third-party users shall sign employment contracts including confidentiality or non-disclosure agreements acknowledging protection of confidential and sensitive data.", "level": 3},
+                  {"marker": "2", "text": "Authorized representatives may sign agreements on behalf of contractors and third-party users. Exceptions to standard agreements shall follow exception grant and risk assessment methodology.", "level": 3},
+                  {"marker": "3", "text": "Processes and procedures shall be defined for reporting violations of confidentiality agreements.", "level": 3},
+                  {"marker": "4", "text": "Supervisory roles shall be responsible for staff performance, conduct and compliance with information security requirements.", "level": 3},
+                  {"marker": "5", "text": "Employees and contractors shall be briefed on information security roles and responsibilities before being granted access to confidential information or systems.", "level": 3},
+                  {"marker": "6", "text": "Employees and relevant third-party users shall receive awareness, skills training and regular updates in organizational policies relevant to their job functions.", "level": 3},
+                  {"marker": "7", "text": "End users shall report suspected information security incidents and vulnerabilities immediately. Employees shall not disclose incidents externally without authority.", "level": 3},
+                  {"marker": "8", "text": "Job rotation shall be enforced for employees in computer-related positions of trust.", "level": 3},
+                  {"marker": "9", "text": "Dependency on a single individual in key areas shall be avoided and succession plans shall be developed for technical personnel at critical locations.", "level": 3},
+                  {"marker": "10", "text": "Punitive actions for information security violations shall follow compliance requirements defined in the general information security policy.", "level": 3},
+                  {"marker": "11", "text": "Information Security Training and Awareness Programs shall be provided to employees, contractors and relevant third-party users.", "level": 3},
+                  {"marker": "12", "text": "Organization shall periodically participate in national, sectoral or organizational Cyber Security Exercises.", "level": 3},
+                  {"marker": "13", "text": "The information security function shall define content, timeline and periodicity for training and awareness programs.", "level": 3},
+                  {"marker": "14", "text": "Mechanisms shall track attendance for training programs. Failure to attend within stipulated timelines shall be considered non-compliance. Training history and versions shall be maintained.", "level": 3},
+                  {"marker": "15", "text": "Additional training shall be provided to leaders for understanding their roles during security incidents.", "level": 3},
+                  {"marker": "16", "text": "Employees shall be periodically informed of organizational rights and duties through Do’s and Don’ts and advised against personal use of company assets.", "level": 3},
+                  {"marker": "17", "text": "Higher monitoring of activities such as email, administration and critical systems shall be considered for users leaving the company.", "level": 3},
+                  {"marker": "18", "text": "Employees shall be provided with anonymous reporting channels for reporting violations of information security policies or procedures.", "level": 3}
+                ]
+              },
+              {
+                "marker": "3.3",
+                "text": "Exit Procedures",
+                "level": 2,
+                "children": [
+                  {"marker": "1", "text": "Termination of employees, contractors and third-party users shall be performed in an orderly manner with defined and communicated responsibilities.", "level": 3},
+                  {"marker": "2", "text": "Organization assets held by terminated individuals shall be recovered and all physical and logical access rights removed immediately.", "level": 3},
+                  {"marker": "3", "text": "Changes in responsibility or employee transfer shall trigger reassessment of access appropriateness.", "level": 3},
+                  {"marker": "4", "text": "Employees, contractors and third-party users shall return all organization assets upon termination of employment, contract or agreement.", "level": 3},
+                  {"marker": "5", "text": "Mechanisms shall ensure access revocation before termination and detect failures to remove access in a timely manner.", "level": 3},
+                  {"marker": "6", "text": "Information security violations during employment tenure shall be reviewed before final sign-off.", "level": 3}
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.5",
+        "policyName": "Information Systems Acquisition and Development",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define the desired practises and ensure that information security is an integral part of information systems across their entire lifecycle.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy shall apply to all information systems where Organization's information assets are stored or processed and all communication and network connections through which Organization's information assets are transmitted.",
+            "level": 1,
+            "children": [
+              { "marker": "1", "text": "All Business Units or Departments using information technology shall comply with this information security policy.", "level": 2 },
+              { "marker": "2", "text": "This shall apply to developing new software, customizing software and developing software that can be accessed or presented on a website.", "level": 2 }
+            ]
+          },
+          {
+            "marker": "3",
+            "text": "Policy: Organization's Information systems shall provide for maintenance of confidentiality, integrity and availability of data contained within them by design. This shall be achieved through processes throughout the System Development Life Cycle beginning at acquisition through development and maintenance.",
+            "level": 1,
+            "children": [
+              { "marker": "3", "text": "Any breach of this policy shall be considered as an incident and shall be treated as per the incident management policy.", "level": 2 },
+              {
+                "marker": "3.1",
+                "text": "Technology Standards",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.1.1",
+                    "text": "Infrastructure Standards",
+                    "level": 3,
+                    "children": [
+                      {
+                        "marker": "3.1.1.1",
+                        "text": "Security Requirement Analysis and Specifications",
+                        "level": 4,
+                        "children": [
+                          { "marker": "1", "text": "Security requirements in an information system shall be identified and documented during the requirements gathering and analysis phase of acquisition, development or change of information systems. They shall be justified and agreed with business process owners.", "level": 5 },
+                          { "marker": "2", "text": "Systems security requirements shall reflect the business value of the information assets involved and the potential damage that may be caused due to absence of sufficient security.", "level": 5 },
+                          { "marker": "3", "text": "Minimum Baseline Security Standards (MBSS) shall be developed and maintained and all information systems shall be configured as per such standards.", "level": 5 },
+                          { "marker": "4", "text": "The MBSS shall include protection of data contained in the information system as well as system software used for operation of the information system itself.", "level": 5 },
+                          { "marker": "5", "text": "All information systems (servers, routers, and firewalls) shall undergo hardening as per the MBSS before being commissioned for usage in the production environment.", "level": 5 },
+                          { "marker": "6", "text": "The clocks of all relevant Information Systems within Organization's security domain shall be synchronized with an agreed accurate time source.", "level": 5 }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "marker": "3.1.2",
+                    "text": "Application Security Standards",
+                    "level": 3,
+                    "children": [
+                      {
+                        "marker": "3.1.2.1",
+                        "text": "Security Requirement Analysis and Specifications",
+                        "level": 4,
+                        "children": [
+                          { "marker": "1", "text": "Applications shall be assessed for their security posture through security reviews before being commissioned for usage in the production environment.", "level": 5 },
+                          { "marker": "2", "text": "Application security reviews shall be conducted based on application security standards defined by the information security team, covering the aspects to be addressed and requirements for conducting such reviews by external agencies.", "level": 5 }
+                        ]
+                      },
+                      {
+                        "marker": "3.1.2.2",
+                        "text": "Application Development",
+                        "level": 4,
+                        "children": [
+                          { "marker": "1", "text": "A formal software development security framework shall be developed by the IS team.", "level": 5 },
+                          { "marker": "2", "text": "The software development security framework shall define a software risk assessment process to ensure that software security requirements are assessed considering associated business and technology risks.", "level": 5 },
+                          { "marker": "3", "text": "A library of secure design patterns shall be built. Their consistent usage across projects shall be enforced and new pattern requirements shall drive pattern development. Security reviews shall focus on reviewing patterns and enforcement of their use.", "level": 5 },
+                          { "marker": "4", "text": "Modifications to software packages shall be discouraged. Vendor-supplied software packages shall be used with minimum modification unless they impact the security posture of the software package vis-à-vis the information security policy.", "level": 5 },
+                          { "marker": "5", "text": "All modifications (including configuration changes, changes to reports, etc.) to software packages shall be made in accordance with formal Program Change Control Procedures.", "level": 5 },
+                          {
+                            "marker": "6",
+                            "text": "If the software is developed by a third-party, the following shall be done:",
+                            "level": 5,
+                            "children": [
+                              { "marker": "1", "text": "Organization shall ensure that software development processes followed by the third-party comply with Organization's Information Systems Acquisition and Development policy.", "level": 6 },
+                              { "marker": "2", "text": "As far as possible and practicable, vendor-supplied software packages shall be used without modification.", "level": 6 },
+                              { "marker": "3", "text": "Organization shall have appropriate licensing agreements and contractual requirements for quality and functionality of the application.", "level": 6 },
+                              { "marker": "4", "text": "Appropriate documentation in the form of product manuals or data sheets shall be obtained from the third party to ensure adherence to information security requirements.", "level": 6 }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "marker": "3.2.4",
+                "text": "System changes control and procedures",
+                "level": 2,
+                "children": [
+                  { "marker": "1", "text": "Formal change control procedures shall be documented and enforced to ensure the integrity of systems, applications and products, from the early design stages through all subsequent maintenance effort.", "level": 3 },
+                  { "marker": "2", "text": "Introduction of new systems and major changes to existing systems shall follow a formal process of documentation, specification, testing, quality control and managed implementation.", "level": 3 },
+                  { "marker": "3", "text": "The change control procedures shall include maintaining a record of agreed authorization levels.", "level": 3 },
+                  { "marker": "4", "text": "The change control procedures shall ensure changes are submitted by authorized users.", "level": 3 },
+                  { "marker": "5", "text": "The change control procedures shall include reviewing controls and integrity procedures to ensure they are not compromised by changes.", "level": 3 },
+                  { "marker": "6", "text": "The change control procedures shall include identifying all software, information, database entities and hardware requiring amendment.", "level": 3 },
+                  { "marker": "7", "text": "The change control procedures shall include identifying and checking security critical code to minimize the likelihood of known security weaknesses.", "level": 3 },
+                  { "marker": "8", "text": "The change control procedures shall include obtaining formal approval for detailed proposals before work commences.", "level": 3 },
+                  { "marker": "9", "text": "The change control procedures shall ensure authorized users accept changes prior to implementation.", "level": 3 },
+                  { "marker": "10", "text": "The change control procedures shall ensure that system documentation is updated after each change and obsolete documentation is archived or disposed of.", "level": 3 },
+                  { "marker": "11", "text": "The change control procedures shall maintain version control for all software updates.", "level": 3 },
+                  { "marker": "12", "text": "The change control procedures shall maintain an audit trail of all change requests.", "level": 3 }
+                ]
+              },
+              {
+                "marker": "3.2.5",
+                "text": "Technical review of applications",
+                "level": 2,
+                "children": [
+                  { "marker": "1", "text": "Review of application control and integrity procedures shall be performed to ensure they have not been compromised by operating platform changes.", "level": 3 },
+                  { "marker": "2", "text": "Notification of operating platform changes shall be provided in time to allow appropriate tests and reviews before implementation.", "level": 3 },
+                  { "marker": "3", "text": "Appropriate changes shall be made to the business continuity plan.", "level": 3 }
+                ]
+              },
+              {
+                "marker": "3.2.6",
+                "text": "System security testing",
+                "level": 2,
+                "children": [
+                  { "marker": "1", "text": "New and updated systems shall require thorough testing and verification during development, including detailed schedules of activities, test inputs and expected outputs under a range of conditions.", "level": 3 },
+                  { "marker": "2", "text": "For in-house developments, tests shall initially be performed by the development team, followed by independent acceptance testing for both in-house and outsourced developments.", "level": 3 },
+                  { "marker": "3", "text": "System acceptance testing shall include testing of information security requirements and adherence to secure system development practices, including testing of received components and integrated systems.", "level": 3 },
+                  { "marker": "4", "text": "Testing shall be performed in a realistic test environment to ensure the system does not introduce vulnerabilities and that tests are reliable.", "level": 3 },
+                  { "marker": "5", "text": "The use of operational data containing personally identifiable information or other confidential information for testing purposes shall be avoided.", "level": 3 }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.6",
+        "policyName": "Information Systems Maintenance",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define desired practices for maintenance of information systems with respect to protecting confidentiality, privacy and availability. Security has to be considered during operation of an information system including maintenance and retirement to ensure conformance with security requirements, protect information assets, address emerging risks, prevent introduction of new risks during modifications and ensure proper data removal upon retirement.",
+            "level": 1,
+            "children": [
+              { "marker": "1", "text": "This policy shall provide guidance to ensure that information security is considered during the maintenance of an information system lifecycle.", "level": 2 },
+              { "marker": "2", "text": "This policy defines Organization's desired practices concerning Information Systems Maintenance.", "level": 2 }
+            ]
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy applies to all information systems where Organization's information assets are stored or processed, and all communication and network connections through which Organization's information assets are transmitted.",
+            "level": 1,
+            "children": [
+              { "marker": "1", "text": "Technology systems, communications and network connections include but are not limited to network devices such as routers and firewalls, servers and mainframes, systems, databases and applications.", "level": 2 },
+              { "marker": "2", "text": "All Business Units or Departments using information systems shall comply with this policy.", "level": 2 }
+            ]
+          },
+          {
+            "marker": "3",
+            "text": "Policy: Appropriate maintenance shall be carried out to protect the confidentiality and integrity of information contained within and maintain availability of information systems.",
+            "level": 1,
+            "children": [
+              { "marker": "1", "text": "Any breach of this policy shall be considered as an incident and shall be treated as per the incident management policy.", "level": 2 },
+              {
+                "marker": "3.1",
+                "text": "Backup and Restoration",
+                "level": 2,
+                "children": [
+                  { "marker": "1", "text": "The frequency of backup, restoration testing and storage requirements shall be defined based on classification of backed-up data in a backup and restoration standard defined by the IS team. Data restoration testing shall be performed at least every six months or more frequently as required by business.", "level": 3 },
+                  { "marker": "2", "text": "Applications, operating system software, data, databases, configuration information, hardware configuration information and log files requiring backup shall be identified and documented along with backup medium, storage and offsite location requirements.", "level": 3 },
+                  { "marker": "3", "text": "All backup media shall be encrypted.", "level": 3 },
+                  { "marker": "4", "text": "A log of backed-up data restored from backup media shall be maintained.", "level": 3 },
+                  { "marker": "5", "text": "The number of backup sets to be maintained shall be determined based on the criticality of the information residing in information systems.", "level": 3 }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.11",
+        "policyName": "Network Security",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: Define Organization's desired security requirements for protection of the IT network used or controlled by Organization.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy applies to all communication and network connections through which Organization's information assets are transmitted, including routers, firewalls, servers, mainframes and all business units or departments using information technology.",
+            "level": 1
+          },
+          {
+            "marker": "3",
+            "text": "Policy: Networks and related devices used for Organization communication or under Organization control shall be secured to prohibit unauthorized access, disclosure, duplication, modification, diversion, destruction, loss, misuse or theft of Organization information.",
+            "level": 1,
+            "children": [
+              { "marker": "1", "text": "Organization's network shall be used only for valid business purposes and access privileges shall be granted only with legitimate business justification and formal approvals.", "level": 2 },
+              { "marker": "2", "text": "Third-party network resources entrusted to Organization shall be protected in the same manner as Organization network resources and governed by agreements where applicable.", "level": 2 },
+              {
+                "marker": "3.1",
+                "text": "Network Connectivity",
+                "level": 2,
+                "children": [
+                  { "marker": "1", "text": "Responsibilities and procedures for management of networking equipment shall be established.", "level": 3 },
+                  { "marker": "2", "text": "Special controls shall safeguard confidentiality and integrity of data passing over public or wireless networks and protect connected systems and applications.", "level": 3 },
+                  { "marker": "3", "text": "Appropriate logging and monitoring shall be applied to record and detect actions affecting information security.", "level": 3 },
+                  { "marker": "4", "text": "Systems on the network shall be authenticated and system connections shall be restricted.", "level": 3 },
+                  { "marker": "5", "text": "The ability of network service providers to securely manage agreed services shall be determined, monitored and audit rights agreed.", "level": 3 },
+                  {
+                    "marker": "3.1.1",
+                    "text": "Modes of Connectivity",
+                    "level": 3,
+                    "children": [
+                      {
+                        "marker": "1",
+                        "text": "Connectivity to Organization's Internal Network from external locations shall only be through authorized mechanisms.",
+                        "level": 4,
+                        "children": [
+                          { "marker": "1", "text": "MPLS", "level": 5 },
+                          { "marker": "2", "text": "Broadband & VPN", "level": 5 },
+                          { "marker": "3", "text": "Wi-Fi", "level": 5 },
+                          { "marker": "4", "text": "Wired Network", "level": 5 }
+                        ]
+                      },
+                      {
+                        "marker": "2",
+                        "text": "Network connections providing access to Organization information assets shall be protected using perimeter devices such as firewalls, routers or equivalent infrastructure.",
+                        "level": 4
+                      },
+                      {
+                        "marker": "3",
+                        "text": "Network engineers shall use dedicated segmented machines for administrative tasks, isolated from the primary network and without internet access.",
+                        "level": 4
+                      }
+                    ]
+                  },
+                  {
+                    "marker": "3.1.2",
+                    "text": "Types of Connectivity",
+                    "level": 3,
+                    "children": [
+                      { "marker": "1", "text": "Only trusted entities shall be allowed full access to Organization's network.", "level": 4 },
+                      { "marker": "2", "text": "All entry points to Organization's network shall be reviewed and approved.", "level": 4 },
+                      { "marker": "3", "text": "Access to the network shall be through secure log-on procedures to minimize unauthorized access.", "level": 4 },
+                      { "marker": "4", "text": "All policies within the Access Control Policy shall apply to network connectivity.", "level": 4 },
+                      { "marker": "5", "text": "Corporate computer and communication system connections shall authenticate connected users, devices or services.", "level": 4 },
+                      { "marker": "6", "text": "Connections to business transaction systems and high severity systems from outside Organization-controlled networks shall require two-factor authentication and device compliance checks.", "level": 4 },
+                      { "marker": "7", "text": "Only authorized scripting languages shall run in web browsers and email clients.", "level": 4 },
+                      { "marker": "8", "text": "Only fully supported and ideally latest vendor-provided web browsers and email clients shall be allowed.", "level": 4 },
+                      { "marker": "9", "text": "Networks shall be segmented based on information classification and sensitive information shall be placed in separate VLANs.", "level": 4 },
+                      { "marker": "10", "text": "Preventive controls shall block unauthorized collaboration tools on firewall or network security devices.", "level": 4 }
+                    ]
+                  }
+                ]
+              },
+              {
+                "marker": "3.2",
+                "text": "Perimeter Security",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.2.1",
+                    "text": "Identification of Perimeter Devices",
+                    "level": 3,
+                    "children": [
+                      { "marker": "1", "text": "Organization shall deploy perimeter security systems such as firewalls and IDS to protect information assets from unauthorized or illegal access.", "level": 4 }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.14",
+        "policyName": "Third Party Management",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To provide standard guidelines for governing and securing interactions with third-party service providers and vendors.",
+            "level": 1,
+            "children": [
+              { "marker": "3", "text": "Service levels shall be defined for each information system based on business requirements.", "level": 3 },
+              { "marker": "4", "text": "Mechanisms shall be established to monitor service levels and analyze breaches. Any service-level breaches affecting information security shall be raised as incidents and tracked for closure as per the incident management policy.", "level": 3 }
+            ]
+          },
+          {
+            "marker": "3.8",
+            "text": "Control of operational software",
+            "level": 2,
+            "children": [
+              { "marker": "1", "text": "Procedures shall be implemented to control the installation of software on operational systems.", "level": 3 },
+              { "marker": "2", "text": "The updating of operational software, applications and program libraries shall only be performed by trained administrators upon appropriate management authorization.", "level": 3 },
+              { "marker": "3", "text": "A configuration control system shall be used to keep control of all implemented software as well as the system documentation.", "level": 3 },
+              { "marker": "4", "text": "A rollback strategy shall be in place before changes are implemented and an audit trail maintained.", "level": 3 },
+              { "marker": "5", "text": "Remote Locking: In the case of a lost or stolen phone or tablet, employees or Organization's IT function shall be able to remotely lock or erase the specified device.", "level": 5 },
+              { "marker": "6", "text": "Jailbreak Detection: Detection tools shall be installed in devices to perform a comprehensive search for evidence that built-in system protections on the device have been disabled.", "level": 5 },
+              {
+                "marker": "3.7.2.2",
+                "text": "Data Security",
+                "level": 4,
+                "children": [
+                  { "marker": "1", "text": "Remote Data Wipe: Devices enrolled under this policy shall be configured for remote erase capability through appropriate means such as MDM software.", "level": 5 },
+                  { "marker": "2", "text": "Data Encryption and Containerization: Refer to Security Policies: Cryptographic Controls.", "level": 5 },
+                  { "marker": "3", "text": "Application Blacklisting: Organization's IT function shall maintain a list of applications that are to be denied system access and shall prevent them from installing.", "level": 5 },
+                  { "marker": "4", "text": "All changes to Organization's information assets shall adhere to the following change lifecycle:", "level": 3,
+                    "children": [
+                      { "marker": "1", "text": "Request for change – Request for the change shall be formally raised and recorded. This shall be followed by a formal business requirement definition, impact and feasibility analysis as applicable.", "level": 4 },
+                      { "marker": "2", "text": "Impact analysis shall need to be performed by the change requestor and include assessment of potential financial, operational, regulatory, technology and other impacts.", "level": 4 },
+                      { "marker": "3", "text": "Change approval – All changes shall be duly approved by appropriate individuals as per the change authorization matrix defined by the IS team.", "level": 4 },
+                      { "marker": "4", "text": "Prioritization of changes – Changes shall be prioritized by the change implementation team(s) based on the criticality of the change and the impact of the change on the information asset.", "level": 4 },
+                      { "marker": "5", "text": "Testing of changes – All changes shall be tested in the test environment. This shall include different levels of testing such as System Acceptance Testing (SAT), System Integration Testing (SIT), User Acceptance Testing (UAT), etc., depending upon the type of change as defined in the change management procedure by the IS team.", "level": 4 },
+                      { "marker": "6", "text": "Roll Back – All changes should include a rollback procedure for aborting and recovering from failed changes.", "level": 4 },
+                      { "marker": "7", "text": "Migration – All changes shall be migrated to the production environment after appropriate approvals and by authorized individuals. Restrictions shall be maintained to ensure that access to production and development/test environments is duly segregated.", "level": 4 },
+                      { "marker": "8", "text": "Documentation update – All relevant documentation shall be updated to reflect the impact of the change. All records of testing shall be formally documented and maintained.", "level": 4 }
+                    ]
+                  },
+                  { "marker": "3", "text": "Third party assets shall be subject to the same or more stringent controls based on data classification.", "level": 3 },
+                  { "marker": "4", "text": "Organization shall have the right to delete company-related information from vendor assets and certify deletion as per the data retention policy.", "level": 3 },
+                  { "marker": "5", "text": "Upon contract termination, all data transferred by Organization or generated by the third party shall be handed over to Organization.", "level": 3 },
+                  { "marker": "6", "text": "Data in transit shall be protected with controls equal to or more stringent than required by data classification policies.", "level": 3 },
+                  { "marker": "7", "text": "Third parties shall not share Organization data with any external entity without explicit approval and contractual compliance with Organization policies.", "level": 3 }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.15",
+        "policyName": "Physical and Environmental Security",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: Define desired practices concerning physical and environmental security to ensure a secure environment for employees and protection of tangible and intangible assets.",
+            "level": 1,
+            "children": [
+              { "marker": "2", "text": "Due to asset value and operational sensitivity.", "level": 4 },
+              { "marker": "3", "text": "Visitors shall not access sensitive areas unless explicitly approved for business purposes.", "level": 4 },
+              { "marker": "4", "text": "Preferred access mechanism shall be automated access controls, lock-and-key systems or security guards where automation is unavailable.", "level": 4 },
+              { "marker": "5", "text": "Access to sensitive areas shall require explicit approval from designated sensitive area owners unless permanently authorized.", "level": 4 },
+              { "marker": "6", "text": "Employees and long-term contractors requiring access shall receive configured badge access and periodic half-yearly reviews.", "level": 4 },
+              { "marker": "7", "text": "Service providers requiring one-time access shall obtain approval and be escorted during their visit.", "level": 4 },
+              { "marker": "8", "text": "Visitors shall generally not access sensitive areas and exceptions shall require approval and escorting.", "level": 4 }
+            ]
+          },
+          {
+            "marker": "3.3",
+            "text": "Environmental Standards for Zones",
+            "level": 2,
+            "children": [
+              { "marker": "1", "text": "Environmental security controls shall protect people and infrastructure from threats such as fire, flood, power failure, temperature extremes and earthquakes.", "level": 3 },
+              { "marker": "2", "text": "Administration teams shall implement environmental controls while the CISO ensures adherence and compliance.", "level": 3 },
+              {
+                "marker": "3.3.1",
+                "text": "Zone 1 Environmental Security",
+                "level": 3,
+                "children": [
+                  { "marker": "1", "text": "Buildings shall have minimal entry points to reduce unauthorized access.", "level": 4 },
+                  { "marker": "2", "text": "Fire exits shall remain accessible, equipped with alarms or emergency key access mechanisms.", "level": 4 },
+                  { "marker": "3", "text": "Buildings shall have lightning protection tested periodically.", "level": 4 },
+                  { "marker": "4", "text": "Buildings shall have backup power sources such as DG sets and UPS for uninterrupted operations.", "level": 4 },
+                  { "marker": "5", "text": "Technical teams shall monitor environmental anomalies, especially for server rooms and data centers.", "level": 4 }
+                ]
+              },
+              {
+                "marker": "3.3.2",
+                "text": "Zone 2 Environmental Security",
+                "level": 3,
+                "children": [
+                  { "marker": "1", "text": "Work areas shall be access-controlled to restrict unauthorized personnel.", "level": 4 },
+                  { "marker": "2", "text": "Work areas shall be monitored for water leakage or intrusion.", "level": 4 },
+                  { "marker": "3", "text": "Temperature in work areas shall be monitored and managed.", "level": 4 },
+                  { "marker": "4", "text": "Work areas shall have sufficient fire exits and annual evacuation drills.", "level": 4 },
+                  { "marker": "5", "text": "Fire extinguishers shall be placed on each floor and ERT members trained in their use.", "level": 4 },
+                  { "marker": "6", "text": "Smoke detectors shall be installed throughout work areas.", "level": 4 },
+                  { "marker": "7", "text": "Floor plans shall be displayed at designated locations.", "level": 4 }
+                ]
+              }
+            ]
+          },
+          {
+            "marker": "3.4",
+            "text": "Transfer and Movement of Assets: Procedures shall be established for entry, exit, movement, repair, destruction or sale of assets.",
+            "level": 2
+          },
+          {
+            "marker": "3.5",
+            "text": "User Activity Monitoring: User accounts shall be regularly reviewed to detect orphan, dormant or excessive privilege accounts.",
+            "level": 2,
+            "children": [
+              { "marker": "1", "text": "Unwanted or non-compliant accounts shall be suspended or terminated.", "level": 3 },
+              { "marker": "2", "text": "Dormant user IDs shall not be reassigned to other users.", "level": 3 },
+              { "marker": "3", "text": "Periodic account reviews shall be conducted by managers.", "level": 3 }
+            ]
+          },
+          {
+            "marker": "3.6",
+            "text": "Information Security Assessment: Organization shall perform security assessments, audits, and vulnerability testing of infrastructure and applications.",
+            "level": 2,
+            "children": [
+              {
+                "marker": "3.6.1",
+                "text": "Security Assessments for Infrastructure and Applications",
+                "level": 3,
+                "children": [
+                  { "marker": "1", "text": "Standards shall define frequency, coverage, and approach for security assessments.", "level": 4 },
+                  { "marker": "2", "text": "Vulnerability assessments shall be conducted periodically based on criticality.", "level": 4 },
+                  { "marker": "3", "text": "Mandatory security testing shall be conducted for all changes to internet-facing systems.", "level": 4 },
+                  { "marker": "4", "text": "Applications and APIs shall undergo VAPT and secure code review before go-live.", "level": 4 },
+                  { "marker": "5", "text": "External penetration testing shall be conducted at least once every 6 months.", "level": 4 }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.18",
+        "policyName": "Cyber Crisis Management Plan",
+        "guidelines": [
+          {
+            "marker": "2",
+            "text": "All servers, desktops, workstations, handheld devices, gateways and other access points to Organization's network shall be protected against malicious activities including viruses, trojans, malware, adware and spyware.",
+            "level": 3
+          },
+          {
+            "marker": "3",
+            "text": "Anti-virus applications and processes shall be implemented to facilitate early detection, efficient containment and eradication of malicious code. Adequate user awareness measures shall also be implemented.",
+            "level": 3
+          },
+          {
+            "marker": "4",
+            "text": "Controls shall be considered to prevent unauthorized software execution.",
+            "level": 3
+          },
+          {
+            "marker": "5",
+            "text": "Protection software including anti-virus, anti-malware, anti-spyware and anti-adware shall be installed on Organization-controlled or used information systems, and malware detection and repair software shall be updated regularly.",
+            "level": 3
+          },
+          {
+            "marker": "6",
+            "text": "The malicious software protection solution shall support periodic updates from authentic sources of malware intelligence.",
+            "level": 3
+          },
+          {
+            "marker": "3",
+            "text": "Information sharing arrangements shall be documented in the Cyber Crisis Management Plan (CCMP) to support sector-wide response during large-scale incidents. CERT-In and NCIIPC guidelines may be used for preparing the CCMP and defining information sharing mechanisms.",
+            "level": 3
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.19",
+        "policyName": "Cloud Security Policy",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define the Organization’s desired practices regarding Cloud Security.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy applies to all business functions, information systems, assets, and network communications that use or plan to use cloud computing services or cloud infrastructure services, including data, applications, functions, processes, network connections, and underlying hardware.",
+            "level": 1,
+            "children": [
+              { "marker": "2.1", "text": "Cloud Asset Evaluation Factors: Cloud assets shall be evaluated based on business importance and impact of risk scenarios including data exposure, unauthorized access, manipulation, failure, unauthorized modification, and availability loss.", "level": 2 },
+              { "marker": "2.2", "text": "Cloud Risk Scenarios: General risk mitigation protocols for configurations and deployment environments.", "level": 2 }
+            ]
+          },
+          {
+            "marker": "3.7.3",
+            "text": "Compliance",
+            "level": 2,
+            "children": [
+              { "marker": "1", "text": "comply with applicable Indian and international laws, privacy regulations, and cybersecurity requirements.", "level": 3 }
+            ]
+          },
+          {
+            "marker": "3.7.4",
+            "text": "Regulatory Access: Cloud infrastructure and applications shall be made available for regulatory inspection and audit, ensuring full transparency to regulators even in off-premise environments.",
+            "level": 3
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.20",
+        "policyName": "Cyber Resilience",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define guidelines for addressing cyber security risks and strengthening organizational cyber resilience through governance, prevention, detection, response, recovery, and continuous improvement.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy applies to all information systems, IT applications, IT infrastructure, physical information channels, information assets, business processes, and procedures used by the Organization.",
+            "level": 1
+          },
+          {
+            "marker": "3",
+            "text": "Policy Objectives: The Organization shall implement measures to prevent cyber incidents, ensure compliance, enable threat detection and response, improve situational awareness, and strengthen cyber security awareness.",
+            "level": 1,
+            "children": [
+              { "marker": "3.1", "text": "Classification: Critical systems and cyber security incidents shall be classified based on severity and criticality as defined in the incident management procedure.", "level": 2 },
+              {
+                "marker": "3.2",
+                "text": "Cyber Resilience Program: The Organization shall maintain a cyber security management program aligned with cyber resilience best practices covering prevention, detection, response, recovery, testing, learning, and situational awareness.",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.2.1",
+                    "text": "Cyber Threat Identification: Cyber threats that could affect operational performance, business objectives, critical processes, and organizational reputation shall be identified and analyzed.",
+                    "level": 3,
+                    "children": [
+                      { "marker": "3.2.1.1", "text": "Critical assets, business functions, and processes shall be identified and prioritized for protection.", "level": 4 },
+                      { "marker": "3.2.1.2", "text": "Information assets, including sensitive personal data and system access, shall be included in the identification process.", "level": 4 },
+                      { "marker": "3.2.1.3", "text": "Cyber threat intelligence shall be collected and analyzed using internal and external sources.", "level": 4 },
+                      { "marker": "3.2.1.4", "text": "Vendor and business process risks shall be assessed during onboarding and operational lifecycle.", "level": 4 }
+                    ]
+                  },
+                  {
+                    "marker": "3.2.2",
+                    "text": "Protection: Security controls shall be implemented in line with technical standards to ensure resilience by design and protect against internal and external threats.",
+                    "level": 3,
+                    "children": [
+                      { "marker": "3.2.2.1", "text": "Access control mechanisms shall follow least privilege principles and secure design practices.", "level": 4 },
+                      { "marker": "3.2.2.2", "text": "System interconnections and human-factor risks shall be considered in security design.", "level": 4 }
+                    ]
+                  },
+                  { "marker": "3.2.3", "text": "Detection: Security monitoring and analytics shall be implemented for critical systems to detect cyber incidents in a timely manner.", "level": 3 },
+                  { "marker": "3.2.4", "text": "Response and Recovery: Incident response and disaster recovery processes shall ensure rapid recovery and data integrity in alignment with business continuity requirements.", "level": 3 },
+                  { "marker": "3.2.5", "text": "Testing: Security testing including vulnerability assessments and penetration testing shall be conducted across system development and maintenance lifecycles.", "level": 3 },
+                  { "marker": "3.2.6", "text": "Learning and Reporting: The Organization shall continuously evaluate cyber security effectiveness and report security incidents to regulators and governing bodies within defined timelines.", "level": 3 },
+                  { "marker": "3.2.7", "text": "Situational Awareness: Cyber threat intelligence and participation in information sharing initiatives shall be used to enhance awareness and risk mitigation.", "level": 3 }
+                ]
+              },
+              { "marker": "3.3", "text": "Security Awareness: Cyber security awareness communications including advisories and circulars shall be regularly disseminated to employees, vendors, and consultants.", "level": 2 },
+              { "marker": "3.4", "text": "Forensics: The Organization may conduct digital forensic investigations for regulatory, legal, or high-severity security incidents while ensuring compliance with applicable laws and regulations.", "level": 2 }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.21",
+        "policyName": "Email Security",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define the Organization’s desired practices regarding Email Security.",
+            "level": 1
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.23",
+        "policyName": "Dealing Room Operations",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define roles, responsibilities, and terms of use of Organization’s information assets concerning operations in the dealing room.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy applies to all employees, contractors, and third parties accessing Organization’s information assets and facilities for dealing room operations. All business units and departments using IT systems must comply with these information security policies.",
+            "level": 1
+          },
+          {
+            "marker": "3",
+            "text": "Policy Objectives: The Organization shall establish secure recording of dealing activities, authorization controls for transactions, and record retention mechanisms ensuring proper consent before entering into contracts. Any breach shall be treated as an incident.",
+            "level": 1,
+            "children": [
+              {
+                "marker": "3.1",
+                "text": "Data Protection in Dealing Room Communications: Secure recording, monitoring, and retention of all dealer communications shall be ensured to maintain transaction integrity and auditability.",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.1.1",
+                    "text": "Dealers shall be provided with dedicated and secure recording lines, including for work-from-home scenarios, for communication with brokers.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.2",
+                    "text": "Voice recording systems shall be maintained and continuously operational to ensure uninterrupted recording of dealing communications.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.3",
+                    "text": "Mid-office teams shall review voice recordings as per defined SOPs for compliance and monitoring.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.4",
+                    "text": "Voice logger systems shall record all office-based calls, and recordings shall be securely stored and retained as proof of transactions.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.5",
+                    "text": "Procedures shall be defined in SOPs to handle communication disruptions between dealers and brokers.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.6",
+                    "text": "All dealer-broker communications shall be logged or recorded and independently reviewed by the mid-office.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.7",
+                    "text": "All transactions shall be executed only through recorded telephone lines.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.8",
+                    "text": "Secondary network connectivity and IT infrastructure shall be provisioned and tested for critical dealing applications and services.",
+                    "level": 3
+                  }
+                ]
+              },
+              {
+                "marker": "3.2",
+                "text": "Authorization Controls: Dealing room operations shall follow defined authorization matrices, approved SOPs, and supervised transaction workflows to ensure compliance and control.",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.2.1",
+                    "text": "Dealing room operating procedures shall be formally documented and maintained.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.2",
+                    "text": "Policies shall define approval workflows to ensure proper authorization of investment transactions, including during disruptions.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.3",
+                    "text": "Dealers shall place orders only through empanelled brokers using authorized communication channels.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.4",
+                    "text": "Prior approvals and authorizations shall be obtained before executing transactions with brokers.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.5",
+                    "text": "Dealers shall use only authorized organizational email addresses for all communications with counterparties.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.6",
+                    "text": "IT support for investment applications shall be accessed through approved channels such as portal, helpdesk, or office visits.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.7",
+                    "text": "Supervisory monitoring processes including transaction pricing and trade monitoring shall be implemented.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.8",
+                    "text": "All investment transactions shall be executed with requisite approvals as defined in the dealing room workflow/SOP.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.9",
+                    "text": "SMS and chat functionalities on Bloomberg terminals shall be disabled to prevent unauthorized communication.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.2.10",
+                    "text": "Transactions shall only be executed via recorded telephone lines, authorized Bloomberg terminals, NDS terminals, TREPS terminals, or official email channels.",
+                    "level": 3
+                  }
+                ]
+              },
+              {
+                "marker": "3.3",
+                "text": "Data Security and Operational Controls: Monitoring, authentication, disaster recovery, and continuity mechanisms shall be implemented for secure dealing operations.",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.3.1",
+                    "text": "Voice recording analysis and rate scanning shall be performed regularly for trade supervision and transaction validation.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.3.2",
+                    "text": "Multi-factor authentication shall be enabled for Bloomberg terminals and other critical dealing systems.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.3.3",
+                    "text": "Disaster Recovery drills shall be conducted to ensure availability of applications and resources at backup sites.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.3.4",
+                    "text": "Contingency plans, backup locations, and alternative resources shall be defined, maintained, and periodically tested for business continuity.",
+                    "level": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "policyNumber": "1.24",
+        "policyName": "Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021",
+        "guidelines": [
+          {
+            "marker": "1",
+            "text": "Purpose: To define the roles, responsibilities, and terms of use of Organization’s digital platforms and ensure compliance with applicable IT intermediary guidelines and digital media ethics requirements.",
+            "level": 1
+          },
+          {
+            "marker": "2",
+            "text": "Scope: This policy applies to all employees, contractors, and third parties who access or use Organization’s information assets and digital platforms.",
+            "level": 1
+          },
+          {
+            "marker": "3",
+            "text": "Policy Objectives: The Organization shall ensure data privacy, promote cybersecurity awareness, prevent infringement of intellectual property rights, and ensure due diligence in social media usage.",
+            "level": 1,
+            "children": [
+              {
+                "marker": "3.1",
+                "text": "Framework: Users of Organization’s computer resources shall not host, publish, transmit, or share unlawful or inappropriate content including but not limited to defamatory, obscene, misleading, infringing, or harmful material, or content violating applicable laws.",
+                "level": 2,
+                "children": [
+                  {
+                    "marker": "3.1.1",
+                    "text": "Users shall not upload or share content that belongs to another person without rights, is defamatory, obscene, pornographic, invasive of privacy, or otherwise unlawful.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.2",
+                    "text": "Users shall not upload content that infringes intellectual property rights, misleads recipients, impersonates others, or violates applicable laws.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.3",
+                    "text": "Users shall not share content that threatens sovereignty, security, public order, or contains malware, viruses, or malicious code.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.4",
+                    "text": "Organization reserves the right to terminate access or remove non-compliant content upon violation of rules, policies, or user agreements.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.5",
+                    "text": "Organization shall ensure removal or restriction of unlawful content upon court order or government direction as per applicable law.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.6",
+                    "text": "Users shall be informed periodically (at least annually) about applicable rules, policies, and updates to usage terms.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.7",
+                    "text": "User registration data shall be retained for at least 180 days after cancellation or withdrawal, as required by applicable rules.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.8",
+                    "text": "Organization shall implement reasonable security practices and procedures to secure its computer resources and information systems.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.9",
+                    "text": "Organization shall provide information or assistance to government agencies within 72 hours of lawful request for cybersecurity or investigation purposes.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.10",
+                    "text": "Cybersecurity incidents shall be reported to the Indian Computer Emergency Response Team (CERT-In) as per applicable rules and procedures.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.11",
+                    "text": "Organization shall not deploy or modify systems in a manner that circumvents applicable laws or alters normal system operations unlawfully.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.12",
+                    "text": "A Grievance Officer shall be appointed, whose contact details shall be published for user complaints and grievances.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.13",
+                    "text": "The Grievance Officer shall acknowledge complaints within 24 hours and resolve them within 15 days of receipt.",
+                    "level": 3
+                  },
+                  {
+                    "marker": "3.1.14",
+                    "text": "Complaints involving sensitive or explicit content (privacy violations, nudity, impersonation, etc.) shall be addressed within 24 hours with removal or access restriction where applicable.",
+                    "level": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

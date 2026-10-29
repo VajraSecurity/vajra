@@ -1,0 +1,92 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\ComSpec",
+"name": "ComSpec",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\cmd.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\DriverData",
+"name": "DriverData",
+"type": "REG_SZ",
+"data": "C:\\Windows\\System32\\Drivers\\DriverData"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\OS",
+"name": "OS",
+"type": "REG_SZ",
+"data": "Windows_NT"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\Path",
+"name": "Path",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\PATHEXT",
+"name": "PATHEXT",
+"type": "REG_SZ",
+"data": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\PROCESSOR_ARCHITECTURE",
+"name": "PROCESSOR_ARCHITECTURE",
+"type": "REG_SZ",
+"data": "AMD64"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\PSModulePath",
+"name": "PSModulePath",
+"type": "REG_SZ",
+"data": "C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\TEMP",
+"name": "TEMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\TEMP"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\TMP",
+"name": "TMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\TEMP"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\USERNAME",
+"name": "USERNAME",
+"type": "REG_SZ",
+"data": "user"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\windir",
+"name": "windir",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\NUMBER_OF_PROCESSORS",
+"name": "NUMBER_OF_PROCESSORS",
+"type": "REG_SZ",
+"data": "3"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\PROCESSOR_LEVEL",
+"name": "PROCESSOR_LEVEL",
+"type": "REG_SZ",
+"data": "6"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\PROCESSOR_IDENTIFIER",
+"name": "PROCESSOR_IDENTIFIER",
+"type": "REG_SZ",
+"data": "Intel64 Family 6 Model 167 Stepping 1, GenuineIntel"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment\\PROCESSOR_REVISION",
+"name": "PROCESSOR_REVISION",
+"type": "REG_SZ",
+"data": "a701"
+}
+]

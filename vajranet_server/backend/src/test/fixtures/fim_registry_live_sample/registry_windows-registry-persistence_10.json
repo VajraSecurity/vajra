@@ -1,0 +1,362 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Microsoft Windows Media Player"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "WMPACCESS"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\DontAsk",
+"name": "DontAsk",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\Enabled",
+"name": "Enabled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "*"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\LocalizedName",
+"name": "LocalizedName",
+"type": "REG_SZ",
+"data": "@C:\\WINDOWS\\system32\\wmploc.dll,-128"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\StubPath",
+"name": "StubPath",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\unregmp2.exe /ShowWMP"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\>{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "12,0,10011,16384"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Microsoft Windows Media Player 12.0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\DontAsk",
+"name": "DontAsk",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "EN"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{22d6f312-b0f6-11d0-94ab-0080c74c7e95}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "12,0,10011,16384"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Themes Setup"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "Theme Component"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\Enabled",
+"name": "Enabled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "EN"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\LocalizedName",
+"name": "LocalizedName",
+"type": "REG_SZ",
+"data": "@C:\\WINDOWS\\system32\\themeui.dll,-2682"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\ShellComponent",
+"name": "ShellComponent",
+"type": "REG_SZ",
+"data": "themeui.dll"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\StubPath",
+"name": "StubPath",
+"type": "REG_SZ",
+"data": "/UserInstall"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{2C7339CF-2B09-4501-B3F3-F3508C9228ED}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "1,1,1,9"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{3af36230-a269-11d1-b5bf-0000f8051515}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Offline Browsing Pack"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{3af36230-a269-11d1-b5bf-0000f8051515}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "MobilePk"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{3af36230-a269-11d1-b5bf-0000f8051515}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{3af36230-a269-11d1-b5bf-0000f8051515}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "*"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{3af36230-a269-11d1-b5bf-0000f8051515}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "11,7309,26100,0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{44BBA855-CC51-11CF-AAFA-00AA00B6015F}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "DirectDrawEx"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{44BBA855-CC51-11CF-AAFA-00AA00B6015F}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "DirectDrawEx"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{44BBA855-CC51-11CF-AAFA-00AA00B6015F}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{44BBA855-CC51-11CF-AAFA-00AA00B6015F}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "*"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{44BBA855-CC51-11CF-AAFA-00AA00B6015F}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "4,71,1113,0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{45ea75a0-a269-11d1-b5bf-0000f8051515}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Internet Explorer Help"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{45ea75a0-a269-11d1-b5bf-0000f8051515}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "HelpCont"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{45ea75a0-a269-11d1-b5bf-0000f8051515}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{45ea75a0-a269-11d1-b5bf-0000f8051515}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "*"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{45ea75a0-a269-11d1-b5bf-0000f8051515}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "11,7309,26100,0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{4f645220-306d-11d2-995d-00c04f98bbc9}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Microsoft Windows Script 5.6"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{4f645220-306d-11d2-995d-00c04f98bbc9}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "MSVBScript"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{4f645220-306d-11d2-995d-00c04f98bbc9}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{4f645220-306d-11d2-995d-00c04f98bbc9}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "EN"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{4f645220-306d-11d2-995d-00c04f98bbc9}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "5,6,0,8833"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{5fd399c0-a70a-11d1-9948-00c04f98bbc9}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Internet Explorer Setup Tools"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{5fd399c0-a70a-11d1-9948-00c04f98bbc9}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "GenSetup"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{5fd399c0-a70a-11d1-9948-00c04f98bbc9}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{5fd399c0-a70a-11d1-9948-00c04f98bbc9}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "*"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{5fd399c0-a70a-11d1-9948-00c04f98bbc9}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "11,7309,26100,0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{630b1da0-b465-11d1-9948-00c04f98bbc9}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Browsing Enhancements"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{630b1da0-b465-11d1-9948-00c04f98bbc9}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "ExtraPack"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{630b1da0-b465-11d1-9948-00c04f98bbc9}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{630b1da0-b465-11d1-9948-00c04f98bbc9}\\KeyFileName",
+"name": "KeyFileName",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\msieftp.dll"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{630b1da0-b465-11d1-9948-00c04f98bbc9}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "*"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{630b1da0-b465-11d1-9948-00c04f98bbc9}\\Version",
+"name": "Version",
+"type": "REG_SZ",
+"data": "11,7309,26100,0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{6BF52A52-394A-11d3-B153-00C04F79FAA6}\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "Microsoft Windows Media Player"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{6BF52A52-394A-11d3-B153-00C04F79FAA6}\\ComponentID",
+"name": "ComponentID",
+"type": "REG_SZ",
+"data": "Microsoft Windows Media Player"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{6BF52A52-394A-11d3-B153-00C04F79FAA6}\\DontAsk",
+"name": "DontAsk",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{6BF52A52-394A-11d3-B153-00C04F79FAA6}\\Enabled",
+"name": "Enabled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{6BF52A52-394A-11d3-B153-00C04F79FAA6}\\IsInstalled",
+"name": "IsInstalled",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Active Setup\\Installed Components\\{6BF52A52-394A-11d3-B153-00C04F79FAA6}\\Locale",
+"name": "Locale",
+"type": "REG_SZ",
+"data": "EN"
+}
+]

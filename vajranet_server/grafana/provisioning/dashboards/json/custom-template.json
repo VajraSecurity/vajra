@@ -1,0 +1,102 @@
+{
+  "title": "Custom Template",
+  "uid": "custom-template",
+  "tags": [
+    "template"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "5m",
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "vajra-fleet-db"
+        },
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "host",
+        "options": [],
+        "query": "SELECT hostname FROM nodes WHERE grafana_group_visible('${__user.email}', owner_group_id) ORDER BY hostname ASC;",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      },
+      {
+        "current": {},
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "severity",
+        "options": [],
+        "query": "CRITICAL, HIGH, MEDIUM, LOW, NONE",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Example Alert Panel (Clone Me)",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "vajra-fleet-db"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "vajra-fleet-db"
+          },
+          "format": "table",
+          "rawSql": "SELECT to_timestamp(a.unixtime) AS time, COALESCE(n.hostname, a.hostname) AS hostname, a.severity, a.alert_type FROM alerts a JOIN nodes n ON a.host_identifier = n.host_identifier WHERE n.hostname IN (${host:sqlstring}) AND a.severity IN (${severity:sqlstring}) AND grafana_group_visible('${__user.email}', n.owner_group_id) ORDER BY a.unixtime DESC LIMIT 100;",
+          "refId": "A"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Example CVE Panel (Clone Me)",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "vajra-fleet-db"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "vajra-fleet-db"
+          },
+          "format": "table",
+          "rawSql": "SELECT m.hostname, m.cve_id, m.software_name, m.cvss3_severity AS severity FROM mv_software_cve_flat m JOIN nodes n ON lower(n.host_identifier) = lower(m.host_identifier) WHERE m.hostname IN (${host:sqlstring}) AND m.cvss3_severity IN (${severity:sqlstring}) AND grafana_group_visible('${__user.email}', n.owner_group_id) LIMIT 100;",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+-- Fleet DB: host-scoped indexes for three Windows telemetry lookups.
+--
+-- Run this against the `fleet` database (POSTGRES_DB1). Safe to re-run:
+-- IF NOT EXISTS guards every statement. CONCURRENTLY cannot run inside a
+-- transaction block, so apply with autocommit on, e.g.
+-- `psql -f add_telemetry_host_indexes.sql`.
+--
+-- These are pure access-path changes. Every query targeted here is
+-- `WHERE host_identifier = $1 ... ORDER BY unixtime DESC LIMIT 1`, whose result
+-- is uniquely determined by the ORDER BY, so the plan the planner picks cannot
+-- change which row comes back.
+--
+-- Total added on-disk cost: ~65 MB across all three (58 + 6 + 1.2), each
+-- measured by building it at the exact production row count on a scratch
+-- PostgreSQL 17 instance. Production has 69 GB free.
+--
+-- Why these three and not the others. A prior sweep proposed indexes on
+-- wmi_bios_info, windows_update_history, deb_packages/rpm_packages/programs and
+-- seven small tables; all were measured on production and rejected or deferred,
+-- with the reasoning recorded at the bottom of this file. Only the three below
+-- both fix a measured pathology and are provably reachable by the planner as
+-- the application writes the query today.
+--
+-- All three fix the same pathology. The table carries only its primary key, so
+-- the sole usable path is a walk of the pkey across the
+-- `id > MAX(id) - RECENT_ROWS_ID_WINDOW_WIDE` window, with host_identifier
+-- demoted to a post-filter and a top-N sort on top. Because the walk is an
+-- index scan it costs one heap access per row examined, not per page, which is
+-- why the buffer counts below are far larger than the tables themselves.
+--
+-- Note the id window is currently inert on all three: the guard is
+-- `id > MAX(id) - 2000000` and none of them has reached id 2,000,000
+-- (system_info's max is 1,315,687), so the window is the whole table. At
+-- ~4,852 ids/day system_info will not begin to bite for ~4.7 months, and when
+-- it does these indexes still serve it correctly, because the scan runs in
+-- unixtime DESC order and the newest rows carry the highest ids, so the first
+-- row examined already satisfies the filter.
+
+-- 1. system_info, the big one. 895,591 rows / 275 MB heap, only
+-- system_info_pkey (28 MB); read by controllers/windows/system_info.ts.
+--
+-- Measured on production the plan is a parallel pkey scan with host_identifier
+-- as a filter (260,281 rows removed per worker) feeding a top-N sort: 725,540
+-- buffer accesses and 277 ms warm, 524 ms cold, to return one row. For scale,
+-- shared_buffers here is 16,384 buffers (128 MB), so a single call churns the
+-- entire buffer cache roughly 44 times over; the cache eviction it inflicts on
+-- every other query is a larger cost than the wall clock.
+--
+-- (host_identifier, unixtime DESC) satisfies the predicate and the sort, so the
+-- plan collapses to an index scan that stops at the first qualifying row. That
+-- the planner takes it is a measurement, not an argument: this is the shape
+-- already carried by security_profile_info (added by
+-- add_windows_host_lookup_indexes.sql), and the byte-identical query shape
+-- against that table — same host, same inert id guard, more rows — picks the
+-- host index unprompted at 51 buffers and 0.487 ms.
+--
+-- Cost: 58 MB, and negligible write amplification at 4,852 inserts/day. This is
+-- not one of the thousands-of-inserts-per-minute tables.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_system_info_host_unixtime
+  ON public.system_info (host_identifier, unixtime DESC);
+
+-- 2. secureboot. 94,564 rows / 8,696 kB heap, only secureboot_pkey;
+-- controllers/windows/secureboot.ts, identical query shape.
+--
+-- Measured on production: pkey scan, host_identifier as a post-filter, top-N
+-- sort — 80,139 buffers and 47 ms. This table is not in the "too small to
+-- bother" bucket a prior sweep placed it in; that sweep's row counts were
+-- wrong. 80,139 buffers is ~5x the entire 128 MB buffer cache to return one
+-- row, and the cache churn, not the 47 ms, is the reason to fix it. Building
+-- this index at this row count on a scratch PostgreSQL 17 with
+-- random_page_cost=4 (production's setting), the planner takes it and the query
+-- becomes 7 buffers / 0.032 ms.
+--
+-- Cost: 6,296 kB, 869 inserts/day.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_secureboot_host_unixtime
+  ON public.secureboot (host_identifier, unixtime DESC);
+
+-- 3. tpm_info. 17,737 rows / 2,896 kB heap, only tpm_info_pkey;
+-- controllers/windows/tpm_info.ts, again the identical query shape.
+--
+-- Measured on production: 13,144 buffers and 11.7 ms — ~80% of the whole buffer
+-- cache for one row. Same scratch-instance verification as secureboot, at the
+-- exact row count: 7 buffers / 0.035 ms.
+--
+-- This is the smallest table in the migration and the closest to the
+-- don't-pad-the-migration line. It earns its place because the index is 1.2 MB
+-- against 139 inserts/day, so the cost is very nearly zero, and because it is
+-- the same endpoint family as the two above — leaving it out means coming back
+-- for it later.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_tpm_info_host_unixtime
+  ON public.tpm_info (host_identifier, unixtime DESC);
+
+
+-- Deliberately not in this migration. Recorded so the next person does not
+-- re-propose them; every line below is a production measurement.
+--
+-- Rejected — wmi_bios_info (host_identifier, name, unixtime DESC, id DESC),
+--   proposed to fix controllers/windows/bios_info.ts (1,243 ms today). Two
+--   independent reasons it fails. First, the table already carries
+--   idx_wmi_bios_info_host_name_id (host_identifier, name, id DESC) at
+--   6,361 MB and the planner does not use it, at random_page_cost=4 or at 1.1;
+--   the proposed index differs only by inserting unixtime, so it inherits the
+--   same problem. Second, the reason is structural rather than a costing
+--   accident: `id >` sits behind `name` in the key, so it can never narrow the
+--   scan range and the scan must walk every one of the host's index entries.
+--   Measured directly with an index-only probe on the existing index: 4,410 ms
+--   and 277,878 buffers to keep 226,513 rows out of 4,341,919, which is 3.5x
+--   slower and 3.5x more buffers than the plan it would replace. Adding
+--   unixtime removes the heap fetches but not the 4.34M-entry walk. Cost
+--   avoided: ~6.9 GB of index plus 549,571 inserts/day of maintenance.
+--
+-- Rejected — windows_update_history (host_identifier, "date" DESC, id DESC).
+--   The query cannot match it at all: controllers/windows/latest_update.ts
+--   sorts by
+--     CASE WHEN "date"::text ~ '^[0-9]+$' THEN ("date"::text)::bigint ELSE 0 END
+--   not by "date", so an index on the raw column orders by something else.
+--   Built at scale on a scratch instance to confirm rather than assume: the
+--   plan did not change. The premise behind the proposal was also wrong —
+--   "date" is bigint on production, not text.
+--
+-- Deferred, needs a code change first — windows_update_history expression index
+--   on that CASE key, plus host_identifier and id DESC. The expression is
+--   IMMUTABLE, the index is legal, and on a scratch instance it takes the query
+--   from 139.7 ms to 0.109 ms — but only against the flat form of the query.
+--   Production does not use the flat form: latest_update.ts deliberately pins
+--   the host and the id window into MATERIALIZED CTEs to force the host bitmap
+--   index, and with the host as a runtime CTE value the planner cannot prove
+--   the index ordering satisfies the ORDER BY and falls back to the sort
+--   (verified with the index present: 440 ms, unchanged). Adding it without
+--   also reverting latest_update.ts to the flat form buys nothing and costs
+--   ~560 MB plus 89,676 inserts/day. Worth doing as a pair — the endpoint
+--   measures 4,051 ms on the worst host — but that is an index plus a
+--   controller change, not a migration on its own.
+--
+-- Deferred, changes results and needs sign-off — deb_packages / rpm_packages /
+--   programs (host_identifier, name, unixtime DESC, id DESC). The performance
+--   case is real and large: deb_packages on its busiest host measures 3,800 ms
+--   with a 46,560 kB external merge sort spilled to disk, sorting 135,318 rows
+--   to return 3,337, and the existing dedupe indexes are keyed on
+--   lower(host_identifier) while node_programs.ts matches host_identifier
+--   exactly, so they are unreachable. The blocker is correctness. The query is
+--     SELECT DISTINCT ON (name) * ... ORDER BY name, unixtime DESC
+--   with no id tiebreaker, so when a host has two rows sharing (name, unixtime)
+--   the winner is arbitrary and plan-dependent. On the busiest deb_packages
+--   host there are 1,179 tied groups covering 2,358 rows, 721 of which hold
+--   rows whose content actually differs, so adding this index would visibly
+--   change the reported package inventory for 721 packages. That is not an
+--   access-path change and must not be slipped in as one. Correct sequence:
+--   first add `, id DESC` to the ORDER BY in
+--   controllers/nodes/node_programs.ts, making the output deterministic (itself
+--   a visible change to those rows, needing sign-off), then add the index. Note
+--   these are also the update-heavy tables — deb_packages has taken 82,890,426
+--   UPDATEs against 476,317 live rows — so every extra index costs more than
+--   the row count suggests.
+--
+-- Rejected — logical_drives, disk_info, bitlocker_info, chrome_extensions,
+--   ie_extensions, firefox_addons, npm_packages. All measured on production and
+--   all already fast, because they are genuinely tiny (93-4,100 rows) and the
+--   planner reaches them cheaply: 0.35-17.8 ms over 49-160 buffers. None shows
+--   the buffer-amplification pathology that justifies the three indexes above,
+--   so an index would buy nothing measurable and still cost write throughput on
+--   an ingest-heavy system. Revisit only if one grows past ~50k rows.
+--
+-- Separately: random_page_cost is still 4 on this SSD-backed host. Not
+-- something this migration changes, but it is the highest-leverage knob found
+-- while measuring the above, and it is free. Demonstrated on
+-- windows_security_products, which already carries the
+-- (host_identifier, name, unixtime DESC, id DESC) index — with no query change
+-- and no new index, purely SET random_page_cost = 1.1, the plan moves from a
+-- parallel pkey scan at 698,307 buffers / 481 ms to an index-only scan at
+-- 78,312 buffers / 204 ms. That is an 8.9x buffer reduction on an index that is
+-- already built and currently unused, and there are very likely others like it.
+-- Worth evaluating as its own change, with the usual caution that it shifts
+-- planner behaviour database-wide and should be trialled first. It does not
+-- rescue the wmi_bios_info case above (retested at 1.1: still the pkey, 790
+-- ms), so it complements this migration rather than replacing it.

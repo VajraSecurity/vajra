@@ -1,0 +1,11 @@
+# This host's own osquery flags: the server it talks to and how it enrolls.
+# vajra_install.sh writes it (and pins the host identifier below); agent
+# updates never change it.
+#
+# The flags every host shares are in vajra.flags, which agent updates ship.
+# It must stay the first flag: whichever line sets a flag last wins, so the
+# lines after it decide the server and identity even if vajra.flags names
+# them too. osqueryd won't start if vajra.flags is missing.
+--flagfile=/etc/osquery/vajra.flags
+--tls_hostname=YOUR_SERVER_HOST:1234
+--host_identifier=uuid

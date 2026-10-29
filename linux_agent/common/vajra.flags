@@ -1,0 +1,32 @@
+# Flags every Vajra host shares. Agent updates ship this file (make-release.sh
+# -flags); changing it restarts osqueryd. Don't put the server address, enroll
+# secret or host identifier here: those belong to each host, in osquery.flags.
+--disable_events=false
+--enroll_secret_path=/etc/osquery/enrollment_secret
+--tls_server_certs=/etc/osquery/cert.pem
+--enroll_tls_endpoint=/enroll
+--config_plugin=tls
+--config_tls_endpoint=/config
+--config_refresh=10
+--logger_plugin=tls
+--logger_tls_endpoint=/log
+--logger_tls_period=10
+--logger_tls_max_lines=4000
+--events_expiry=3600
+--events_max=50000
+#--watchdog_memory_limit=600
+--disable_distributed=false
+--distributed_plugin=tls
+--distributed_tls_read_endpoint=/read
+--distributed_tls_write_endpoint=/write
+--distributed_interval=10
+--distributed_tls_max_attempts=3
+--watchdog_level=-1
+--enable_bpf_events=true
+--enable_bpf_file_events=true
+--enable_file_events=true
+--allow_unsafe
+--extensions_interval=10
+--extensions_timeout=90
+# --extensions_require=vajra_linux_extension
+--extensions_autoload=/etc/osquery/extensions.load

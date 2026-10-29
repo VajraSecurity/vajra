@@ -1,0 +1,29 @@
+# SQL applied to the fleet database after the C++ schema and the backend's first start
+# (columns, indexes, the alerts notify trigger). Paths are relative to backend/. Order
+# matters: the alerts trigger needs the alerts columns from 002. All files are idempotent.
+# Used by scripts/setup/08-migrations.sh and by the db-extras service in docker-compose.yml.
+migrations/001_add_critical_columns_to_nodes.sql
+migrations/002_add_alert_columns.sql
+migrations/004_add_agent_cert_provisioning_tokens.sql
+migrations/005_add_patch_management_tables.sql
+migrations/006_add_patch_bundles_table.sql
+migrations/007_add_patch_scheduling_and_bundle_pin.sql
+migrations/008_add_patch_bundle_raw_signed.sql
+migrations/009_add_vulnexus_host_vulnerabilities_cve_index.sql
+migrations/010_add_domain_reputation_tables.sql
+migrations/011_add_windows_maintained_apps.sql
+migrations/012_add_windows_patch_jobs_fk_indexes.sql
+migrations/013_add_query_performance_indexes.sql
+migrations/014_add_domain_reputation_group_scoping.sql
+migrations/014_add_interface_addresses_address_index.sql
+migrations/016_add_cpe_dictionary_lower_vendor_product_index.sql
+migrations/017_add_alerts_severity_summary_index.sql
+migrations/025_add_memory_info_host_unixtime_index.sql
+migrations/036_add_firewall_status.sql
+src/migrations/add_compliance_owner_group_ids.sql
+src/migrations/add_policy_target_group_ids.sql
+src/migrations/add_vulnexus_cve_indexes.sql
+src/migrations/add_alerts_notify_trigger.sql
+src/migrations/add_package_covering_indexes.sql
+src/migrations/add_telemetry_host_indexes.sql
+src/migrations/add_windows_host_lookup_indexes.sql

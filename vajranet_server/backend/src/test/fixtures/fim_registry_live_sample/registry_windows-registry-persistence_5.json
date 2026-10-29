@@ -1,0 +1,242 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\AlternateShells",
+"name": "AlternateShells",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\GPExtensions",
+"name": "GPExtensions",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ShellPrograms",
+"name": "ShellPrograms",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\UserDefaults",
+"name": "UserDefaults",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\AutoLogonChecked",
+"name": "AutoLogonChecked",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\VolatileUserMgrKey",
+"name": "VolatileUserMgrKey",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\AutoRestartShell",
+"name": "AutoRestartShell",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Background",
+"name": "Background",
+"type": "REG_SZ",
+"data": "0 0 0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\CachedLogonsCount",
+"name": "CachedLogonsCount",
+"type": "REG_SZ",
+"data": "10"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\DebugServerCommand",
+"name": "DebugServerCommand",
+"type": "REG_SZ",
+"data": "no"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\DefaultDomainName",
+"name": "DefaultDomainName",
+"type": "REG_SZ",
+"data": "EXAMPLE-HOST"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\DefaultUserName",
+"name": "DefaultUserName",
+"type": "REG_SZ",
+"data": "user"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\DisableBackButton",
+"name": "DisableBackButton",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\EnableSIHostIntegration",
+"name": "EnableSIHostIntegration",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ForceUnlockLogon",
+"name": "ForceUnlockLogon",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\LegalNoticeCaption",
+"name": "LegalNoticeCaption",
+"type": "REG_SZ",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\LegalNoticeText",
+"name": "LegalNoticeText",
+"type": "REG_SZ",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\PasswordExpiryWarning",
+"name": "PasswordExpiryWarning",
+"type": "REG_DWORD",
+"data": "5"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\PowerdownAfterShutdown",
+"name": "PowerdownAfterShutdown",
+"type": "REG_SZ",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\PreCreateKnownFolders",
+"name": "PreCreateKnownFolders",
+"type": "REG_SZ",
+"data": "{A520A1A4-1780-4FF6-BD18-167343C5AF16}"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ReportBootOk",
+"name": "ReportBootOk",
+"type": "REG_SZ",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Shell",
+"name": "Shell",
+"type": "REG_SZ",
+"data": "explorer.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ShellAppRuntime",
+"name": "ShellAppRuntime",
+"type": "REG_SZ",
+"data": "ShellAppRuntime.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ShellCritical",
+"name": "ShellCritical",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ShellInfrastructure",
+"name": "ShellInfrastructure",
+"type": "REG_SZ",
+"data": "sihost.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\SiHostCritical",
+"name": "SiHostCritical",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\SiHostReadyTimeOut",
+"name": "SiHostReadyTimeOut",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\SiHostRestartCountLimit",
+"name": "SiHostRestartCountLimit",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\SiHostRestartTimeGap",
+"name": "SiHostRestartTimeGap",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\Userinit",
+"name": "Userinit",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\userinit.exe,"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\VMApplet",
+"name": "VMApplet",
+"type": "REG_SZ",
+"data": "SystemPropertiesPerformance.exe /pagefile"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\WinStationsDisabled",
+"name": "WinStationsDisabled",
+"type": "REG_SZ",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\scremoveoption",
+"name": "scremoveoption",
+"type": "REG_SZ",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\DisableCAD",
+"name": "DisableCAD",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\LastLogOffEndTimePerfCounter",
+"name": "LastLogOffEndTimePerfCounter",
+"type": "REG_QWORD",
+"data": "1047365289"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\ShutdownFlags",
+"name": "ShutdownFlags",
+"type": "REG_DWORD",
+"data": "39"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\AutoAdminLogon",
+"name": "AutoAdminLogon",
+"type": "REG_SZ",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\EnableFirstLogonAnimation",
+"name": "EnableFirstLogonAnimation",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\AutoLogonSID",
+"name": "AutoLogonSID",
+"type": "REG_SZ",
+"data": "S-1-5-21-1111111111-2222222222-3333333333-1000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon\\LastUsedUsername",
+"name": "LastUsedUsername",
+"type": "REG_SZ",
+"data": "user"
+}
+]

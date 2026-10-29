@@ -1,0 +1,52 @@
+-- Fleet DB: grant the two superuser-only prerequisites for Grafana group-scoping.
+--
+-- Metadata only. Creates no table, copies no data, and modifies nothing that
+-- already exists.
+--
+-- Requires a SUPERUSER connection.
+--
+-- Background. setupGrafanaGroupScoping() in orm/config/ormconfig-setup.ts
+-- builds the whole group-scoping bridge: the vajra_app_db foreign server, the
+-- user mapping, the grafana_fdw imported schema, and the
+-- grafana_group_visible()/grafana_scan_visible() predicates every scoped
+-- dashboard panel calls. The application user can do all of that itself. What
+-- it cannot do is CREATE EXTENSION or hold USAGE on a foreign-data wrapper,
+-- both superuser-only — so the chain has always failed on its first statement
+-- here. setupFleetDatabase() catches that, logs one warning, and continues,
+-- which is why the deployment looked healthy while the predicates did not
+-- exist.
+--
+-- This file grants only those two things. The credentialed half stays with the
+-- application, which already has POSTGRES_USER/POSTGRES_PASSWORD in its
+-- environment; putting it here would mean writing a database password into a
+-- file in version control, or passing one by hand.
+--
+-- Run this, then complete the provisioning from the backend directory:
+--
+--   sudo -u postgres psql -d fleet -f 024_grafana_fdw_prerequisites.sql
+--   npm run db:setup:fleet
+--
+-- grafana/setup.sh now performs both of these statements itself, so a fresh
+-- install does not need this file. It exists for deployments already past that
+-- point.
+--
+-- Ordering: migration 023 must be applied first. It creates
+-- grafana_user_scoping in the primary DB, which db:setup:fleet imports across
+-- the bridge; without it IMPORT FOREIGN SCHEMA fails.
+--
+-- Rollback: REVOKE USAGE ON FOREIGN DATA WRAPPER postgres_fdw FROM vajra.
+-- Leave the extension; dropping it would take the foreign server with it.
+--
+-- Verify — installed, and the grant present:
+--   SELECT installed_version FROM pg_available_extensions WHERE name = 'postgres_fdw';
+--   SELECT has_foreign_data_wrapper_privilege('vajra', 'postgres_fdw', 'USAGE');
+--
+-- Then, after db:setup:fleet, confirm the predicates resolve and actually
+-- narrow. The second count must be smaller than the third:
+--   SELECT grafana_group_visible('<super-admin-email>', NULL);
+--   SELECT count(*) FROM nodes WHERE grafana_group_visible('<group-admin-email>', owner_group_id);
+--   SELECT count(*) FROM nodes;
+
+CREATE EXTENSION IF NOT EXISTS postgres_fdw;
+
+GRANT USAGE ON FOREIGN DATA WRAPPER postgres_fdw TO vajra;

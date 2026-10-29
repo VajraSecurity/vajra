@@ -1,0 +1,188 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\Win32knsWPP",
+"name": "Win32knsWPP",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\Win32kWPP",
+"name": "Win32kWPP",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\",
+"name": "(Default)",
+"type": "REG_SZ",
+"data": "mnmsrvc"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\AppInit_DLLs",
+"name": "AppInit_DLLs",
+"type": "REG_SZ",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\DdeSendTimeout",
+"name": "DdeSendTimeout",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\DesktopHeapLogging",
+"name": "DesktopHeapLogging",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\DeviceNotSelectedTimeout",
+"name": "DeviceNotSelectedTimeout",
+"type": "REG_SZ",
+"data": "15"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\DwmInputUsesIoCompletionPort",
+"name": "DwmInputUsesIoCompletionPort",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\EnableDwmInputProcessing",
+"name": "EnableDwmInputProcessing",
+"type": "REG_DWORD",
+"data": "7"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\GDIProcessHandleQuota",
+"name": "GDIProcessHandleQuota",
+"type": "REG_DWORD",
+"data": "10000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\IconServiceLib",
+"name": "IconServiceLib",
+"type": "REG_SZ",
+"data": "IconCodecService.dll"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LoadAppInit_DLLs",
+"name": "LoadAppInit_DLLs",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\NaturalInputHandler",
+"name": "NaturalInputHandler",
+"type": "REG_SZ",
+"data": "Ninput.dll"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\RapidHpdTimeoutMs",
+"name": "RapidHpdTimeoutMs",
+"type": "REG_DWORD",
+"data": "3000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\ShutdownWarningDialogTimeout",
+"name": "ShutdownWarningDialogTimeout",
+"type": "REG_DWORD",
+"data": "-1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\Spooler",
+"name": "Spooler",
+"type": "REG_SZ",
+"data": "yes"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\TransmissionRetryTimeout",
+"name": "TransmissionRetryTimeout",
+"type": "REG_SZ",
+"data": "90"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\USERNestedWindowLimit",
+"name": "USERNestedWindowLimit",
+"type": "REG_DWORD",
+"data": "50"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\USERPostMessageLimit",
+"name": "USERPostMessageLimit",
+"type": "REG_DWORD",
+"data": "10000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\USERProcessHandleQuota",
+"name": "USERProcessHandleQuota",
+"type": "REG_DWORD",
+"data": "10000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\Win32kLastWriteTime",
+"name": "Win32kLastWriteTime",
+"type": "REG_SZ",
+"data": "1DCADC3C1647BBD"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakTrackingAllocatorMode",
+"name": "LeakTrackingAllocatorMode",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\PoolLeakedState",
+"name": "PoolLeakedState",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag0",
+"name": "LeakedPoolTag0",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag1",
+"name": "LeakedPoolTag1",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag2",
+"name": "LeakedPoolTag2",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag3",
+"name": "LeakedPoolTag3",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag4",
+"name": "LeakedPoolTag4",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag5",
+"name": "LeakedPoolTag5",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag6",
+"name": "LeakedPoolTag6",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\LeakedPoolTag7",
+"name": "LeakedPoolTag7",
+"type": "REG_DWORD",
+"data": "0"
+}
+]

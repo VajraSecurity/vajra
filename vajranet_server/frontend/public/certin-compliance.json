@@ -1,0 +1,104 @@
+[
+  {
+    "title": "LOCAL AREA NETWORK SECURITY COMPLIANCE CHECKLIST",
+    "marker": "1",
+    "level": 1,
+    "children": [
+      { "marker": "1.1", "text": "Is a Cyber Crisis Management Plan (CCMP) prepared and implemented for the Ministry/Department?", "level": 2 },
+      { "marker": "1.2", "text": "Whether required process is put in place to ensure that timely action is taken on the alerts and advisories shared by CERT-In and NIC-CERT?", "level": 2 },
+      { "marker": "1.3", "text": "Whether all ICT devices are connected via the internet gateway of NIC’s network (i.e. NICNET) and any other direct internet connection i.e., broadband, 3G/4G/5G…etc., withdrawn from office premises?", "level": 2 },
+      { "marker": "1.4", "text": "Whether inventory of authorized hardware and & software is maintained.", "level": 2 },
+      { "marker": "1.5", "text": "Whether default credentials of network devices are changed.", "level": 2 },
+      { "marker": "1.6", "text": "Is Media Access Control (MAC) address binding or IEEE 802.1x done for all systems/IT devices connected in the Ministries/Department?", "level": 2 },
+      { "marker": "1.7", "text": "Do all Un-managed network devices replaced with managed devices?", "level": 2 },
+      { "marker": "1.8", "text": "Whether organisation’s or NIC DNS server is configured for DNS.", "level": 2 },
+      { "marker": "1.9", "text": "Whether DNS queries for public DNS Servers is not allowed in the network.", "level": 2 },
+      { "marker": "1.10", "text": "Whether host firewall is configured in all systems to restrict lateral movement within the same network segment?", "level": 2 },
+      { "marker": "1.11", "text": "Whether required process is put in place to implement the policy to restrict Internet connectivity and allow only NICNET connectivity for users who do not adhere to guidelines mentioned under the head “desktop/laptop and printer security“?", "level": 2 },
+      { "marker": "1.12", "text": "Is Network firewall configured for the ministry/department and network access is configured as per the requirements of the official work?", "level": 2 },
+      { "marker": "1.13", "text": "Whether Systems and equipment’s which are obsolete and/or using obsolete/ unpatched operating systems, are removed from the network of the Ministry/Department?", "level": 2 },
+      { "marker": "1.14", "text": "Whether Kavach Multi-Factor Authentication is configured or enabled on all the NIC Email Accounts in the Ministry/Department?", "level": 2 },
+      { "marker": "1.15", "text": "Whether Network Access control (NAC) is implemented in the Ministry/Department?", "level": 2 },
+      { "marker": "1.16", "text": "Whether UEM (Unified Endpoint Management) is deployed for the Ministry/Department?", "level": 2 },
+      { "marker": "1.17", "text": "Whether DLP (Data Loss Prevention) is deployed for the Ministry/Department?", "level": 2 },
+      { "marker": "1.18", "text": "Whether NBAD (Network Behaviour Anomaly detection) is deployed for the Ministry/Department?", "level": 2 },
+      { "marker": "1.19", "text": "Whether Unified Threat Management (UTM) device for policy-based access control of internet traffic is deployed?", "level": 2 },
+      { "marker": "1.20", "text": "Whether list of authorized applications/software that can be installed for the system made for the Ministry/Department?", "level": 2 },
+      { "marker": "1.21", "text": "Whether remote-desktop software (like Anydesk) are blocked to access Network resources from remote?", "level": 2 },
+      { "marker": "1.22", "text": "Whether use of VPN is made mandatory for accessing Network Resources from Remote location?", "level": 2 },
+      { "marker": "1.23", "text": "Whether segmentation of LAN is done to ensure separation of zones?", "level": 2 },
+      { "marker": "1.24", "text": "Whether internet access is allowed only to systems as per the directives of CISO/Deputy CISO/", "level": 2 },
+      { "marker": "1.25", "text": "Whether NIC’s DNS Server IP (IPv4: 1.10.10.10 / IPv6: 2409::1) is configured as DNS for all systems/servers in the Ministry/Department?", "level": 2 },
+      { "marker": "1.26", "text": "Whether NIC’s NTP Service (samay1.nic.in, samay2.nic.in) is configured as NTP for in all systems/servers in the Ministry/Department?", "level": 2 },
+      { "marker": "1.27", "text": "Whether network devices like routers, switches meet specifications as per the guidelines?", "level": 2 }
+    ]
+  },
+  {
+    "title": "WIRELESS LAN SECURITY COMPLIANCE CHECKLIST",
+    "marker": "2",
+    "level": 1,
+    "children": [
+      { "marker": "2.1", "text": "Whether segmentation of Wi-Fi users and/or devices on the basis of SSID is done?", "level": 2 },
+      { "marker": "2.2", "text": "Whether customized access policies are applied per SSID as per the requirements?", "level": 2 },
+      { "marker": "2.3", "text": "Whether default configuration and credentials of Wireless access point are changed?", "level": 2 },
+      { "marker": "2.4", "text": "Whether encryption protocol and features are configured for wireless access point as per the guidelines?", "level": 2 },
+      { "marker": "2.5", "text": "Whether DNS and NTP server are configured as per the guidelines?", "level": 2 },
+      { "marker": "2.6", "text": "Whether there are tools in the WLAN platform to identify rogue Access Point or those potentially spoofing corporate SSIDs?", "level": 2 },
+      { "marker": "2.7", "text": "Whether signal leaking out into insecure areas is minimized by setting appropriate power levels?", "level": 2 },
+      { "marker": "2.8", "text": "Whether 802.1x is used for authentication in the Wi-Fi?", "level": 2 }
+    ]
+  },
+  {
+    "title": "DESKTOP/LAPTOP/PRINTER SECURITY COMPLIANCE CHECKLIST",
+    "marker": "3",
+    "level": 1,
+    "children": [
+      { "marker": "3.1", "text": "Whether Standard User (non-administrator) account is set for the user for accessing the computer/laptops for regular work?", "level": 2 },
+      { "marker": "3.2", "text": "Whether BIOS Password is configured for booting?", "level": 2 },
+      { "marker": "3.3", "text": "Whether OS update is set to auto-update from a trusted source.", "level": 2 },
+      { "marker": "3.4", "text": "Whether Government offered enterprise Antivirus/ EDR client is Installed on official desktops/laptops and configured for auto-update?", "level": 2 },
+      { "marker": "3.5", "text": "Whether it has been ensured that Applications/software’s used are part of authorized list?", "level": 2 },
+      { "marker": "3.6", "text": "Whether it has been ensured that pirated or software that are not part of authorized list of applications/software are uninstalled?", "level": 2 },
+      { "marker": "3.7", "text": "Whether security of password enforced as per the guidelines?", "level": 2 },
+      { "marker": "3.8", "text": "Whether it is ensured to allow only authorized USB storage devices, external storage devices?", "level": 2 },
+      { "marker": "3.9", "text": "Whether printers are configured as per the guidelines?", "level": 2 }
+    ]
+  },
+  {
+    "title": "LOGGING COMPLIANCE CHECKLIST",
+    "marker": "4",
+    "level": 1,
+    "children": [
+      { "marker": "4.1", "text": "Whether logging is enabled on all ICT systems as per the guidelines?", "level": 2 },
+      { "marker": "4.2", "text": "Whether it has been ensured that the logs of ICT Systems are retained for minimum 180 days unless specified otherwise by the CISO?", "level": 2 },
+      { "marker": "4.3", "text": "Whether on-boarding of ICT systems to PRATIMAAN and IPAM done?", "level": 2 }
+    ]
+  },
+  {
+    "title": "SERVER SECURITY COMPLIANCE CHECK LIST",
+    "marker": "5",
+    "level": 1,
+    "children": [
+      { "marker": "5.1", "text": "Whether applications/websites/services are hosted only at the designated data centers of Government or Cloud Service Providers empaneled by MeitY and No application/website is hosted within the LAN segment of a Ministry/Department/Office?", "level": 2 },
+      { "marker": "5.2", "text": "Whether access to the server is restricted and appropriate security solutions as recommended by CERT-In and NIC-CERT are deployed?", "level": 2 },
+      { "marker": "5.3", "text": "Whether provision is made to access servers only through VPN for purpose of administration and/or configuration?", "level": 2 },
+      { "marker": "5.4", "text": "Whether user groups are configured as per their role and responsibilities?", "level": 2 },
+      { "marker": "5.5", "text": "Whether default user accounts are disabled?", "level": 2 },
+      { "marker": "5.6", "text": "Whether a provision is made to review logs of servers on daily basis and guidelines to report any suspicious activity related to user access, privilege escalation, authentications with the CISO/Dy CISO are shared?", "level": 2 },
+      { "marker": "5.7", "text": "Whether server logs are maintained on a separate server and there is a provision to store the logs for minimum of 180 days unless specified otherwise by the CISO?", "level": 2 },
+      { "marker": "5.8", "text": "Whether unwanted or unused OS components, services, ports, applications are uninstalled or disabled?", "level": 2 },
+      { "marker": "5.9", "text": "Whether there is a staging environment for testing feature releases or to try out update/patch of OS, BIOS firmware, application?", "level": 2 },
+      { "marker": "5.10", "text": "Whether enterprise level Antivirus/ EDR client recommended by CERT-In and NIC-CERT is installed on all servers?", "level": 2 },
+      { "marker": "5.11", "text": "Whether provision is made to update Antivirus client and Server with the latest patches/updates?", "level": 2 },
+      { "marker": "5.12", "text": "Whether IPS (Intrusion Prevention System) and DDOS (Distributed Denial of Service ) mitigation tools are deployed for the servers?", "level": 2 },
+      { "marker": "5.13", "text": "Whether application firewall is deployed for servers?", "level": 2 },
+      { "marker": "5.14", "text": "Whether multiple servers are configured to ensure availability of services and load balancer is used to balance the load across the servers?", "level": 2 },
+      { "marker": "5.15", "text": "Whether security audit of server/application is carried out before deployment with a provision to audit once a year/or every time the application is upgraded/customized?", "level": 2 },
+      { "marker": "5.16", "text": "Whether all Websites and Applications are “https” enabled with a valid SSL/TLS Certificate?", "level": 2 },
+      { "marker": "5.17", "text": "Whether Websites and Applications of Ministry/Department/Office are integrated with NIC SSO (parichay.nic.in) for authentication/login purposes for Government Employees?", "level": 2 },
+      { "marker": "5.18", "text": "Whether Websites and Applications of Ministry/Department/Office have MFA/2FA enabled for login purpose for general public?", "level": 2 },
+      { "marker": "5.19", "text": "Whether the websites of the Ministry/department follow ‘Guidelines for Indian Government Websites’ (GIGW) issued by MEITY?", "level": 2 },
+      { "marker": "5.20", "text": "Whether it is ensured that all applications and websites will be audited by CERT-In empaneled auditing organisation prior to hosting and at-least once annually and also after any major changes?", "level": 2 }
+    ]
+  }
+]

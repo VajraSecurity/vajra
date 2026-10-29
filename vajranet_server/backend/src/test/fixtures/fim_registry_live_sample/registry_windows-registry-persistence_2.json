@@ -1,0 +1,26 @@
+[
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\OneDriveSetup",
+"name": "OneDriveSetup",
+"type": "REG_SZ",
+"data": "C:\\Windows\\System32\\OneDriveSetup.exe /thfirstsetup"
+},
+{
+"path": "HKEY_USERS\\S-1-5-20\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\OneDriveSetup",
+"name": "OneDriveSetup",
+"type": "REG_SZ",
+"data": "C:\\Windows\\System32\\OneDriveSetup.exe /thfirstsetup"
+},
+{
+"path": "HKEY_USERS\\S-1-5-21-1111111111-2222222222-3333333333-1000\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\OneDrive",
+"name": "OneDrive",
+"type": "REG_SZ",
+"data": "\"C:\\Users\\user\\AppData\\Local\\Microsoft\\OneDrive\\OneDrive.exe\" /background"
+},
+{
+"path": "HKEY_USERS\\S-1-5-21-1111111111-2222222222-3333333333-1000\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\MicrosoftEdgeAutoLaunch_EEB50689132C83F1703B106336286F4E",
+"name": "MicrosoftEdgeAutoLaunch_EEB50689132C83F1703B106336286F4E",
+"type": "REG_SZ",
+"data": "\"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe\" --no-startup-window --win-session-start"
+}
+]

@@ -1,0 +1,230 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\ApiSetSchemaExtensions",
+"name": "ApiSetSchemaExtensions",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\AppCompatCache",
+"name": "AppCompatCache",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Configuration Manager",
+"name": "Configuration Manager",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\DOS Devices",
+"name": "DOS Devices",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Environment",
+"name": "Environment",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Executive",
+"name": "Executive",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\FileRenameOperations",
+"name": "FileRenameOperations",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\I/O System",
+"name": "I/O System",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel",
+"name": "kernel",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\KnownDLLs",
+"name": "KnownDLLs",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+"name": "Memory Management",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\NamespaceSeparation",
+"name": "NamespaceSeparation",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power",
+"name": "Power",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Quota System",
+"name": "Quota System",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\SubSystems",
+"name": "SubSystems",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\WPA",
+"name": "WPA",
+"type": "subkey",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\AutoChkTimeout",
+"name": "AutoChkTimeout",
+"type": "REG_DWORD",
+"data": "8"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\BootExecute",
+"name": "BootExecute",
+"type": "REG_MULTI_SZ",
+"data": "autocheck autochk *"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\BootShell",
+"name": "BootShell",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\bootim.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\CriticalSectionTimeout",
+"name": "CriticalSectionTimeout",
+"type": "REG_DWORD",
+"data": "2592000"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\ExcludeFromKnownDlls",
+"name": "ExcludeFromKnownDlls",
+"type": "REG_MULTI_SZ",
+"data": ""
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\GlobalFlag",
+"name": "GlobalFlag",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\GlobalFlag2",
+"name": "GlobalFlag2",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\HeapDeCommitFreeBlockThreshold",
+"name": "HeapDeCommitFreeBlockThreshold",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\HeapDeCommitTotalFreeThreshold",
+"name": "HeapDeCommitTotalFreeThreshold",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\HeapSegmentCommit",
+"name": "HeapSegmentCommit",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\HeapSegmentReserve",
+"name": "HeapSegmentReserve",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\InitConsoleFlags",
+"name": "InitConsoleFlags",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\NumberOfInitialSessions",
+"name": "NumberOfInitialSessions",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\ObjectDirectories",
+"name": "ObjectDirectories",
+"type": "REG_MULTI_SZ",
+"data": "\\Windows,\\RPC Control"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\ProcessorControl",
+"name": "ProcessorControl",
+"type": "REG_DWORD",
+"data": "2"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\ProtectionMode",
+"name": "ProtectionMode",
+"type": "REG_DWORD",
+"data": "1"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\ResourceTimeoutCount",
+"name": "ResourceTimeoutCount",
+"type": "REG_DWORD",
+"data": "45"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\RunLevelExecute",
+"name": "RunLevelExecute",
+"type": "REG_MULTI_SZ",
+"data": "WinInit,ServiceControlManager"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\RunLevelValidate",
+"name": "RunLevelValidate",
+"type": "REG_MULTI_SZ",
+"data": "ServiceControlManager"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\AutoChkSkipSystemPartition",
+"name": "AutoChkSkipSystemPartition",
+"type": "REG_DWORD",
+"data": "0"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\PendingFileRenameOperations",
+"name": "PendingFileRenameOperations",
+"type": "REG_MULTI_SZ",
+"data": "*1\\??\\C:\\Windows\\appcompat\\Programs\\Amcache.hve.tmp,*1!\\??\\C:\\Windows\\appcompat\\Programs\\Amcache.hve,*1\\??\\C:\\Windows\\SystemTemp\\MicrosoftEdgeUpdate.exe.old{CCED1B2C-E13D-4706-9F69-CEF258FFF5A6}"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\SystemUpdateOnBoot",
+"name": "SystemUpdateOnBoot",
+"type": "REG_DWORD",
+"data": "1"
+}
+]

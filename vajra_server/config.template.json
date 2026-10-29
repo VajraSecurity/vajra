@@ -1,0 +1,214 @@
+{
+  "fleet_server": {
+    "server_configuration": {
+      "hostname": "0.0.0.0",
+      "port": 1234,
+      "ssl_certificate": "../ssl/server.crt",
+      "ssl_private_key": "../ssl/server.key",
+      "dh_key": "../ssl/dh.pem",
+      "ssl_password": "CHANGE_ME_SSL_PASSWORD",
+      "max_concurrent_sessions": 2048,
+      "handshake_timeout_seconds": 10,
+      "socket_io_timeout_seconds": 60
+    },
+    "node_configuration": {
+      "enrollment_secret": "CHANGE_ME_ENROLLMENT_SECRET",
+      "max_enrolled_devices": 15000,
+      "max_pending_enrollments": 100,
+      "require_enrollment_approval": false,
+      "auto_revoke_inactive_days": 90,
+      "node_key_length": 64,
+      "node_key_expiry_days": 365,
+      "allow_reenrollment": true,
+      "health_api_token": "",
+      "enrollment_rate_limit": {
+        "enabled": true,
+        "max_per_ip_per_hour": 100,
+        "max_per_day": 500
+      }
+    },
+    "db_configuration": {
+      "hostname": "localhost",
+      "port": 5432,
+      "username": "vajra",
+      "password": "CHANGE_ME_DB_PASSWORD",
+      "database_name": "fleet"
+    },
+    "db_pool_configuration": {
+      "max_connections": 32,
+      "wait_timeout_ms": 5000
+    },
+    "kafka_producer": {
+      "enabled": true,
+      "bootstrap_servers": "localhost:9092",
+      "client_id": "vajra-server-producer",
+      "queue_full_retries": 2,
+      "queue_full_retry_wait_ms": 100,
+      "circuit_breaker_cooldown_ms": 2000
+    }
+  },
+  "api_server": {
+    "server_configuration": {
+      "hostname": "localhost",
+      "port": 1234,
+      "ssl_certificate": "../ssl/server.crt",
+      "ssl_private_key": "../ssl/server.key",
+      "dh_key": "../ssl/dh.pem",
+      "ssl_password": "CHANGE_ME_SSL_PASSWORD",
+      "max_concurrent_sessions": 2048,
+      "handshake_timeout_seconds": 10,
+      "socket_io_timeout_seconds": 60
+    },
+    "access_control_configuration": {
+      "allow_origin": "http://example.com",
+      "allow_methods": [],
+      "allow_headers": [
+        "Content-Type",
+        "Authorization"
+      ],
+      "allow_credentials": true,
+      "expose_headers": [],
+      "max_age": 3600
+    },
+    "db_configuration": {
+      "hostname": "localhost",
+      "port": 5432,
+      "username": "vajra",
+      "password": "CHANGE_ME_DB_PASSWORD",
+      "database_name": "fleet"
+    },
+    "db_pool_configuration": {
+      "max_connections": 10,
+      "wait_timeout_ms": 5000
+    }
+  },
+  "log_configuration": {
+    "log_directory": "/tmp/vajra/",
+    "log_file": "{%service_name%}%Y%m%d_%H%M%S_%5N.log",
+    "log_level": "warning",
+    "console_output": false,
+    "max_log_size": 31457280
+  },
+  "va_server": {
+    "server_configuration": {
+      "hostname": "0.0.0.0",
+      "port": 1235,
+      "ssl_certificate": "../ssl/server.crt",
+      "ssl_private_key": "../ssl/server.key",
+      "dh_key": "../ssl/dh.pem",
+      "ssl_password": "CHANGE_ME_SSL_PASSWORD"
+    },
+    "db_configuration": {
+      "hostname": "localhost",
+      "port": 5432,
+      "username": "vajra",
+      "password": "CHANGE_ME_DB_PASSWORD",
+      "database_name": "nvd_vajra"
+    },
+    "db_pool_configuration": {
+      "max_connections": 10
+    }
+  },
+  "nodejs_user_server": {
+    "server_configuration": {
+      "hostname": "localhost",
+      "port": 1234,
+      "ssl_certificate": "../ssl/server.crt",
+      "ssl_private_key": "../ssl/server.key",
+      "dh_key": "../ssl/dh.pem",
+      "ssl_password": "CHANGE_ME_SSL_PASSWORD"
+    },
+    "node_configuration": {
+      "enrollment_secret": "CHANGE_ME_ENROLLMENT_SECRET"
+    },
+    "db_configuration": {
+      "hostname": "127.0.0.1",
+      "port": 5432,
+      "username": "vajra",
+      "password": "CHANGE_ME_DB_PASSWORD",
+      "database_name": "nodejs_users"
+    },
+    "db_pool_configuration": {
+      "max_connections": 10
+    }
+  },
+  "rule_engine": {
+    "kafka": {
+      "bootstrap_servers": "localhost:9092",
+      "consumer_group_id": "vajra-rule-engine",
+      "security_protocol": "PLAINTEXT",
+      "session_timeout_ms": 30000,
+      "max_poll_interval_ms": 300000,
+      "enable_auto_commit": false,
+      "auto_commit_interval_ms": 5000
+    },
+    "event_types": [
+      {
+        "name": "windows_events",
+        "kafka_topic": "vajra_windows_events",
+        "enabled": true,
+        "priority": "high",
+        "os_filter": "windows"
+      },
+      {
+        "name": "linux_events",
+        "kafka_topic": "vajra_linux_events",
+        "enabled": true,
+        "priority": "high",
+        "os_filter": "linux"
+      }
+    ],
+    "threat_intelligence": {
+      "enabled": false,
+      "cache_ttl_seconds": 3600,
+      "virustotal_api_key": "CHANGE_ME_VT_API_KEY",
+      "abuseipdb_api_key": "CHANGE_ME_ABUSEIPDB_API_KEY",
+      "providers": [
+        {
+          "name": "local_ip_blacklist",
+          "enabled": false,
+          "priority": 1
+        },
+        {
+          "name": "virustotal",
+          "enabled": false,
+          "priority": 2
+        },
+        {
+          "name": "abuseipdb",
+          "enabled": false,
+          "priority": 3
+        }
+      ],
+      "feeds": [
+        {
+          "name": "abuseipdb-blacklist",
+          "format": "abuseipdb",
+          "enabled": false,
+          "api_key": "CHANGE_ME_ABUSEIPDB_API_KEY",
+          "target_list": "deny_ips",
+          "refresh_interval_seconds": 3600
+        },
+        {
+          "name": "example-stix-feed",
+          "format": "stix",
+          "enabled": false,
+          "url": "https://intel.example.com/feed.json",
+          "api_key": "",
+          "target_list": "deny_ips",
+          "stix_types": [
+            "ip"
+          ],
+          "refresh_interval_seconds": 3600
+        }
+      ]
+    },
+    "metrics": {
+      "enabled": false,
+      "bind_address": "127.0.0.1",
+      "port": 9105
+    },
+    "db_connection_pool_size": 20,
+    "plugin_directory": "./"
+  }
+}

@@ -1,0 +1,29 @@
+apiVersion: 1
+
+datasources:
+  - name: Vajra Fleet DB
+    type: postgres
+    uid: vajra-fleet-db
+    url: localhost:5432
+    user: grafana_reader
+    jsonData:
+      database: fleet
+      sslmode: disable
+      maxOpenConns: 5
+      maxIdleConns: 2
+      connMaxLifetime: 14400
+      postgresVersion: 1700
+      timescaledb: false
+    secureJsonData:
+      password: grafana_local_password
+    isDefault: true
+    editable: false
+
+# No datasource points directly at the primary app DB (vajra_db). Grafana
+# never needs it: the only cross-database data it uses (email/role/group
+# membership for grafana_group_visible()/grafana_scan_visible()) is bridged
+# in narrowly via postgres_fdw + the grafana_user_scoping view (see
+# setupGrafanaGroupScoping() in backend/src/orm/config/ormconfig-setup.ts).
+# A raw datasource onto vajra_db would let any Grafana Editor/Explore session
+# read every column of vajra_users directly, including password_hash,
+# mfa_secret, recovery_codes, and security_answer_*_hash — do not re-add one.

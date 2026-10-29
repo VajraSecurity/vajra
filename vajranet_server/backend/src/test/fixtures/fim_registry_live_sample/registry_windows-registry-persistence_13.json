@@ -1,0 +1,362 @@
+[
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\AppData",
+"name": "AppData",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Cache",
+"name": "Cache",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\INetCache"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Cookies",
+"name": "Cookies",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\INetCookies"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Desktop",
+"name": "Desktop",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Desktop"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Favorites",
+"name": "Favorites",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Favorites"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\History",
+"name": "History",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\History"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Local AppData",
+"name": "Local AppData",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Music",
+"name": "My Music",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Music"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Pictures",
+"name": "My Pictures",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Pictures"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Video",
+"name": "My Video",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Videos"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\NetHood",
+"name": "NetHood",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Network Shortcuts"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Personal",
+"name": "Personal",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Documents"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\PrintHood",
+"name": "PrintHood",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Printer Shortcuts"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Programs",
+"name": "Programs",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Recent",
+"name": "Recent",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Recent"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\SendTo",
+"name": "SendTo",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\SendTo"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Start Menu",
+"name": "Start Menu",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Startup",
+"name": "Startup",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Templates",
+"name": "Templates",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Templates"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\{374DE290-123F-4565-9164-39C4925E467B}",
+"name": "{374DE290-123F-4565-9164-39C4925E467B}",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Downloads"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\AppData",
+"name": "AppData",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Cache",
+"name": "Cache",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\INetCache"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Cookies",
+"name": "Cookies",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\INetCookies"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Desktop",
+"name": "Desktop",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Desktop"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Favorites",
+"name": "Favorites",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Favorites"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\History",
+"name": "History",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\History"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Local AppData",
+"name": "Local AppData",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Music",
+"name": "My Music",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Music"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Pictures",
+"name": "My Pictures",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Pictures"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Video",
+"name": "My Video",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Videos"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\NetHood",
+"name": "NetHood",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Network Shortcuts"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Personal",
+"name": "Personal",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Documents"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\PrintHood",
+"name": "PrintHood",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Printer Shortcuts"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Programs",
+"name": "Programs",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Recent",
+"name": "Recent",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Recent"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\SendTo",
+"name": "SendTo",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\SendTo"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Start Menu",
+"name": "Start Menu",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Startup",
+"name": "Startup",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Templates",
+"name": "Templates",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Templates"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\{374DE290-123F-4565-9164-39C4925E467B}",
+"name": "{374DE290-123F-4565-9164-39C4925E467B}",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Downloads"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\AppData",
+"name": "AppData",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Cache",
+"name": "Cache",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\INetCache"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Cookies",
+"name": "Cookies",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\INetCookies"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Desktop",
+"name": "Desktop",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Desktop"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Favorites",
+"name": "Favorites",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Favorites"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\History",
+"name": "History",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\Windows\\History"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Local AppData",
+"name": "Local AppData",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Music",
+"name": "My Music",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Music"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Pictures",
+"name": "My Pictures",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Pictures"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\My Video",
+"name": "My Video",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Videos"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\NetHood",
+"name": "NetHood",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Network Shortcuts"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Personal",
+"name": "Personal",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Documents"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\PrintHood",
+"name": "PrintHood",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Printer Shortcuts"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Programs",
+"name": "Programs",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Recent",
+"name": "Recent",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Recent"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\SendTo",
+"name": "SendTo",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\SendTo"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Start Menu",
+"name": "Start Menu",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Startup",
+"name": "Startup",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\Templates",
+"name": "Templates",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\Microsoft\\Windows\\Templates"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\User Shell Folders\\{374DE290-123F-4565-9164-39C4925E467B}",
+"name": "{374DE290-123F-4565-9164-39C4925E467B}",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\Downloads"
+}
+]

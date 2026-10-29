@@ -1,0 +1,398 @@
+{
+  "total_rules": 1496,
+  "total_remapped": 62,
+  "files_included": {
+    "antivirus_blocked.json": 4,
+    "linux_auditd.json": 54,
+    "linux_buildin.json": 9,
+    "linux_draft.json": 13,
+    "linux_file_event.json": 4,
+    "linux_network_connection.json": 2,
+    "linux_process_creation.json": 6,
+    "linux_process_creation_full.json": 145,
+    "windows_buildin.json": 798,
+    "windows_dns_query.json": 10,
+    "windows_draft.json": 14,
+    "windows_eventlog.json": 23,
+    "windows_network_connection.json": 42,
+    "windows_process_creation.json": 20,
+    "windows_process_creation_full.json": 352
+  },
+  "files_excluded": [
+    "windows_driver_loader_BLOCKED.json"
+  ],
+  "remaps": [
+    {
+      "file": "windows_buildin.json",
+      "original_id": 316,
+      "remapped_id": 90000000,
+      "description": "Detects command execution via ScreenConnect RMM [sigma:316]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 317,
+      "remapped_id": 90000001,
+      "description": "Detects file being transferred via ScreenConnect RMM [sigma:317]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 299,
+      "remapped_id": 90000002,
+      "description": "Detects potential abuse of ntdsutil to dump ntds.dit database to a suspicious location [sigma:299]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 306,
+      "remapped_id": 90000003,
+      "description": "Detects installation of a remote msi file from web. [sigma:306]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 307,
+      "remapped_id": 90000004,
+      "description": "Detects successful installation of Atera Remote Monitoring & Management (RMM) agent as recently found to be used by Cont"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 298,
+      "remapped_id": 90000005,
+      "description": "Detects a suspicious crash of the Microsoft Malware Protection Engine [sigma:298]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 301,
+      "remapped_id": 90000006,
+      "description": "Detects backup catalog deletions [sigma:301]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 311,
+      "remapped_id": 90000007,
+      "description": "Detects failed logon attempts from clients to MSSQL server. Requires MSSQL authentication logging enabled. [sigma:311]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 313,
+      "remapped_id": 90000008,
+      "description": "Detects when the MSSQL xp_cmdshell stored procedure is used to execute commands. Requires MSSQL audit policy monitoring "
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 312,
+      "remapped_id": 90000009,
+      "description": "Detects when a stored procedure is set or cleared for automatic execution in MSSQL. A stored procedure set to automatic "
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 308,
+      "remapped_id": 90000010,
+      "description": "Detects when an attacker tries to backdoor the MSSQL server by adding a backdoor account to the sysadmin fixed server ro"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 319,
+      "remapped_id": 90000011,
+      "description": "Detects scenarios where an attacker enables the OpenSSH server and server starts to listening on SSH socket. [sigma:319]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 407,
+      "remapped_id": 90000012,
+      "description": "Detects non-system accounts SMB accessing a file with write (0x2) access mask via an administrative share (e.g. C$). [si"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 349,
+      "remapped_id": 90000013,
+      "description": "Detects the use of the spoolss named pipe over SMB. This can be used to trigger NTLM authentication of any machine that "
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 361,
+      "remapped_id": 90000014,
+      "description": "Detects the Hybrid Connection Manager service installation. Requires 'System Security Extension' audit subcategory enabl"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 335,
+      "remapped_id": 90000015,
+      "description": "Detects WRITE_DAC access to a domain object [sigma:335]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 417,
+      "remapped_id": 90000016,
+      "description": "Detects extraction of password-protected ZIP archives with suspicious filenames, often used in phishing/malware delivery"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 401,
+      "remapped_id": 90000017,
+      "description": "Detects handles requested to the SAM registry hive. [sigma:401]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 400,
+      "remapped_id": 90000018,
+      "description": "Detects possible Kerberos Replay Attack on domain controllers when a KRB_AP_ERR_REPEAT Kerberos response is sent to the "
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 371,
+      "remapped_id": 90000019,
+      "description": "Detects obfuscated PowerShell via use of Clip.exe in scripts. Requires 'System Security Extension' audit subcategory ena"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 331,
+      "remapped_id": 90000020,
+      "description": "Detects suspicious access attempts to registry key values and sub-keys of Azure AD Health service agents (e.g. AD FS). R"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 395,
+      "remapped_id": 90000021,
+      "description": "Detects access to the protected_storage service over the network, potentially indicating abuse of DPAPI to extract domai"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 408,
+      "remapped_id": 90000022,
+      "description": "Detects suspicious computer name samtheadmin-{1..100}$ generated by a hacktool exploiting CVE-2021-42278/CVE-2021-42287."
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 330,
+      "remapped_id": 90000023,
+      "description": "Detects suspicious access attempts to the registry key of Azure AD Health monitoring agent. Requires an access control e"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 413,
+      "remapped_id": 90000024,
+      "description": "Detects the creation of suspicious accounts similar to ANONYMOUS LOGON, such as using additional spaces. Serves as a cov"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 387,
+      "remapped_id": 90000025,
+      "description": "Detects an authenticated user who is not allowed to log on remotely attempting to connect via Remote Desktop. Often gene"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 356,
+      "remapped_id": 90000026,
+      "description": "Detects anyone attempting a backup of the DPAPI Master Key. This event is generated at the source, not the Domain Contro"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 350,
+      "remapped_id": 90000027,
+      "description": "Detects a threat actor creating a file named iertutil.dll in the C:\\Program Files\\Internet Explorer\\ directory over the "
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 414,
+      "remapped_id": 90000028,
+      "description": "Detects suspicious processes logging on with explicit credentials. NOTE: original rule's filter2 (SubjectUserName AND Ta"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 390,
+      "remapped_id": 90000029,
+      "description": "Detects PetitPotam coerced authentication activity. Requires Object Access > Detailed File Share auditing enabled for Su"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 403,
+      "remapped_id": 90000030,
+      "description": "Detects non-system users performing a privileged operation on the SCM database. [sigma:403]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 339,
+      "remapped_id": 90000031,
+      "description": "Detects the creation or removal of a computer. Can be used to detect attacks such as DCShadow via the creation of a new "
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 333,
+      "remapped_id": 90000032,
+      "description": "Detects backdooring a domain object to grant DCSync-associated rights to a regular user or machine account using PowerVi"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 388,
+      "remapped_id": 90000033,
+      "description": "Detects when the password policy is enumerated. [sigma:388]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 340,
+      "remapped_id": 90000034,
+      "description": "Detects access to ADMIN$ network share. Requires Object Access > Audit File Share success/failure auditing enabled. NOTE"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 341,
+      "remapped_id": 90000035,
+      "description": "Detects scenario where if a user is assigned the SeEnableDelegationPrivilege right in Active Directory it would allow co"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 415,
+      "remapped_id": 90000036,
+      "description": "Detects process handle on LSASS process with a certain access mask and object type SAM_DOMAIN. [sigma:415]"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 332,
+      "remapped_id": 90000037,
+      "description": "Detects a Windows Filtering Platform (WFP) blocked connection event involving common EDR agents. Adversaries may use WFP"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 321,
+      "remapped_id": 90000038,
+      "description": "Detects remote login by Administrator user (depends on internal admin naming pattern). Requires identifiable admin usern"
+    },
+    {
+      "file": "windows_buildin.json",
+      "original_id": 320,
+      "remapped_id": 90000039,
+      "description": "Detects potential token impersonation and theft, e.g. when using DuplicateToken(Ex) and ImpersonateLoggedOnUser with the"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 236,
+      "remapped_id": 90000040,
+      "description": "Executable disguised with a fake non-executable extension (e.g. .pdf.exe) or padded with spaces/underscores to hide the "
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 237,
+      "remapped_id": 90000041,
+      "description": "wevtutil.exe clear-log/set-log usage (variant 1/5 of the original multi-branch rule; msiexec false-positive exclusion dr"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 238,
+      "remapped_id": 90000042,
+      "description": "PowerShell Clear-EventLog/Remove-EventLog/Limit-EventLog/Clear-WinEvent cmdlets (variant 2/5) [sigma:238]"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 239,
+      "remapped_id": 90000043,
+      "description": "PowerShell EventLogSession reflection-based log clear (variant 3/5) [sigma:239]"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 240,
+      "remapped_id": 90000044,
+      "description": "PowerShell System.Diagnostics.EventLog Clear() method (variant 4/5) [sigma:240]"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 241,
+      "remapped_id": 90000045,
+      "description": "PowerShell/wmic ClearEventLog WMI-method invocation (variant 5/5) [sigma:241]"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 242,
+      "remapped_id": 90000046,
+      "description": "vssadmin/wmic/powershell/diskshadow used to delete shadow copies (variant 1/3) [sigma:242]"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 243,
+      "remapped_id": 90000047,
+      "description": "wbadmin used to delete backup catalog (variant 2/3) [sigma:243]"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 405,
+      "remapped_id": 90000048,
+      "description": "Various indicators of Microsoft Connection Manager Profile Installer execution, via registry [sigma:405]"
+    },
+    {
+      "file": "windows_draft.json",
+      "original_id": 406,
+      "remapped_id": 90000049,
+      "description": "EnableLUA registry value set to 0, disabling User Account Control. ASSUMPTION: matches Sigma's literal 'DWORD (0x0000000"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 507,
+      "remapped_id": 90000050,
+      "description": "Detects the execution of the BCP utility in order to export data from the database. Attackers were seen saving their mal"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 500,
+      "remapped_id": 90000051,
+      "description": "Detects the start of a non built-in assistive technology applications via \"Atbroker.EXE\". [sigma:500]"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 508,
+      "remapped_id": 90000052,
+      "description": "Detects suspicious child processes of \"BgInfo.exe\" which could be a sign of potential abuse of the binary to proxy execu"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 504,
+      "remapped_id": 90000053,
+      "description": "Detects execution of Microsoft bash launcher with the \"-c\" flag. This can be used to potentially bypass defenses and exe"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 510,
+      "remapped_id": 90000054,
+      "description": "Detects the execution of \"BitLockerToGo.EXE\". BitLocker To Go is BitLocker Drive Encryption on removable data drives. Th"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 501,
+      "remapped_id": 90000055,
+      "description": "Detects the usage of attrib with the \"+s\" option to set scripts or executables located in suspicious locations as system"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 503,
+      "remapped_id": 90000056,
+      "description": "Threat actors can use auditpol binary to change audit policy configuration to impair detection capability. This can be c"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 509,
+      "remapped_id": 90000057,
+      "description": "Detects uncommon child processes of \"BgInfo.exe\" which could be a sign of potential abuse of the binary to proxy executi"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 511,
+      "remapped_id": 90000058,
+      "description": "Detects usage of bitsadmin downloading a file using an URL that contains an IP [sigma:511]"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 502,
+      "remapped_id": 90000059,
+      "description": "Threat actors can use an older version of the auditpol binary available inside the NT resource kit to change audit polic"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 506,
+      "remapped_id": 90000060,
+      "description": "Detects potential malicious and unauthorized usage of bcdedit.exe [sigma:506]"
+    },
+    {
+      "file": "windows_process_creation_full.json",
+      "original_id": 505,
+      "remapped_id": 90000061,
+      "description": "Detects execution of Microsoft bash launcher without any flags to execute the content of a bash script directly. This ca"
+    }
+  ]
+}

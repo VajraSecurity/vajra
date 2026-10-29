@@ -1,0 +1,21 @@
+-- Fleet DB: store the ORIGINAL signed-manifest wire bytes on patch_bundles,
+-- not just the already-parsed manifest_json.
+--
+-- The Go agent's apply_bundle action expects arg1 to be the raw
+-- `{"payload":"base64(...)","signature":"base64(...)"}` wire object exactly
+-- as produced by sign-patch-bundle.ts, so it can independently re-verify the
+-- ECDSA signature (the whole point of the signed-manifest trust model — the
+-- backend never holds the private key, and the agent never trusts the
+-- backend blindly). manifest_json alone cannot serve this: re-serializing a
+-- parsed object is not guaranteed to reproduce the exact byte sequence the
+-- signature was computed over (JSON key order/whitespace), so a signature
+-- check against a re-stringified payload would fail even for a genuinely
+-- untampered bundle.
+--
+-- Nullable: existing rows uploaded before this migration (if any) have no
+-- raw bytes to backfill and simply cannot be dispatched via the bundle-apply
+-- path until re-uploaded — controllers/nodes/patch_management.ts's dispatch
+-- code treats a NULL payload/signature the same as "no bundle available for
+-- this host" rather than crashing or sending malformed arg1.
+ALTER TABLE patch_bundles ADD COLUMN IF NOT EXISTS payload TEXT;
+ALTER TABLE patch_bundles ADD COLUMN IF NOT EXISTS signature TEXT;

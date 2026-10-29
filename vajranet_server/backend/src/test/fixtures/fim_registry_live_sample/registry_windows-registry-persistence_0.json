@@ -1,0 +1,14 @@
+[
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\SecurityHealth",
+"name": "SecurityHealth",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\SecurityHealthSystray.exe"
+},
+{
+"path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\VBoxTray",
+"name": "VBoxTray",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\VBoxTray.exe"
+}
+]

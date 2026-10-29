@@ -1,0 +1,23 @@
+-- Fleet DB: cve_id lookup index for vulnexus_host_vulnerabilities.
+--
+-- The table's only cve_id-bearing index is uniq_program_vuln
+-- (program_id, software_normalized_id, cve_id), where cve_id is the third
+-- column and so unusable for a cve_id-only lookup. vulnexus_read.ts's
+-- fleet-wide CVE list LEFT JOIN LATERALs into this table once per distinct
+-- matched CVE (~7,421 in production) to fall back to a per-host
+-- severity/cvss_score, and each of those lookups degenerated into a near-full
+-- scan of the composite index. The same cve_id = $1 pattern is used by
+-- getVulnerabilityDetail and getHostVulnerabilities, so all three endpoints
+-- benefit. Measured on the fleet-wide list query: 14,098 ms -> 663 ms.
+--
+-- (cve_id, cvss_score DESC NULLS LAST) rather than a plain (cve_id) index: the
+-- lateral's ORDER BY cvss_score DESC NULLS LAST LIMIT 1 is then satisfied by
+-- the index order, avoiding a sort.
+--
+-- vulnexus_host_vulnerabilities is owned and written by the external
+-- vajra-vulnexus pipeline (see vulnexus_read.ts's header comment); this backend
+-- only reads it. If that pipeline is redeployed from a schema definition that
+-- omits this index, it has to be re-applied here, or moved into that service's
+-- own schema management.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_hv_cve_id_cvss
+  ON vulnexus_host_vulnerabilities (cve_id, cvss_score DESC NULLS LAST);

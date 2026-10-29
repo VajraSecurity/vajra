@@ -1,0 +1,32 @@
+apiVersion: 1
+groups:
+  - orgId: 1
+    name: 'Vajra Fleet Security'
+    folder: 'Vajra Security'
+    interval: 1h
+    rules:
+      - uid: 'crit-cve-48h'
+        title: 'Critical CVE Unpatched >48h'
+        condition: 'A'
+        data:
+          - refId: 'A'
+            relativeTimeRange:
+              from: 172800
+              to: 0
+            datasourceUid: 'vajra-fleet-db'
+            model:
+              editorMode: 'code'
+              format: 'table'
+              rawQuery: true
+              rawSql: |
+                SELECT hostname, cve_id, detected_at 
+                FROM mv_software_cve_flat 
+                WHERE severity = 'CRITICAL' 
+                  AND detected_at < NOW() - INTERVAL '48 hours'
+        noDataState: 'OK'
+        execErrState: 'Alerting'
+        for: '1h'
+        annotations:
+          summary: 'Critical CVE {{ $labels.cve_id }} on {{ $labels.hostname }} is unpatched for >48h.'
+        labels:
+          severity: 'critical'

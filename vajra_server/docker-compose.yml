@@ -1,0 +1,168 @@
+# Full docker-compose deployment: Postgres + Kafka (single-node KRaft) +
+# vajra_server + vajra_engine_v2, built from docker/Dockerfile.
+#
+# Required secrets (no defaults on purpose -- matches scripts/migrate.sh and
+# vajra.sh's own convention of never defaulting a password): put these in a
+# .env file next to this compose file, or export them before `docker compose
+# up`.
+#   DB_PASSWORD    postgres role password for the 'vajra' role
+#   SSL_PASSWORD   passphrase for the CA key gen-ssl.sh generates on first
+#                  boot (only the container ever needs it again, to re-sign;
+#                  losing it just means a future re-issue needs a new CA)
+# Optional:
+#   SERVER_HOSTNAME   CN/SAN on the generated server cert (default: vajra-server)
+#   ENROLLMENT_SECRET  osquery enrollment secret (default: generated
+#                       placeholder in config.template.json is left as-is --
+#                       replace it before enrolling real agents)
+#
+# To run the whole platform including the web console, use the docker-compose.yml one
+# level up instead; it uses the same services and images.
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: vajra
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD (env or .env file)}
+      POSTGRES_DB: fleet
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vajra -d fleet"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  kafka:
+    image: apache/kafka:3.8.0
+    environment:
+      KAFKA_NODE_ID: "1"
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: "1"
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: "1"
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: "0"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+    restart: unless-stopped
+
+  # One-shot: creates the topics vajra_server publishes to and vajra_engine_v2
+  # consumes (see vajra.sh's KAFKA_TOPICS/KAFKA_DLQ_TOPICS) with an explicit
+  # --create step rather than relying on the broker's auto-create default.
+  kafka-init:
+    image: apache/kafka:3.8.0
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        set -e
+        for t in vajra_windows_events vajra_linux_events vajra_macos_events; do
+          for name in "$$t" "$$t.dlq"; do
+            /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists \
+              --topic "$$name" --partitions 3 --replication-factor 1
+          done
+        done
+        echo "kafka-init: topics ready"
+    restart: "no"
+
+  # One-shot: schema.sql + numbered supplemental SQL files (idempotent,
+  # IF-NOT-EXISTS/additive -- see vajra.sh's apply_schema()) then versioned
+  # migrations via the repo's own scripts/migrate.sh. Safe to re-run on
+  # every `docker compose up`.
+  db-init:
+    image: postgres:16
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGHOST: postgres
+      PGPORT: "5432"
+      PGUSER: vajra
+      PGPASSWORD: ${DB_PASSWORD:?set DB_PASSWORD (env or .env file)}
+      PGDATABASE: fleet
+    volumes:
+      - ./sql:/sql:ro
+      - ./engine_v2/schema:/engine_v2_schema:ro
+      - ./scripts/migrate.sh:/migrate.sh:ro
+    entrypoint: ["/bin/bash", "-c"]
+    command:
+      - |
+        set -e
+        psql -v ON_ERROR_STOP=0 -q -f /sql/schema.sql
+        psql -v ON_ERROR_STOP=0 -q -f /engine_v2_schema/incidents.sql
+        for f in /sql/0[0-9]_*.sql; do
+          [ -e "$$f" ] || continue
+          psql -v ON_ERROR_STOP=0 -q -f "$$f"
+        done
+        bash /migrate.sh
+        echo "db-init: schema + migrations applied"
+    restart: "no"
+
+  vajra-server:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: vajra-server-new/app:latest
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+      kafka-init:
+        condition: service_completed_successfully
+    environment:
+      VAJRA_SERVICE: server
+      SERVER_HOSTNAME: ${SERVER_HOSTNAME:-vajra-server}
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_USER: vajra
+      DB_PASS: ${DB_PASSWORD:?set DB_PASSWORD (env or .env file)}
+      DB_NAME: fleet
+      KAFKA_BOOTSTRAP: kafka:9092
+      SSL_PASSWORD: ${SSL_PASSWORD:?set SSL_PASSWORD (env or .env file)}
+      ENROLLMENT_SECRET: ${ENROLLMENT_SECRET:-}
+    volumes:
+      - vajra-ssl:/app/ssl
+    ports:
+      - "1234:1234"
+    restart: unless-stopped
+
+  vajra-engine:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: vajra-server-new/app:latest
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+      kafka-init:
+        condition: service_completed_successfully
+    environment:
+      VAJRA_SERVICE: engine
+      SERVER_HOSTNAME: ${SERVER_HOSTNAME:-vajra-server}
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_USER: vajra
+      DB_PASS: ${DB_PASSWORD:?set DB_PASSWORD (env or .env file)}
+      DB_NAME: fleet
+      KAFKA_BOOTSTRAP: kafka:9092
+      ENROLLMENT_SECRET: ${ENROLLMENT_SECRET:-}
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  kafka-data:
+  vajra-ssl:

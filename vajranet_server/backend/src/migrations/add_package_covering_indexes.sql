@@ -1,0 +1,194 @@
+-- Fleet DB: covering indexes for the id -> host_identifier lookup in the fleet
+-- CVE list.
+--
+-- Run this against the `fleet` database (POSTGRES_DB1). Safe to re-run:
+-- IF NOT EXISTS guards every statement. These are pure access-path changes; no
+-- query text, result set or ordering changes anywhere in the application.
+--
+-- CONCURRENTLY cannot run inside a transaction block, so apply with autocommit
+-- on, e.g. `psql -f add_package_covering_indexes.sql`.
+--
+-- Why. controllers/vulnerabilities/vulnexus_read.ts builds the fleet CVE list
+-- from three UNION ALL branches (buildCombinedCveCte). The deb and rpm branches
+-- join a package table for exactly one reason — to translate a package_id into
+-- the host that owns it:
+--
+--   FROM vulnexus_package_cves pc
+--   JOIN deb_packages dp ON dp.id = pc.package_id
+--   JOIN nodes n ON LOWER(n.host_identifier) = LOWER(dp.host_identifier)
+--
+-- host_identifier is the only column read from deb_packages/rpm_packages in the
+-- whole branch. Measured on production, the Memoize node over deb_packages
+-- costs 156,560 buffers for 39,140 distinct probes — exactly 4.0 each: three
+-- pkey levels plus one heap page. The index descents are cache hits (the 24 MB
+-- pkey fits), but essentially every heap fetch is a miss, because the heap does
+-- not fit in the server's 128 MB shared_buffers: deb_packages holds 476,245
+-- live rows in a heap that pgstattuple_approx measures at 386 MB with 54.2%
+-- free space, kept there by ~942k UPDATEs/day from the vulnexus rescan. So the
+-- probes land randomly across a heap that is both bigger than cache and half
+-- air. INCLUDE (host_identifier) lets the probe be answered from the index
+-- alone.
+--
+-- The planner does switch. This could not be tested on production, since
+-- creating the index is the thing being proposed, so it was tested on a
+-- throwaway PostgreSQL 17 built to production's measured shape (same row
+-- counts, same four existing indexes, fillfactor=46 to reproduce the 54.2% free
+-- space). That replica reproduces the production plan to the buffer, and with
+-- the index added the per-probe estimated cost halves (1.04 -> 0.50) and the
+-- node becomes an Index Only Scan with Heap Fetches: 0. Buffers fall 156,560 ->
+-- 134,289 — less than the 39,140 eliminated fetches, because the covering index
+-- is wider than the pkey and costs slightly more to descend. What matters is
+-- that all 29,065 physical reads on that node go to zero: a ~31 MB covering
+-- index caches completely in 128 MB shared_buffers, a 381 MB heap does not. On
+-- production that node currently pays 104.8 ms of read I/O warm and 538 ms
+-- cold, and that is the whole of the deb side's read time.
+--
+-- Result identity was confirmed on the replica by md5 over the full sorted
+-- result set, with and without the index. This is a GROUP BY aggregate over an
+-- inner join on a unique primary key, so there is no ordering or tiebreak the
+-- access path could resolve differently. (The DISTINCT ON queries in
+-- controllers/nodes/node_programs.ts are sensitive to plan choice; see the
+-- deferred note at the bottom. This query is not.)
+--
+-- A dirty visibility map is not a regression risk. An index-only scan is cheap
+-- only while heap pages are all-visible, and deb_packages sits at 100% today
+-- because the rescan is bursty rather than continuous and the table autovacuums
+-- 3.1x/day. The degraded state was tested rather than assumed: on the replica,
+-- UPDATEing every row drops relallvisible to 0 and the planner then stops using
+-- the covering index on its own and reverts to the pkey scan. The worst case is
+-- therefore today's plan plus a temporarily unused index, with no plan cliff.
+--
+-- Size and write cost. Freshly built, deb is 31 MB and rpm 3,816 kB; steady
+-- state will be larger, because these tables bloat their indexes by roughly
+-- 2.4-2.8x, so expect ~75 MB and ~10 MB. That is ~85 MB against 69 GB free.
+-- Neither index blocks HOT: host_identifier is already a key column of
+-- idx_deb_packages_host / idx_rpm_packages_host, so HOT eligibility is
+-- unchanged. What is added is one more btree to maintain on the ~321k/day
+-- (deb) and ~174k/day (rpm) non-HOT updates these tables already take —
+-- roughly 19 MB and 10 MB/day of new index tuples, reclaimed in place by the
+-- autovacuums they already get.
+
+-- 1. deb_packages: 39,140 heap fetches per CVE-list call eliminated, and the
+-- 29,065 physical reads on that node go to zero. The larger of the two by a
+-- factor of four.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_deb_packages_id_host
+  ON public.deb_packages (id) INCLUDE (host_identifier);
+
+-- 2. rpm_packages: same shape, same branch, smaller. Its Memoize node measures
+-- 36,240 buffers over 9,060 misses — again 4.0 buffers per probe, of which
+-- 5,433 are physical reads costing 88.3 ms inside a 613 ms branch. The
+-- proportional win matches deb; the absolute win and the cost are about a
+-- quarter the size.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_rpm_packages_id_host
+  ON public.rpm_packages (id) INCLUDE (host_identifier);
+
+-- Deliberately not in this migration. Recorded so the next person does not
+-- re-propose them from scratch; all were evaluated against fresh
+-- post-VACUUM measurements.
+--
+-- Rejected — wmi_bios_info (host_identifier, name, unixtime DESC, id DESC),
+--   proposed by the comment in controllers/windows/bios_info.ts. The query
+--   filters `host_identifier = $1 AND id > (MAX(id) - 2000000)`. In this key
+--   order `id` sits fourth, behind name and unixtime, so it can never narrow
+--   the scan range and only host_identifier is a usable bound. On the busiest
+--   host that means walking all 13,354,444 of its index entries to keep the
+--   178,168 in the id window, a 75:1 waste ratio. The index would also cost
+--   roughly 7.5 GB, 11% of remaining free disk, for a plan that measures
+--   slower than the one it replaces. Structural, not a tuning problem.
+--
+-- Rejected — lowering random_page_cost. Re-tested on production with the cache
+--   warmed on both sides and the settings alternated (4 -> 1.1 -> 4) so
+--   ordering could not favour either: the plan was byte-identical every time,
+--   buffers were identical, and 1.1 was marginally slower. Only the planner's
+--   estimate moves. The 8.9x figure this proposal came from was a cold-versus-
+--   warm comparison.
+--
+-- Deferred — windows_update_history expression index on the CASE sort key.
+--   This works, and works spectacularly, but only as a package deal with a
+--   change to controllers/windows/latest_update.ts. On a replica built to
+--   production's shape, the index alone buys nothing (25,106 buffers either
+--   way): the MATERIALIZED CTE makes the host a runtime join value, so the
+--   planner cannot prove the index ordering satisfies the ORDER BY and still
+--   top-N sorts all 470k of the host's rows. Wrapping the ORDER BY / LIMIT 1 in
+--   a LATERAL subquery restores the pathkeys — `host_identifier = h.hid` is a
+--   parameterised equality just like `$1` — while keeping the MATERIALIZED CTEs
+--   and the reasoning documented in latest_update.ts intact, and takes the
+--   query to 9 buffers / 0.04 ms. But that form is not independently safe
+--   either: without the index it regresses to the pkey walk (183,691 buffers,
+--   1,298 ms), the exact pathology the MATERIALIZED CTE was introduced to fix.
+--   Index and query change must ship together, in either direction. Cost if it
+--   does ship: ~700 MB growing ~26 MB/day, on an append-only table.
+--
+-- Deferred — deb_packages / rpm_packages / programs
+--   (host_identifier, name, unixtime DESC, id DESC). Blocked on correctness,
+--   not performance. The DISTINCT ON queries in
+--   controllers/nodes/node_programs.ts are already output-nondeterministic: on
+--   production the unmodified deb query on the busiest host returns four
+--   different md5s under four different plans. The cause is ties in the ORDER
+--   BY key — 1,179 (name, unixtime) groups hold more than one row on that host,
+--   721 of them with rows whose content actually differs (version, size,
+--   status, arch, revision, source), and `programs` is worse at 3,262 tied
+--   groups with 2,068 differing. `DISTINCT ON (name) ... ORDER BY name,
+--   unixtime DESC` leaves the winner of each tie to whatever order the plan
+--   emits, so adding this index would silently change which package version the
+--   Programs tab reports for hundreds of packages. Correct sequencing, both
+--   steps needing sign-off: first add `, id DESC` to the ORDER BY in
+--   node_programs.ts, making the ordering total and the winner deterministic
+--   (itself a visible change to those rows, because today's answer is
+--   arbitrary); only then add the index, keyed to match the corrected ORDER BY.
+--   Step 1 is worth doing on its own merits regardless.
+--
+-- No action needed — `nodes ORDER BY last_seen DESC LIMIT n`. Worth recording
+--   because it looks alarming in pg_stat_statements: it is the single largest
+--   physical reader in the database at 815,988 shared_blks_read over 302 calls.
+--   That is entirely pre-VACUUM-FULL history, from seq-scanning 4,965 bloated
+--   pages per call. Re-measured after compaction it is 9 buffers, all hits,
+--   0.107 ms. What keeps it fixed is fillfactor=70 plus the frequent autovacuum
+--   the table now gets, not anything in this file.
+
+-- Appendix: per-table autovacuum tuning, not applied by this migration.
+--
+-- Left commented out deliberately — operational DDL is a separate DBA decision
+-- from the index changes above. Uncomment only with sign-off. The arithmetic is
+-- shown so the values can be argued with rather than trusted. Global settings
+-- today: autovacuum_vacuum_scale_factor 0.2, autovacuum_vacuum_threshold 50,
+-- autovacuum_vacuum_insert_scale_factor 0.2,
+-- autovacuum_vacuum_insert_threshold 1000, autovacuum_max_workers 3.
+--
+-- One distinction changes which knob matters. Of the big telemetry tables, only
+-- win_socket_events actually receives UPDATEs (27,356,752, and zero HOT).
+-- interface_details, wmi_bios_info, windows_update_history,
+-- windows_firewall_rules, win_dns_events and snapshot_result all show
+-- n_tup_upd = 0: they are append-only, their dead tuples come only from
+-- retention DELETEs, and the knob that governs them is
+-- autovacuum_vacuum_insert_scale_factor, which maintains the visibility map and
+-- spreads freeze work.
+--
+-- win_socket_events, the real bloat case: 26,374,254 live / 3,853,198 dead
+-- (14.6%), 11 GB heap plus 4,951 MB indexes, only 78.1% of pages all-visible,
+-- last autovacuumed 11 days ago. The default threshold is 5,274,901 dead
+-- tuples against an accrual of ~350k/day, so it fires every ~15 days and lets
+-- bloat peak near 20% of 11 GB. 0.05 fires every ~3.8 days and caps bloat near
+-- 5%; 0.02 every ~1.5 days for a further 3%. 0.05 is the balanced choice, since
+-- each pass must still scan 4,951 MB of indexes.
+-- ALTER TABLE public.win_socket_events SET (
+--   autovacuum_vacuum_scale_factor = 0.05,
+--   autovacuum_vacuum_insert_scale_factor = 0.05
+-- );
+--
+-- windows_firewall_rules, append-only and the stalest table on the server:
+-- 11,745,622 live rows, last autovacuumed 23 days ago, 80.5% all-visible,
+-- 2,148,207 inserts since. The default insert threshold of 2,350,124 against a
+-- measured ~196k inserts/day fires every ~12 days; 0.05 gives 588,281, about
+-- every 3 days. The gain is visibility-map freshness and smaller freeze
+-- batches, not bloat — with n_tup_upd = 0 there is little dead space to
+-- reclaim.
+-- ALTER TABLE public.windows_firewall_rules SET (
+--   autovacuum_vacuum_insert_scale_factor = 0.05
+-- );
+--
+-- Also worth a look, not proposed here: memory_info (75.4% all-visible) and
+-- windows_security_products (67.7%) have the poorest visibility-map coverage on
+-- the server, which quietly penalises index-only scans on both. Not
+-- recommended: wmi_bios_info (already 100%) and interface_details (95.6%) are
+-- the two largest tables and are fine.

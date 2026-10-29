@@ -1,0 +1,195 @@
+{
+  "title": "Network Analysis",
+  "uid": "network-analysis",
+  "tags": [
+    "network"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 2,
+  "refresh": "1m",
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Online Nodes (out of $total_nodes)",
+      "type": "stat",
+      "datasource": {
+        "type": "postgres",
+        "uid": "vajra-fleet-db"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "vajra-fleet-db"
+          },
+          "format": "table",
+          "rawSql": "SELECT COUNT(CASE WHEN last_seen > (EXTRACT(EPOCH FROM NOW()) - 300) THEN 1 END) AS value FROM nodes WHERE grafana_group_visible('${__user.email}', owner_group_id);",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "color-text"
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 2,
+      "title": "Unknown Devices Found in the Last 24 Hours",
+      "type": "stat",
+      "datasource": {
+        "type": "postgres",
+        "uid": "vajra-fleet-db"
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "options": {
+        "colorMode": "none",
+        "graphMode": "none",
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "vajra-fleet-db"
+          },
+          "format": "table",
+          "rawSql": "WITH scan_ips AS (SELECT DISTINCT unnest(regexp_matches(output, 'Nmap scan report for ([0-9\\\\.]+)', 'g')) AS ip FROM network_scan_history WHERE created_at >= NOW() - INTERVAL '24 HOURS' AND grafana_scan_visible('${__user.email}', created_by_user_id)) SELECT COUNT(*) AS value FROM scan_ips s WHERE NOT EXISTS (SELECT 1 FROM nodes n WHERE n.address = s.ip) AND NOT EXISTS (SELECT 1 FROM interface_addresses ia WHERE ia.address = s.ip);",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "color-text"
+          }
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "title": "Additional information on unknown devices discovered in the past 24 hours",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "vajra-fleet-db"
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 24,
+        "x": 0,
+        "y": 4
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "postgres",
+            "uid": "vajra-fleet-db"
+          },
+          "format": "table",
+          "rawSql": "WITH latest_scans AS (SELECT id, target, created_at, output, ROW_NUMBER() OVER(PARTITION BY target ORDER BY created_at DESC) as rn FROM network_scan_history WHERE scan_type = 'advanced' AND created_at >= NOW() - INTERVAL '24 HOURS' AND grafana_scan_visible('${__user.email}', created_by_user_id)), parsed_scans AS (SELECT target AS \"IP Address\", (regexp_match(output, 'MAC Address: ([A-F0-9:]+)'))[1] AS \"MAC Address\", (regexp_match(output, 'MAC Address: [A-F0-9:]+ \\(([^)]+)\\)'))[1] AS \"Vendor\", (SELECT string_agg(m[1], ', ') FROM regexp_matches(output, '([0-9]+/[a-z]+)\\s+open', 'g') AS m) AS \"Open Ports\", created_at AS \"Last Scanned\" FROM latest_scans WHERE rn = 1) SELECT p.\"IP Address\", p.\"MAC Address\", p.\"Vendor\", p.\"Open Ports\", p.\"Last Scanned\" FROM parsed_scans p WHERE NOT EXISTS (SELECT 1 FROM nodes n WHERE n.address = p.\"IP Address\") AND NOT EXISTS (SELECT 1 FROM interface_addresses ia WHERE ia.address = p.\"IP Address\") ORDER BY p.\"Last Scanned\" DESC;",
+          "refId": "A"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "IP Address"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "color-text"
+              },
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#5044E5",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {},
+        "datasource": {
+          "type": "postgres",
+          "uid": "vajra-fleet-db"
+        },
+        "hide": 2,
+        "includeAll": false,
+        "multi": false,
+        "name": "total_nodes",
+        "options": [],
+        "query": "SELECT COUNT(*) FROM nodes WHERE grafana_group_visible('${__user.email}', owner_group_id);",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query"
+      }
+    ]
+  }
+}

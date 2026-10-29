@@ -1,0 +1,298 @@
+name: CI/CD
+
+# Single workflow file covering both flows that used to live in separate
+# ci.yml / release.yml files:
+#   - build-and-test / asan-tests: run on every push and pull_request.
+#   - release: runs only on a `v*` tag push, and only after build-and-test
+#     and asan-tests both pass -- so a release can never ship on top of a
+#     red build/test run (release.yml used to run its own, independent
+#     `ctest` instead of depending on this file's test jobs).
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  # Pinned to match scripts/bootstrap_deps_pqxx.sh and CMakeLists.txt's
+  # comment on why a vendored, C++20-built libpqxx is required (the distro
+  # package is built under C++17 and is ABI-incompatible with this project's
+  # C++20 build -- linking it produces undefined references on pqxx
+  # exception constructors). Bump this alongside the version in
+  # bootstrap_deps_pqxx.sh if that script ever changes what it builds.
+  VAJRA_PQXX_VERSION: 7.8.1
+
+jobs:
+  build-and-test:
+    name: Release build + unit tests
+    runs-on: ubuntu-latest
+    env:
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          # libsqlite3-dev: rule_builder.cpp includes <sqlite3.h> directly
+          # (not through a vendored wrapper) -- this job builds every target
+          # ('cmake --build build' with no --target, below), including
+          # rule_builder, so the header must be present on the runner.
+          sudo apt-get install -y --no-install-recommends \
+            cmake g++ ccache \
+            libboost-all-dev \
+            libpq-dev \
+            librdkafka-dev \
+            libssl-dev \
+            libcurl4-openssl-dev \
+            libsqlite3-dev \
+            nlohmann-json3-dev
+
+      # 3rdparty/local (vendored libpqxx, built with -DCMAKE_CXX_STANDARD=20
+      # to match this project's ABI -- see CMakeLists.txt's comment on this)
+      # is required by CMakeLists.txt's configure step (FATAL_ERROR if
+      # absent). It's already committed under 3rdparty/local, so this cache
+      # (and the fetch/build step below) is a fast-path for the case that
+      # ever stops being true -- scripts/bootstrap_deps_pqxx.sh itself
+      # no-ops immediately if 3rdparty/local/lib is already populated.
+      - name: Cache vendored libpqxx build
+        id: cache-pqxx
+        uses: actions/cache@v4
+        with:
+          path: 3rdparty/local
+          key: pqxx-${{ env.VAJRA_PQXX_VERSION }}-${{ runner.os }}-${{ hashFiles('scripts/bootstrap_deps_pqxx.sh') }}
+
+      - name: Fetch and build vendored libpqxx
+        if: steps.cache-pqxx.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p 3rdparty
+          curl -fsSL "https://github.com/jtv/libpqxx/archive/refs/tags/${VAJRA_PQXX_VERSION}.tar.gz" \
+            -o /tmp/libpqxx.tar.gz
+          tar -xzf /tmp/libpqxx.tar.gz -C 3rdparty
+          bash scripts/bootstrap_deps_pqxx.sh
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.ccache
+          key: ccache-release-${{ github.sha }}
+          restore-keys: |
+            ccache-release-
+
+      - name: Configure
+        run: |
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+
+      - name: Build all targets
+        run: cmake --build build -j"$(nproc)"
+
+      - name: Run unit tests
+        run: ctest --test-dir build --output-on-failure
+
+      # engine_v2 is a standalone CMake project (it shares ../common with the
+      # root build but is configured separately).
+      - name: Configure engine_v2
+        run: cmake -S engine_v2 -B engine_v2/build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build engine_v2
+        run: cmake --build engine_v2/build -j"$(nproc)"
+
+      - name: Run engine_v2 unit tests
+        run: ctest --test-dir engine_v2/build --output-on-failure
+
+  asan-tests:
+    name: Debug + ASan/UBSan unit tests
+    runs-on: ubuntu-latest
+    # Sequenced after build-and-test (not run in parallel) so the vendored-
+    # libpqxx cache is already populated on a cache-miss run -- otherwise
+    # both jobs would redundantly build libpqxx from scratch at the same
+    # time under the identical cache key, wasting CI minutes (harmless --
+    # actions/cache@v4 tolerates the losing job's cache-save conflicting,
+    # it just doesn't save -- but still wasted work).
+    needs: build-and-test
+    steps:
+      - uses: actions/checkout@v4
+
+      # The test suite is built with sanitizer instrumentation instead of
+      # -O2/-Werror.
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            cmake g++ \
+            libboost-all-dev \
+            libpq-dev \
+            librdkafka-dev \
+            libssl-dev \
+            libcurl4-openssl-dev \
+            nlohmann-json3-dev
+
+      - name: Cache vendored libpqxx build
+        id: cache-pqxx
+        uses: actions/cache@v4
+        with:
+          path: 3rdparty/local
+          key: pqxx-${{ env.VAJRA_PQXX_VERSION }}-${{ runner.os }}-${{ hashFiles('scripts/bootstrap_deps_pqxx.sh') }}
+
+      - name: Fetch and build vendored libpqxx
+        if: steps.cache-pqxx.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p 3rdparty
+          curl -fsSL "https://github.com/jtv/libpqxx/archive/refs/tags/${VAJRA_PQXX_VERSION}.tar.gz" \
+            -o /tmp/libpqxx.tar.gz
+          tar -xzf /tmp/libpqxx.tar.gz -C 3rdparty
+          bash scripts/bootstrap_deps_pqxx.sh
+
+      - name: Configure with sanitizers
+        run: |
+          cmake -S . -B build-asan \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g -O0" \
+            -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+
+      # Only vajra_tests, not the whole project -- the other binaries
+      # (vajra_server/rule_builder) aren't exercised by this
+      # job and building them under sanitizers just to discard the result
+      # would waste CI minutes for no coverage gain.
+      - name: Build test suite with sanitizers
+        run: cmake --build build-asan -j"$(nproc)" --target vajra_tests
+
+      - name: Run sanitized tests
+        run: ./build-asan/tests/vajra_tests
+
+  release:
+    name: Build and publish release artifact
+    runs-on: ubuntu-latest
+    needs: [build-and-test, asan-tests]
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          # libsqlite3-dev: rule_builder.cpp includes <sqlite3.h> directly;
+          # this job builds every target and packages build/rule_builder below.
+          sudo apt-get install -y --no-install-recommends \
+            cmake g++ \
+            libboost-all-dev \
+            libpq-dev \
+            librdkafka-dev \
+            libssl-dev \
+            libcurl4-openssl-dev \
+            libsqlite3-dev \
+            nlohmann-json3-dev
+
+      - name: Cache vendored libpqxx build
+        id: cache-pqxx
+        uses: actions/cache@v4
+        with:
+          path: 3rdparty/local
+          key: pqxx-${{ env.VAJRA_PQXX_VERSION }}-${{ runner.os }}-${{ hashFiles('scripts/bootstrap_deps_pqxx.sh') }}
+
+      - name: Fetch and build vendored libpqxx
+        if: steps.cache-pqxx.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p 3rdparty
+          curl -fsSL "https://github.com/jtv/libpqxx/archive/refs/tags/${VAJRA_PQXX_VERSION}.tar.gz" \
+            -o /tmp/libpqxx.tar.gz
+          tar -xzf /tmp/libpqxx.tar.gz -C 3rdparty
+          bash scripts/bootstrap_deps_pqxx.sh
+
+      - name: Verify tag matches VERSION file
+        run: |
+          FILE_VERSION="$(tr -d '[:space:]' < VERSION)"
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [ "$FILE_VERSION" != "$TAG_VERSION" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match VERSION file ($FILE_VERSION)" >&2
+            exit 1
+          fi
+
+      - name: Configure and build (Release)
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j"$(nproc)"
+
+      - name: Run unit tests
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Package tarball
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          PKG="vajra-server-${VERSION}"
+          mkdir -p "dist/${PKG}/bin" "dist/${PKG}/sql"
+
+          cp build/vajra_server            "dist/${PKG}/bin/"
+          cp build/rule_builder            "dist/${PKG}/bin/"
+          cp build/common/libvajraServerSdk.so "dist/${PKG}/bin/"
+
+          # engine_v2 (detection/correlation engine, opt-in via
+          # vajra.sh --with-rule-engine) is built as its own CMake project.
+          cmake -S engine_v2 -B engine_v2/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build engine_v2/build -j"$(nproc)"
+          cp engine_v2/build/vajra_engine_v2 "dist/${PKG}/bin/"
+          if [ -f engine_v2/build/vajra_engine_v2_eval ]; then
+            cp engine_v2/build/vajra_engine_v2_eval "dist/${PKG}/bin/"
+          fi
+          mkdir -p "dist/${PKG}/engine_v2"
+          cp -r engine_v2/rules engine_v2/schema "dist/${PKG}/engine_v2/"
+
+          if [ -f config.template.json ]; then
+            cp config.template.json "dist/${PKG}/"
+          else
+            echo "::warning::config.template.json missing from repo — not packaged"
+          fi
+
+          # vajra.sh is the build/deploy/service-management script.
+          if [ -f vajra.sh ]; then
+            cp vajra.sh "dist/${PKG}/"
+          else
+            echo "::warning::vajra.sh missing from repo — not packaged"
+          fi
+          cp sql/schema.sql "dist/${PKG}/sql/"
+          cp -r sql/migrations "dist/${PKG}/sql/migrations"
+          cp -r scripts "dist/${PKG}/scripts"
+          cp VERSION LICENSE README.md THIRD_PARTY.md "dist/${PKG}/"
+          cp -r docs "dist/${PKG}/docs"
+
+          tar -czf "dist/${PKG}.tar.gz" -C dist "${PKG}"
+          sha256sum "dist/${PKG}.tar.gz" > "dist/${PKG}.tar.gz.sha256"
+
+      - name: Guard — no secrets in package
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          PKG="vajra-server-${VERSION}"
+          PKGDIR="dist/${PKG}"
+          fail=0
+          # Live config and private keys must never be packaged.
+          for pattern in 'config.json' '*.key' '*.pem'; do
+            hits="$(find "$PKGDIR" -name "$pattern" ! -name 'config.template.json')"
+            if [ -n "$hits" ]; then
+              echo "::error::secret-bearing file matched '$pattern' in package:" >&2
+              echo "$hits" >&2
+              fail=1
+            fi
+          done
+          # No hardcoded DB password literal may be baked into shipped scripts.
+          if grep -rniE 'PGPASSWORD[=:][^$"'\''<[:space:]]*(admin|password|secret)' "$PKGDIR" ; then
+            echo "::error::hardcoded PGPASSWORD literal found in packaged scripts" >&2
+            fail=1
+          fi
+          [ "$fail" -eq 0 ] || exit 1
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          gh release create "$GITHUB_REF_NAME" \
+            --title "Vajra Server $GITHUB_REF_NAME" \
+            --generate-notes \
+            "dist/vajra-server-${VERSION}.tar.gz" \
+            "dist/vajra-server-${VERSION}.tar.gz.sha256"

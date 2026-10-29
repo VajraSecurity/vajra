@@ -1,0 +1,686 @@
+/* Compact 2x2 grid for security posture summary on mobile */
+@media (max-width: 640px) {
+  .grid-2x2-mobile {
+    gap: 0.5rem;
+  }
+  .grid-2x2-mobile > div {
+    padding: 0.75rem !important;
+    min-height: unset !important;
+  }
+  .grid-2x2-mobile .text-2xl {
+    font-size: 1.25rem !important;
+  }
+  .grid-2x2-mobile .text-xs {
+    font-size: 0.7rem !important;
+  }
+  .grid-2x2-mobile .text-sm {
+    font-size: 0.8rem !important;
+  }
+}
+/* 2x2 grid for security posture summary on mobile */
+.grid-2x2-mobile {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .grid-2x2-mobile {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  .grid-2x2-mobile > * {
+    min-width: 0;
+  }
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+* {
+  font-family: "Manrope", sans-serif;
+  font-weight: 500;
+  cursor: none;
+} */
+
+@keyframes growLine {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-line-down {
+  animation: growLine 1.8s ease-in-out forwards;
+}
+
+/* Fully hides the scrollbar on horizontally-scrolling tab bars (NodesView,
+   VulnerabilityScanner, ThreatHunting, Compliance all reference this class —
+   it previously didn't exist anywhere, so it was a silent no-op in all four). */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thin, unobtrusive scrollbar for dense data views (alert table, side panels) */
+.table-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.5) transparent;
+}
+.table-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.table-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.table-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.5);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.table-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.7);
+}
+.dark .table-scrollbar {
+  scrollbar-color: rgba(100, 116, 139, 0.6) transparent;
+}
+.dark .table-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.6);
+}
+.dark .table-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.7);
+}
+
+/* Auto-hiding "overlay" scrollbar (FleetDM-style) — the gutter width is FIXED
+   at all times (never 0, never grows), so hovering never changes the table's
+   available content width or reflows columns. Only color/opacity animate,
+   which is what makes it feel like it "appears" without ever touching layout. */
+.scrollbar-auto-hide {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  transition: scrollbar-color 0.3s ease;
+}
+.scroll
+.scrollbar-auto-hide::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+.scrollbar-auto-hide::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-auto-hide::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Fade the thumb in once the pointer enters the scrollable area — width is
+   untouched, so the table never shifts. */
+.scrollbar-auto-hide:hover,
+.scrollbar-auto-hide:focus-within {
+  scrollbar-color: rgba(148, 163, 184, 0.6) transparent;
+}
+.scrollbar-auto-hide:hover::-webkit-scrollbar-thumb,
+.scrollbar-auto-hide:focus-within::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.6);
+}
+/* A touch darker when the pointer is directly over the bar — color only. */
+.scrollbar-auto-hide::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(100, 116, 139, 0.85) !important;
+}
+.dark .scrollbar-auto-hide:hover,
+.dark .scrollbar-auto-hide:focus-within {
+  scrollbar-color: rgba(100, 116, 139, 0.7) transparent;
+}
+.dark .scrollbar-auto-hide:hover::-webkit-scrollbar-thumb,
+.dark .scrollbar-auto-hide:focus-within::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 116, 139, 0.7);
+}
+.dark .scrollbar-auto-hide::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 0.85) !important;
+}
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/inter";
+
+/* Tailwind v4 dark mode — toggled by adding `dark` class to <html> */
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Matches the #f8f9fb/#171717 the app has always rendered in practice —
+     previously the token said pure white/near-black while a hardcoded
+     override further down actually painted these on <body>, so the token
+     was silently never true. Card/popover stay pure white so panels still
+     read as a distinct surface against this. */
+  --background: #f8f9fb;
+  --foreground: #171717;
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: #ffffff;
+
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+
+  --radius: 0.625rem;
+
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+@theme inline {
+  /* Matches what actually renders app-wide: the unlayered `* { font-family:
+     "Inter", ... }` rule below always wins over this token (unlayered CSS
+     beats layered/@theme output regardless of specificity). */
+ --font-sans: "Inter";
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Consolas, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-heading: var(--font-sans);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ============================================================
+   Vajra design tokens — plum brand palette (see ~/ui-ux/css/vajra.css,
+   the canonical prototype). Namespaced `vj-*` so these don't collide
+   with the shadcn/ui tokens above (--border, --muted, --accent, etc.
+   are already claimed by that system and used elsewhere in the app).
+   Tailwind v4 auto-generates utilities from --color-*, --radius-*,
+   --shadow-* theme vars, e.g. bg-vj-brand, text-vj-text-2, rounded-vj-card.
+   ============================================================ */
+@theme {
+  --color-vj-bg: #f1f1f1;
+  --color-vj-surface: #ffffff;
+  --color-vj-muted: #f7f7f6;
+  --color-vj-border: #ebebeb;
+  --color-vj-border-em: #d4d4d4;
+  --color-vj-text-1: #171717;
+  --color-vj-text-2: #737373;
+  --color-vj-text-3: #a3a3a3;
+
+  --color-vj-brand: #8f407f;
+  --color-vj-brand-dark: #6e2a5e;
+  --color-vj-brand-darker: #5c234e;
+  --color-vj-brand-bg: #f7ecf4;
+  --color-vj-brand-border: #e5cbdd;
+
+  --color-vj-red-text: #89001a;
+  --color-vj-red-bg: #facecb;
+  --color-vj-red-border: #e6bab8;
+  --color-vj-orange-text: #6e3500;
+  --color-vj-orange-bg: #fad0b5;
+  --color-vj-orange-border: #e6bda2;
+  --color-vj-yellow-text: #584400;
+  --color-vj-yellow-bg: #f8da9d;
+  --color-vj-yellow-border: #e4c279;
+  --color-vj-green-text: #0c5700;
+  --color-vj-green-bg: #c5e5c0;
+  --color-vj-green-border: #b2d1ac;
+  --color-vj-blue-text: #00458c;
+  --color-vj-blue-bg: #c4ddfb;
+  --color-vj-blue-border: #b1c9e7;
+  --color-vj-success: #007004;
+  --color-vj-error: #a50c25;
+
+  --radius-vj-el: 10px;
+  --radius-vj-card: 12px;
+
+  --shadow-vj-low: 0 2px 4px rgba(0, 0, 0, 0.05), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+  /* Must match Sidebar.tsx's collapsed width (w-20 = 5rem) exactly, or content
+     sits partly under the fixed sidebar — this previously said 4rem. */
+  .sidebar-collapsed .dashboard-content {
+    margin-left: 5rem;
+  }
+}
+
+* {
+
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+  font-feature-settings: "cv11", "ss01", "cv01", "cv02";
+
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+ body {
+    @apply bg-background text-foreground;
+    position: relative;
+    font-weight: 400;
+    letter-spacing: 0.025em;
+  }
+
+  /* Combination 2 — Bold Headline: section card headings */
+  h1, h2, h3 {
+    font-weight: 700;
+    letter-spacing: 0.025em;
+  }
+
+  /* Combination 1 — Refined Label: sub-headings and form labels */
+  h4, h5, h6, label, th {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* Combination 5 — Airy Data Values: table data cells */
+  td {
+    font-weight: 400;
+    letter-spacing: 0.025em;
+  }
+
+  /* Combination 4 — Soft Secondary Label: captions, helper text */
+  small, figcaption {
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+  /* Combination 6 — Monospace Codes: code blocks, pre */
+  pre, code {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  /* Combination 1 — Refined Label: buttons */
+  button {
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+
+  /*
+   * Pointer on interactive controls (tabs, icon buttons, MUI, etc.).
+   * Preflight does not set button cursor; browsers default to the arrow.
+   */
+  button:not(:disabled),
+  input:not(:disabled):where([type='button'], [type='submit'], [type='reset']),
+  [role='button']:not([aria-disabled='true']),
+  [role='tab']:not([aria-disabled='true']),
+  summary {
+    @apply cursor-pointer;
+  }
+
+  button:disabled,
+  input:disabled:where([type='button'], [type='submit'], [type='reset']) {
+    @apply cursor-not-allowed;
+  }
+
+  select:not(:disabled) {
+    @apply cursor-pointer;
+  }
+
+  /* MUI renders native buttons but some themes leave cursor implicit */
+  .MuiButtonBase-root:not(.Mui-disabled):not(:disabled) {
+    cursor: pointer;
+  }
+
+  .MuiButtonBase-root.Mui-disabled,
+  .MuiButtonBase-root:disabled {
+    cursor: not-allowed;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+html {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Decorative motion (meteor shower banners, button shimmer, grid/line animations)
+   runs continuously and isn't essential to any task — respect the OS-level
+   reduced-motion preference instead of ignoring it, per WCAG 2.3.3. This is a
+   CSS-only kill switch, so it doesn't reach Framer Motion's JS-driven transitions
+   (route/menu transitions), only plain CSS `animation`/`transition` properties. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes meteor-effect {
+  0%   { transform: rotate(215deg) translateX(0);     opacity: 1; }
+  70%  { opacity: 1; }
+  100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
+}
+
+.animate-meteor-effect {
+  animation: meteor-effect linear infinite;
+}
+
+/* Deep blue stat cards */
+.stat-card-deep {
+  background: oklch(0.34 0.16 262.68);
+}
+
+/* Sidebar active option */
+.sidebar-active {
+  background: rgb(4 34 119);
+}
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100px 100px;
+  }
+}
+
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 120px 120px;
+  }
+}
+
+
+/* ── Table typography ───────────────────────────────────────────────────── */
+table thead th {
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+table tbody td {
+  letter-spacing: 0.04em;
+}
+
+/* ── Page headings: heavier + wider (overrides @layer base + utilities) ─── */
+h1 {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+h2 {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* ── Input fields: wider tracking + medium weight ───────────────────────── */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]) {
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+::placeholder {
+  letter-spacing: 0.07em;
+  font-weight: 400;
+}
+
+/* ── Select dropdowns ───────────────────────────────────────────────────── */
+select {
+  letter-spacing: 0.04em;
+  font-weight: 900;
+}
+
+/* ── Typography utility classes (6 combinations) ─────────────────────────
+   Use these class names in any .tsx instead of repeating Tailwind stacks.
+   Combination 1 — Refined Label   : keys, table headers, sub-labels
+   Combination 2 — Bold Headline   : card/section headings
+   Combination 3 — Uppercase Pill  : badge / tag chips
+   Combination 4 — Soft Caption    : muted section labels, helper text
+   Combination 5 — Airy Data       : table value cells, body copy
+   Combination 6 — Mono Code       : identifiers, timestamps, event codes
+   ──────────────────────────────────────────────────────────────────────── */
+.typo-label   { font-weight: 600; letter-spacing: 0.05em; }
+.typo-heading { font-weight: 700; letter-spacing: 0.025em; }
+.typo-badge   { font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.75rem; }
+.typo-caption { font-weight: 500; letter-spacing: 0.1em; }
+.typo-data    { font-weight: 400; letter-spacing: 0.025em; }
+.typo-code    { font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.05em; }
+
+
+/* AI page markdown bubble typography */
+.ai-bubble-md { font-weight: 400; }
+.ai-bubble-md p  { margin-bottom: 0.5rem; }
+.ai-bubble-md p:last-child { margin-bottom: 0; }
+.ai-bubble-md ul { list-style: disc; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.ai-bubble-md ol { list-style: decimal; padding-left: 1.25rem; margin-bottom: 0.5rem; }
+.ai-bubble-md li { margin-bottom: 0.15rem; }
+.ai-bubble-md pre { margin-bottom: 0.5rem; }
+.ai-bubble-md code { font-family: var(--font-mono); }
+
+/* ── Floating chat widget: thinking orb ───────────────────────────────────
+   A single evolving orb (core + rotating plasma ring + two orbiting motes)
+   rather than the AI page's simpler ping-circle indicator — used where the
+   assistant is compact/always-visible (the floating widget's launcher and
+   its "thinking" state) and benefits from a more premium, idle-friendly
+   animation. Durations are deliberately non-integer/non-synchronized
+   (5.2s / 2.4s / 3.1s / 3.7s) so the layers drift in and out of phase
+   instead of visibly looping in lockstep. The global
+   prefers-reduced-motion kill switch above already collapses all of these
+   to a single frame. */
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(0.92); }
+  50%      { transform: scale(1.05); }
+}
+@keyframes orb-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes orb-glow {
+  0%, 100% { opacity: 0.55; transform: scale(0.96); }
+  50%      { opacity: 0.9;  transform: scale(1.1); }
+}
+@keyframes orb-orbit {
+  to { transform: rotate(360deg); }
+}
+.orb-core       { animation: orb-breathe 5.2s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
+.orb-ring       { animation: orb-spin 2.4s linear infinite; }
+.orb-ring-slow  { animation: orb-spin 3.7s linear infinite reverse; }
+.orb-glow       { animation: orb-glow 3.1s ease-in-out infinite; }
+.orb-orbit-a    { animation: orb-orbit 2.8s linear infinite; }
+.orb-orbit-b    { animation: orb-orbit 4.1s linear infinite reverse; }
+
+.metallic-btn-blue {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.95) 0%, rgba(29, 78, 216, 1) 100%) !important;
+  color: white !important;
+  border-color: rgba(37, 99, 235, 0.4) !important;
+  border-bottom-color: rgba(30, 58, 138, 0.6) !important;
+  box-shadow: 
+    0 2px 8px rgba(37, 99, 235, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.35),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.2) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+.metallic-btn-blue:hover:not(:disabled) {
+  box-shadow: 
+    0 4px 12px rgba(37, 99, 235, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.25) !important;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 1) 0%, rgba(37, 99, 235, 1) 100%) !important;
+  transform: translateY(-1px);
+}
+
+.metallic-btn-blue:active:not(:disabled) {
+  transform: translateY(1px) !important;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+.metallic-btn-blue:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+.metallic-btn-white-red {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(243, 244, 246, 1) 100%) !important;
+  color: #dc2626 !important;
+  border-color: rgba(220, 38, 38, 0.3) !important;
+  border-bottom-color: rgba(220, 38, 38, 0.5) !important;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.05) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+}
+
+.metallic-btn-white-red:hover:not(:disabled) {
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1) !important;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(229, 231, 235, 1) 100%) !important;
+  transform: translateY(-1px);
+}
+
+.metallic-btn-white-red:active:not(:disabled) {
+  transform: translateY(1px) !important;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+.metallic-btn-white-red:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}

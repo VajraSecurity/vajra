@@ -1,0 +1,67 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    // ES2020 alone lacks the two-argument Error constructor (`new Error(msg,
+    // { cause })`), which Node has supported since v16.9 regardless of
+    // compile target — layer in just its typings without moving target/module.
+    "lib": ["ES2020", "ES2022.Error"],
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
+  },
+  // Keep developer verification harnesses out of the compiler's program, and
+  // therefore out of `dist/`.
+  //
+  // `src/**/*.verify.ts` are standalone equivalence-check scripts (see
+  // src/test/certProvisioningClaim.verify.ts and burpPartialSelectSave.verify.ts)
+  // written to prove a specific change was behaviour-preserving. Nothing
+  // imports them and `npm start` only runs `dist/index.js`, so shipping them
+  // was inert — but they do not belong in a production artifact:
+  // certProvisioningClaim.verify.ts creates and drops a `zz_typeorm_verify`
+  // database if it is ever executed, and a deployed build should not carry a
+  // script that can create databases.
+  //
+  // The tidier arrangement would be a separate tsconfig.build.json so that
+  // `npm run typecheck` still covers these files. That is not available here:
+  // backend/.gitignore line 38 is a blanket `*.json`, so a NEW json file can
+  // never be committed without -f (tsconfig.json, package.json and
+  // package-lock.json are only tracked because they predate that rule). A
+  // build config that does not reach the droplet would break `npm run build`
+  // there outright, so the exclude lives here instead.
+  //
+  // Consequence to be aware of: `tsc --noEmit` no longer typechecks the
+  // harnesses, so they can rot against the code they verify. They are
+  // single-use artifacts, which makes that an acceptable trade — but if a
+  // harness is ever promoted to something maintained, move it under
+  // src/test/ with a normal .ts name so it is covered again.
+  // vitest.config.ts lives at the project root (alongside package.json,
+  // where Vitest looks for it) rather than under rootDir's src/ — exclude it
+  // from the tsc project too, alongside the verify harnesses above, so
+  // `npm run build`/`typecheck` don't TS6059 on a file outside rootDir.
+  // Vitest itself loads this config directly, not through this tsconfig, so
+  // excluding it here doesn't affect test runs.
+  "exclude": ["src/**/*.verify.ts", "vitest.config.ts"],
+  "ts-node": {
+    "files": true,
+    "transpileOnly": false
+  }
+}

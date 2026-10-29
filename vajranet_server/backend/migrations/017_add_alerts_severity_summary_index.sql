@@ -1,0 +1,134 @@
+-- Fleet DB: covering index for the /alerts/list severity-summary aggregate.
+--
+-- Additive: an index changes which plan Postgres picks, and no application
+-- query text changed alongside it, so results and ordering are unaffected.
+--
+-- This migration is conditional, unlike 013/014/015. The index on its own is
+-- inert on production as it stands: the planner will not choose it, because
+-- `alerts` has only 59% of its pages marked all-visible. The ALTER TABLE below
+-- is what makes the index usable, and that half has not been validated end to
+-- end, because validating it needs a VACUUM and the audit behind this file was
+-- read-only. Follow the apply/verify protocol at the bottom.
+--
+-- The query. controllers/alerts/alert_list.ts builds a per-severity summary
+-- alongside the alert list. For the dominant call shape — the app-wide
+-- 10-second poll in AlertsPollingContext.tsx, which every open tab issues as
+-- GET /api/alerts/list?rows=50&pageno=1&is_open=true — it reduces to
+--
+--     SELECT a.severity, COUNT(*) FROM alerts a WHERE a.is_open = $1
+--     GROUP BY a.severity
+--
+-- wrapped in a SUM(...) FILTER bucketing layer. Over a 16.4h window that is
+-- 6,703 calls at 5.127 ms mean and 1,072 shared buffers each — the single most
+-- expensive user-facing statement on the box, and 1,072 buffers is the whole
+-- heap, since alerts is 1,063 pages and is_open = true matches 8,987 of its
+-- 9,013 rows. It is roughly half of a /api/alerts/list request.
+--
+-- No query rewrite is left. The SQL is already at its floor: the bucketing
+-- expressions cost ~0.2 ms of 2.8 ms, 1.45 ms is the bare scan, and the
+-- remaining ~1.2 ms is deforming `severity` (attnum 11, behind five
+-- variable-length columns) and hashing it. Both are properties of the access
+-- path, not the query text.
+--
+-- So the only remaining lever is reading `severity` out of a narrow index
+-- rather than out of a 27-column heap tuple; no index can reduce the row count,
+-- since the aggregate needs all 8,987 open rows. Forcing index-only scans
+-- through two indexes that already exist on `alerts` and cover an equivalent
+-- aggregate over the same rows gives 1.7-1.8 ms and ~460 buffers against
+-- 4.6-5.6 ms and 1,078 buffers for the seq scan — and that is the pessimistic
+-- case, still paying ~3,250 heap fetches.
+--
+-- Why the index alone is not enough. pg_class for alerts reads relpages 1,063
+-- against relallvisible 627, so only 59% of the table is all-visible, which is
+-- where those heap fetches come from — and Postgres prices them into the plan:
+-- an index-only scan is costed at 1,441 against 1,213 for the seq scan, so the
+-- planner keeps the seq scan even though the index-only scan runs 3.2x faster.
+-- A new (is_open, severity) index is costed the same way, so adding it by
+-- itself produces a dead index. Working the cost model backwards, the planner
+-- flips at roughly 65% of pages all-visible.
+--
+-- The table sits below that only because it is barely ever vacuumed: at ~84
+-- inserts/day against an insert threshold of 1000 + 0.2 * 9,013 = 2,803,
+-- insert-driven autovacuum fires about once a month and coverage decays to ~59%
+-- in between, leaving the plan oscillating around break-even. Hence the ALTER
+-- TABLE. At 200 inserts between vacuums, drift is ~24 pages, so coverage stays
+-- at or above ~97%. A VACUUM of a 1,063-page table with an already-fresh map is
+-- single-digit milliseconds.
+--
+-- Expected result: ~1.2 ms and ~30 buffers, against 2.81 ms and 1,078 today,
+-- taking /api/alerts/list p50 from 9 ms toward ~6 ms. That figure is the only
+-- extrapolated number here — confirming it requires a VACUUM.
+--
+-- Cost. Expect roughly 200-280 kB (`severity` averages 3.24 bytes with no
+-- NULLs, so entries are comparable to alerts_pkey's, which is 264 kB over the
+-- same rows) against an 8,624 kB table. Writes are low volume: 9,610 inserts,
+-- 1,592 updates and 599 deletes across the whole stats window. Note that
+-- `severity` is effectively immutable after insert while `is_open` is not, so
+-- closing an alert becomes a non-HOT update for this index; at ~1,600 updates
+-- per window that is negligible, and the vacuum settings below more than cover
+-- the extra dead tuples.
+--
+-- CONCURRENTLY so the build takes no write lock — alerts is written by the
+-- websocket ingest path continuously, and it carries an AFTER INSERT trigger
+-- (alerts_insert_notify_trigger) plus a row-level security policy.
+
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_alerts_open_severity
+  ON alerts (is_open, severity);
+
+-- Without this the index above is inert (see the visibility-map discussion in
+-- the header). Storage parameters only: no column, constraint or data change.
+-- Takes a SHARE UPDATE EXCLUSIVE lock, so it does not block reads or writes.
+ALTER TABLE alerts SET (
+  autovacuum_vacuum_insert_threshold = 200,
+  autovacuum_vacuum_insert_scale_factor = 0
+);
+
+
+-- Apply/verify protocol. This migration is conditional; do not skip these.
+--
+-- 1. Apply this file with autocommit on (CONCURRENTLY cannot run inside a
+--    transaction block). Then force the visibility map current once, rather
+--    than waiting for the new threshold to trigger:
+--        VACUUM (ANALYZE) alerts;
+--
+-- 2. Confirm the map actually moved. This must now read close to 100%:
+--        SELECT relpages, relallvisible,
+--               round(100.0 * relallvisible / relpages, 1) AS pct_all_visible
+--        FROM pg_class WHERE relname = 'alerts';
+--    Below ~65% the index will not be used and steps 3-4 will show no change.
+--    That is a signal to investigate why vacuum cannot mark pages all-visible
+--    (a long-lived transaction holding back the xmin horizon is the usual
+--    cause), not a signal to force the plan.
+--
+-- 3. Confirm the planner now chooses it, and that Heap Fetches is ~0:
+--        EXPLAIN (ANALYZE, BUFFERS)
+--        SELECT a.severity, COUNT(*) FROM alerts a WHERE a.is_open = true
+--        GROUP BY a.severity;
+--    Expect an Index Only Scan using idx_alerts_open_severity, Heap Fetches: 0,
+--    and ~30 buffers, against a Seq Scan at 1,078 buffers before. If it is
+--    still a Seq Scan, this migration has not helped — see step 5.
+--
+-- 4. Re-check the sibling statement on the same table. A new index can move
+--    plans that were previously fine, and the severity-filtered variant of the
+--    alert list query (not the summary) is the one nearest to switching:
+--        EXPLAIN (ANALYZE, BUFFERS)
+--        SELECT a.id FROM alerts a
+--        WHERE a.is_open = true
+--          AND (LOWER(TRIM(COALESCE(a.severity, ''))) = 'low'
+--               OR TRIM(COALESCE(a.severity, '')) = '1')
+--        ORDER BY a.id DESC LIMIT 50;
+--    This must stay an Index Scan Backward using alerts_pkey (cost
+--    0.29..1092.59, 0.185 ms, 34 buffers). The risk is low rather than merely
+--    hoped: the severity predicate is LOWER(TRIM(COALESCE(severity,''))), which
+--    the new index cannot satisfy, so it could only serve `is_open = true` and
+--    would then have to sort all 8,987 matching rows to honour ORDER BY id DESC
+--    — costed at 1,853 or more against the 1,092 above. Verify it anyway; if it
+--    does flip, that is a regression on a hotter path than the one being fixed,
+--    and this migration should be rolled back.
+--
+-- 5. Rollback, if step 3 shows no plan change or step 4 shows a regression:
+--        DROP INDEX CONCURRENTLY IF EXISTS idx_alerts_open_severity;
+--        ALTER TABLE alerts RESET (autovacuum_vacuum_insert_threshold,
+--                                  autovacuum_vacuum_insert_scale_factor);
+--    Both are safe on a live database and restore the pre-migration behaviour
+--    exactly; nothing in the application depends on either object.

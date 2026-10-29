@@ -1,0 +1,58 @@
+-- Fleet DB: expression index on vulnexus_cpe_dictionary
+-- (lower(vendor), lower(product)) for CPE matching.
+--
+-- Additive: it changes which plan Postgres picks, and no application query text
+-- changed alongside it, so results and ordering are unaffected.
+--
+-- The table's three existing indexes are on id, cpe_uri and (vendor, product).
+-- Its hottest consumer filters on lower(vendor)/lower(product), which a plain
+-- btree on the bare columns cannot serve, so every lookup degenerates into a
+-- full parallel seq scan of 1,819,305 rows. idx_cpe_vendor_product is not dead
+-- — pipeline.py's title_based_boost() filters on the bare `vendor = %s` — which
+-- is why the symptom shows as a high seq_scan count next to a non-zero
+-- idx_scan.
+--
+-- The caller is outside this repository: the `vajra-cve-listener` systemd unit,
+-- running matcher.py's exact_match() from a separate Python project. This Node
+-- backend never touches the table. Its query is
+--
+--     SELECT cpe_uri, vendor, product
+--     FROM vulnexus_cpe_dictionary
+--     WHERE lower(vendor) = %s AND lower(product) = %s
+--     ORDER BY cpe_uri LIMIT 10
+--
+-- Because that code cannot be changed from here, an index is the only fix
+-- available on this side, and it is also the safest, since it leaves the query
+-- text untouched.
+--
+-- Measured on production for vendor='google', product='chrome': 212.9 ms warm
+-- and 1,377.7 ms cold on the current plan, against 5.8 ms with a matching
+-- two-column btree. The 5.8 ms figure was obtained by running the identical
+-- predicate without lower() so it rides idx_cpe_vendor_product; that is an
+-- exact substitute rather than an analogue, because vendor and product are
+-- already fully lowercase in this table (zero rows differ from their lower()
+-- form, zero NULLs, and CPE 2.3 mandates lowercase components) and an ordered
+-- diff in both directions returns no differing rows.
+--
+-- The index is still written on the lower() expressions rather than the bare
+-- columns, so that it keeps matching the query if the upstream NVD loader ever
+-- starts emitting mixed case. Nothing about correctness depends on the data
+-- staying lowercase. A secondary benefit: Postgres has no statistics for these
+-- expressions today and guesses 19 rows where the true count is 9,567, so an
+-- expression index also gives ANALYZE something real to collect.
+--
+-- Cost. This is a reference dictionary, not telemetry — essentially one bulk
+-- load plus a trickle from the nvd_sync CPE feed, with 13,488 updates and no
+-- deletes over ~77 days — so write overhead is negligible. Size is expected to
+-- be 21-25 MB, matching idx_cpe_vendor_product over the identical key set, or
+-- about 5% of the 494 MB relation.
+--
+-- CONCURRENTLY so the build takes no write lock (opt/nvd_sync/cpe_processor.py
+-- inserts into this table) and therefore cannot run inside a transaction block
+-- — apply with autocommit on, e.g. `psql -f 016_...sql`.
+CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_cpe_lower_vendor_product
+  ON vulnexus_cpe_dictionary (lower(vendor), lower(product));
+
+-- After applying, run ANALYZE so the planner picks up statistics on the new
+-- expressions (read-only, safe to run at any time):
+--     ANALYZE vulnexus_cpe_dictionary;

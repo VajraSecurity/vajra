@@ -1,0 +1,98 @@
+[
+{
+"path": "HKEY_USERS\\.DEFAULT\\Environment\\Path",
+"name": "Path",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps;"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\Environment\\TEMP",
+"name": "TEMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\.DEFAULT\\Environment\\TMP",
+"name": "TMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\Environment\\Path",
+"name": "Path",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps;"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\Environment\\TEMP",
+"name": "TEMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-18\\Environment\\TMP",
+"name": "TMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\Environment\\Path",
+"name": "Path",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps;"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\Environment\\TEMP",
+"name": "TEMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-19\\Environment\\TMP",
+"name": "TMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-20\\Environment\\Path",
+"name": "Path",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps;"
+},
+{
+"path": "HKEY_USERS\\S-1-5-20\\Environment\\TEMP",
+"name": "TEMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-20\\Environment\\TMP",
+"name": "TMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-21-1111111111-2222222222-3333333333-1000\\Environment\\Path",
+"name": "Path",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Microsoft\\WindowsApps;"
+},
+{
+"path": "HKEY_USERS\\S-1-5-21-1111111111-2222222222-3333333333-1000\\Environment\\TEMP",
+"name": "TEMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-21-1111111111-2222222222-3333333333-1000\\Environment\\TMP",
+"name": "TMP",
+"type": "REG_SZ",
+"data": "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Local\\Temp"
+},
+{
+"path": "HKEY_USERS\\S-1-5-21-1111111111-2222222222-3333333333-1000\\Environment\\OneDrive",
+"name": "OneDrive",
+"type": "REG_SZ",
+"data": "C:\\Users\\user\\OneDrive"
+}
+]

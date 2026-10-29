@@ -1,0 +1,12 @@
+# Keep the docker build context lean and avoid shipping stale local build
+# output / secrets into the image.
+build/
+build-ci/
+cmake-build-debug/
+test-results/
+.git/
+.claude/
+graphify-out/
+config.json
+*.key
+*.pem
