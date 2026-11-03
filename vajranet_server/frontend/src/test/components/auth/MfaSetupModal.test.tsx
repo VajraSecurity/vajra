@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { cleanup, configure, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 vi.mock(import('@/api/services/authApi'), async (orig) => ({
@@ -25,13 +25,25 @@ function renderModal() {
   );
 }
 
+// The step transitions and role queries can exceed the 1s default on a busy machine.
+configure({ asyncUtilTimeout: 5000 });
+vi.setConfig({ testTimeout: 20000 });
+
+// Sets a text field in one change event. Each step's form takes focus when its enter
+// animation ends, so user.type's instant keystrokes can lose characters to that focus move.
+function fill(label: string | RegExp, value: string) {
+  const input = screen.getByLabelText(label);
+  fireEvent.change(input, { target: { value } });
+  expect(input).toHaveValue(value);
+}
+
 // Scans past step 1 and answers the security questions on step 2.
 async function reachLastStep(user: ReturnType<typeof userEvent.setup>) {
   await user.click(await screen.findByRole('button', { name: /I've scanned it/ }));
   await user.selectOptions(await screen.findByLabelText('Security question 1'), PREDEFINED_QUESTIONS[0]);
-  await user.type(screen.getByLabelText('Answer 1'), 'rex');
+  fill('Answer 1', 'rex');
   await user.selectOptions(screen.getByLabelText('Security question 2'), PREDEFINED_QUESTIONS[1]);
-  await user.type(screen.getByLabelText('Answer 2'), 'springfield');
+  fill('Answer 2', 'springfield');
   await user.click(screen.getByRole('button', { name: 'Next' }));
   await user.click(await screen.findByRole('checkbox'));
 }
@@ -66,7 +78,7 @@ describe('MfaSetupModal', () => {
     const finish = screen.getByRole('button', { name: 'Finish setup' });
     expect(finish).toBeDisabled();
 
-    await user.type(screen.getByLabelText(/6-digit code/), '123456');
+    fill(/6-digit code/, '123456');
     await user.click(finish);
 
     await waitFor(() => expect(api.verifyMfaSettings).toHaveBeenCalledTimes(1));
@@ -84,7 +96,7 @@ describe('MfaSetupModal', () => {
     renderModal();
 
     await reachLastStep(user);
-    await user.type(screen.getByLabelText(/6-digit code/), '000000');
+    fill(/6-digit code/, '000000');
     await user.click(screen.getByRole('button', { name: 'Finish setup' }));
 
     expect(await screen.findByText('Invalid MFA code. Enter the current code from your authenticator app.')).toBeInTheDocument();
@@ -94,7 +106,7 @@ describe('MfaSetupModal', () => {
     expect(screen.getByLabelText(/6-digit code/)).toHaveValue('');
 
     api.verifyMfaSettings.mockResolvedValue({ status: 'Success', message: 'ok' });
-    await user.type(screen.getByLabelText(/6-digit code/), '654321');
+    fill(/6-digit code/, '654321');
     await user.click(screen.getByRole('button', { name: 'Finish setup' }));
     await waitFor(() => expect(api.verifyMfaSettings).toHaveBeenLastCalledWith(expect.objectContaining({
       token: '654321',

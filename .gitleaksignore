@@ -1,0 +1,7 @@
+# Reviewed false positives. Each line is a gitleaks fingerprint for one finding.
+
+# A SHA-1 file hash in an osquery detection's exception list (git-remote-http), not a token.
+3e587f243c5bbbddbe53c4dada35b8571a2920e9:vajranet_server/backend/data/savedqueries.csv:sourcegraph-access-token:5
+
+# Generated SQL in a test fixture, not a credential.
+3e587f243c5bbbddbe53c4dada35b8571a2920e9:vajranet_server/backend/src/test/fixtures/fim_registry_golden_sql.json:generic-api-key:131

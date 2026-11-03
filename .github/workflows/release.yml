@@ -1,0 +1,110 @@
+name: Release
+
+# Pushing a tag such as v0.9.0 runs the full CI and then publishes the server tarball
+# as a GitHub Release. The tag must match vajra_server/VERSION.
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+*"
+
+permissions:
+  contents: read
+
+jobs:
+  check-version:
+    name: Check tag matches VERSION
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Compare tag and VERSION file
+        run: |
+          FILE_VERSION="$(tr -d '[:space:]' < vajra_server/VERSION)"
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          if [ "$FILE_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match vajra_server/VERSION ($FILE_VERSION)"
+            exit 1
+          fi
+
+  server-ci:
+    needs: check-version
+    uses: ./.github/workflows/server-ci.yml
+
+  console-ci:
+    needs: check-version
+    uses: ./.github/workflows/console-ci.yml
+
+  release:
+    name: Build and publish release
+    needs: [server-ci, console-ci]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: write
+    defaults:
+      run:
+        working-directory: vajra_server
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      # Published binaries link libpqxx, so build it from verified source, not the cache.
+      - name: Set up C++ dependencies
+        uses: ./.github/actions/setup-server-deps
+        with:
+          use-cache: "false"
+
+      - name: Build (Release)
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j"$(nproc)"
+          cmake -S engine_v2 -B engine_v2/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build engine_v2/build -j"$(nproc)"
+
+      - name: Package tarball
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          PKG="vajra-server-${VERSION}"
+          mkdir -p "dist/${PKG}/bin" "dist/${PKG}/sql" "dist/${PKG}/engine_v2"
+
+          cp build/vajra_server build/rule_builder build/common/libvajraServerSdk.so "dist/${PKG}/bin/"
+          cp engine_v2/build/vajra_engine_v2 engine_v2/build/vajra_engine_v2_eval "dist/${PKG}/bin/"
+          cp -r engine_v2/rules engine_v2/schema "dist/${PKG}/engine_v2/"
+          cp config.template.json vajra.sh VERSION LICENSE README.md THIRD_PARTY.md "dist/${PKG}/"
+          cp sql/schema.sql "dist/${PKG}/sql/"
+          cp -r sql/migrations "dist/${PKG}/sql/migrations"
+          cp -r scripts docs "dist/${PKG}/"
+
+          tar -czf "dist/${PKG}.tar.gz" -C dist "${PKG}"
+          (cd dist && sha256sum "${PKG}.tar.gz" > "${PKG}.tar.gz.sha256")
+
+      - name: Check package has no secrets
+        run: |
+          PKGDIR="dist/vajra-server-${GITHUB_REF_NAME#v}"
+          fail=0
+          for pattern in 'config.json' '*.key' '*.pem'; do
+            hits="$(find "$PKGDIR" -name "$pattern")"
+            if [ -n "$hits" ]; then
+              echo "::error::secret-bearing file matched '$pattern' in package:"
+              echo "$hits"
+              fail=1
+            fi
+          done
+          if grep -rniE 'PGPASSWORD[=:][^$"'\''<[:space:]]*(admin|password|secret)' "$PKGDIR"; then
+            echo "::error::hardcoded PGPASSWORD literal found in packaged scripts"
+            fail=1
+          fi
+          [ "$fail" -eq 0 ]
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          gh release create "$GITHUB_REF_NAME" \
+            --title "Vajra $GITHUB_REF_NAME" \
+            --generate-notes \
+            "dist/vajra-server-${VERSION}.tar.gz" \
+            "dist/vajra-server-${VERSION}.tar.gz.sha256"

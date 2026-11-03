@@ -46,6 +46,7 @@ RUN set -eux; \
     if [ ! -f 3rdparty/local/lib/libpqxx.a ]; then \
         mkdir -p 3rdparty; \
         curl -fsSL https://github.com/jtv/libpqxx/archive/refs/tags/7.8.1.tar.gz -o /tmp/libpqxx.tar.gz; \
+        echo "0f4c0762de45a415c9fd7357ce508666fa88b9a4a463f5fb76c235bc80dd6a84  /tmp/libpqxx.tar.gz" | sha256sum --check --strict; \
         tar -xzf /tmp/libpqxx.tar.gz -C 3rdparty; \
         rm -f /tmp/libpqxx.tar.gz; \
         bash scripts/bootstrap_deps_pqxx.sh; \
