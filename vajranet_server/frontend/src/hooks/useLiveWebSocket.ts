@@ -8,6 +8,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { NODES_WS_BASE } from '../api/urls';
+import { stripLineBreaks } from '../lib/utils';
 /*  Types matching the backend LiveData shape                          */
 
 export interface NodeStatus {
@@ -304,7 +305,7 @@ export const useLiveWebSocket = (
 
             // Detect server-side auth errors sent as JSON messages
             if (parsed.error) {
-              console.error('[LiveWS] Server error:', parsed.error);
+              console.error('[LiveWS] Server error:', stripLineBreaks(String(parsed.error)));
               intentionallyClosed = true;
               ws?.close();
               onAuthFailedRef.current?.();

@@ -29,7 +29,6 @@ import { execFile } from 'child_process';
 import { promisify } from 'util';
 import crypto from 'crypto';
 import fs from 'fs';
-import os from 'os';
 import path from 'path';
 import { getLogger } from './logger';
 import { DEFAULT_KEYS_DIR } from '../consts/server';
@@ -156,19 +155,16 @@ export async function signAgentCsr(csrPem: string, hostIdentifier: string): Prom
 }
 
 async function signWithOpenssl(trimmedCsrPem: string, hostIdentifier: string): Promise<string> {
-  const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'vajra-cert-provision-'));
-  const csrPath = path.join(tmpDir, 'req.csr');
-  const certPath = path.join(tmpDir, 'cert.pem');
   try {
-    fs.writeFileSync(csrPath, trimmedCsrPem, { mode: 0o600 });
+    // The CSR goes in on stdin and the certificate comes back on stdout, so
+    // nothing an agent submitted is ever written to disk.
     // -subj forces the issued cert's subject regardless of the CSR's own
     // declared subject — the agent-supplied CSR is trusted only for its
     // public key and self-signature, never for what identity it claims.
-    await execFileAsync(
+    const signing = execFileAsync(
       'openssl',
       [
         'x509', '-req',
-        '-in', csrPath,
         '-CA', CA_CERT_PATH,
         '-CAkey', CA_KEY_PATH,
         '-CAcreateserial',
@@ -176,17 +172,20 @@ async function signWithOpenssl(trimmedCsrPem: string, hostIdentifier: string): P
         '-subj', `/O=Vajra/OU=Agent/CN=${hostIdentifier}`,
         '-sha256',
         '-days', String(CERT_VALIDITY_DAYS),
-        '-out', certPath,
       ],
       { timeout: EXTERNAL_COMMAND_TIMEOUT_MS },
     );
-    const cert = fs.readFileSync(certPath, 'utf-8');
+    const { stdin } = signing.child;
+    if (!stdin) throw new Error('OpenSSL stdin is not available');
+    // OpenSSL can exit before reading its input. That EPIPE would otherwise be
+    // an unhandled stream error; the failed exit status already rejects below.
+    stdin.on('error', () => undefined);
+    stdin.end(trimmedCsrPem);
+    const { stdout: cert } = await signing;
     logger.info({ hostIdentifier }, 'Signed agent mTLS certificate');
     return cert;
   } catch (err) {
     logger.error({ err, hostIdentifier }, 'OpenSSL certificate signing failed');
     throw new Error('Failed to sign certificate — CSR may be invalid or malformed', { cause: err });
-  } finally {
-    fs.rmSync(tmpDir, { recursive: true, force: true });
   }
 }

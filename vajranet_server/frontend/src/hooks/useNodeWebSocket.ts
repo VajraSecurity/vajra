@@ -9,7 +9,7 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { NODES_WS_BASE } from '../api/urls';
-import { secureUUID } from '../lib/utils';
+import { secureUUID, stripLineBreaks } from '../lib/utils';
 
 interface WebSocketMessage {
   type: 'agent' | 'osquery';
@@ -181,7 +181,7 @@ export const useNodeWebSocket = (
 
             // Non-rid errors (auth errors, etc.)
             if (data.error) {
-              console.error('[WebSocket] Server error:', data.error);
+              console.error('[WebSocket] Server error:', stripLineBreaks(String(data.error)));
               if (data.error.includes('Authentication') || data.error.includes('token')) {
                 // Don't mark intentionallyClosed here: that flag makes onclose
                 // bail out before setConnected(false)/wsRef cleanup/reconnect

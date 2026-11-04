@@ -117,6 +117,26 @@ function main() {
     // 5. Malformed CSR PEM.
     await assert.rejects(() => signAgain('not a csr', 'host-real-1'), /Malformed CSR PEM/, 'malformed CSR must be rejected');
 
+    // 5b. Well-formed PEM armour around garbage: OpenSSL itself must refuse it,
+    // and the failure must reject cleanly rather than crash on the CSR pipe.
+    await assert.rejects(
+      () => signAgain('-----BEGIN CERTIFICATE REQUEST-----\nAAAA\n-----END CERTIFICATE REQUEST-----', 'host-real-1'),
+      /Failed to sign certificate/,
+      'CSR that OpenSSL cannot parse must be rejected',
+    );
+
+    // 5c. A real CSR whose signature has been tampered with: possession of the
+    // key is what the self-signature proves, so this must not be signed.
+    const lines = makeCsr('host-tampered').trim().split('\n');
+    const lastBody = lines[lines.length - 2];
+    const tamperAt = Math.max(0, lastBody.length - 8);
+    lines[lines.length - 2] = lastBody.slice(0, tamperAt) + (lastBody[tamperAt] === 'A' ? 'B' : 'A') + lastBody.slice(tamperAt + 1);
+    await assert.rejects(
+      () => signAgain(lines.join('\n'), 'host-tampered'),
+      /Failed to sign certificate/,
+      'CSR with a broken self-signature must be rejected',
+    );
+
     // 6. Oversized CSR.
     await assert.rejects(
       () => signAgain('-----BEGIN CERTIFICATE REQUEST-----\n' + 'A'.repeat(9000) + '\n-----END CERTIFICATE REQUEST-----', 'host-real-1'),

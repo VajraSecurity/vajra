@@ -52,3 +52,11 @@ export function formatUnixTimestamp(timestamp: string | number) {
   if (Number.isNaN(date.getTime())) return 'Invalid Date'
   return UNIX_TIMESTAMP_FORMATTER.format(date)
 }
+
+/**
+ * Removes line breaks from text received over the network before it is logged,
+ * so one message can't appear as several separate log entries.
+ */
+export function stripLineBreaks(text: string): string {
+  return text.replace(/\r/g, '').replace(/\n/g, '');
+}

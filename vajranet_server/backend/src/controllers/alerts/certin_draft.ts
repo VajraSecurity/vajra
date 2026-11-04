@@ -52,6 +52,14 @@ function isFormComplete(formData: any): boolean {
   });
 }
 
+function isPlainObject(value: unknown): boolean {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function isStringArray(value: unknown): boolean {
+  return Array.isArray(value) && value.every((item) => typeof item === 'string');
+}
+
 function stampNow() {
   const d = new Date();
   const yyyy = d.getFullYear();
@@ -63,6 +71,8 @@ function stampNow() {
   return `${yyyy}-${mm}-${dd}_${hh}-${mi}-${ss}`;
 }
 
+// Callers pass the record as saved in the database, not the raw request body, so
+// the file always matches what the draft actually holds.
 async function writeCertinSnapshot(params: {
   userId: number;
   draftId: number;
@@ -85,7 +95,10 @@ async function writeCertinSnapshot(params: {
     actor: params.actor ?? null,
     formData: params.formData,
   };
-  await fs.writeFile(path.join(CERTIN_REPORTS_ROOT, folder, filename), JSON.stringify(payload, null, 2), 'utf-8');
+  await fs.writeFile(path.join(CERTIN_REPORTS_ROOT, folder, filename), JSON.stringify(payload, null, 2), {
+    encoding: 'utf-8',
+    mode: 0o600,
+  });
 }
 
 async function removeCompleteSnapshotsForDraft(userId: number, draftId: number) {
@@ -108,6 +121,10 @@ export async function saveCertinDraft(req: Request, res: Response) {
 
     const { formData, selectedAlertIds } = req.body;
     if (!formData) return res.status(400).json({ error: 'formData is required' });
+    if (!isPlainObject(formData)) return res.status(400).json({ error: 'formData must be an object' });
+    if (selectedAlertIds !== undefined && selectedAlertIds !== null && !isStringArray(selectedAlertIds)) {
+      return res.status(400).json({ error: 'selectedAlertIds must be an array of strings' });
+    }
 
     const draftRepository = dbSourceConnection()?.[0]?.getRepository(CertinDraft);
     if (!draftRepository) {
@@ -130,8 +147,8 @@ export async function saveCertinDraft(req: Request, res: Response) {
         await writeCertinSnapshot({
           userId,
           draftId: updated.id,
-          formData,
-          selectedAlertIds: selectedAlertIds || [],
+          formData: updated.formData,
+          selectedAlertIds: updated.selectedAlertIds || [],
           state: isComplete ? 'complete' : 'drafts',
           eventType,
           actor: { userId, email: actorEmail, name: actorName },
@@ -161,8 +178,8 @@ export async function saveCertinDraft(req: Request, res: Response) {
       await writeCertinSnapshot({
         userId,
         draftId: saved.id,
-        formData,
-        selectedAlertIds: selectedAlertIds || [],
+        formData: saved.formData,
+        selectedAlertIds: saved.selectedAlertIds || [],
         state: isComplete ? 'complete' : 'drafts',
         eventType,
         actor: { userId, email: actorEmail, name: actorName },
