@@ -11,6 +11,7 @@ import type { DomainReputationAuthMode, DomainReputationProviderName } from '../
 import { API_KEY_MASK_SUFFIX_LENGTH } from '../../consts/auth';
 import { getLogger } from '../../utils/logger';
 import { jwtFrom, clientIpFrom } from '../../utils/requestContext';
+import { assertAllowedServiceUrl } from '../../utils/outboundUrl';
 
 const logger = getLogger('controllers.domainReputation.providerConfig');
 
@@ -145,7 +146,12 @@ export const saveProviderConfig = async (req: Request, res: Response, _next: Nex
       if (!base_url || typeof base_url !== 'string') {
         return res.status(400).json({ success: false, message: 'base_url is required' });
       }
-      const baseUrl = base_url.replace(/\/+$/, '');
+      let baseUrl: string;
+      try {
+        baseUrl = await assertAllowedServiceUrl(base_url);
+      } catch (validationErr: any) {
+        return res.status(400).json({ success: false, message: `Invalid base_url: ${validationErr.message}` });
+      }
       const authMode: DomainReputationAuthMode = ['none', 'header', 'bearer'].includes(auth_mode) ? auth_mode : 'bearer';
       const authHeaderName = typeof auth_header_name === 'string' && auth_header_name.trim() ? auth_header_name.trim() : 'X-API-Key';
 
@@ -337,8 +343,14 @@ export const testProviderConnection = async (req: Request, res: Response, _next:
     }
 
     if (!effectiveBaseUrl) return res.status(400).json({ success: false, message: 'base_url is required' });
+    let validatedBaseUrl: string;
+    try {
+      validatedBaseUrl = await assertAllowedServiceUrl(effectiveBaseUrl);
+    } catch (validationErr: any) {
+      return res.status(200).json({ success: false, message: `Invalid base_url: ${validationErr.message}` });
+    }
     const result = await testManualServerConnection(
-      effectiveBaseUrl,
+      validatedBaseUrl,
       effectiveApiKey,
       effectiveAuthMode || 'none',
       effectiveAuthHeaderName || 'X-API-Key',

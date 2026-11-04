@@ -15774,11 +15774,12 @@ namespace Catch {
     // Because formatting using c++ streams is stateful, drop down to C is required
     // Alternatively we could use stringstream, but its performance is... not good.
     std::string getFormattedDuration( double duration ) {
+        // + 1 for the sign of a negative value
         // Max exponent + 1 is required to represent the whole part
         // + 1 for decimal point
         // + 3 for the 3 decimal places
         // + 1 for null terminator
-        const std::size_t maxDoubleSize = DBL_MAX_10_EXP + 1 + 1 + 3 + 1;
+        const std::size_t maxDoubleSize = 1 + DBL_MAX_10_EXP + 1 + 1 + 3 + 1;
         char buffer[maxDoubleSize];
 
         // Save previous errno, to prevent sprintf from overwriting it
@@ -15786,7 +15787,7 @@ namespace Catch {
 #ifdef _MSC_VER
         sprintf_s(buffer, "%.3f", duration);
 #else
-        std::sprintf(buffer, "%.3f", duration);
+        std::snprintf(buffer, sizeof(buffer), "%.3f", duration);
 #endif
         return std::string(buffer);
     }
@@ -16808,8 +16809,7 @@ namespace Catch {
 
     namespace {
         std::string getCurrentTimestamp() {
-            // Beware, this is not reentrant because of backward compatibility issues
-            // Also, UTC only, again because of backward compatibility (%z is C++11)
+            // UTC only, because of backward compatibility (%z is C++11)
             time_t rawtime;
             std::time(&rawtime);
             auto const timeStampSize = sizeof("2017-01-16T17:06:45Z");
@@ -16818,18 +16818,14 @@ namespace Catch {
             std::tm timeInfo = {};
             gmtime_s(&timeInfo, &rawtime);
 #else
-            std::tm* timeInfo;
-            timeInfo = std::gmtime(&rawtime);
+            std::tm timeInfo = {};
+            gmtime_r(&rawtime, &timeInfo);
 #endif
 
             char timeStamp[timeStampSize];
             const char * const fmt = "%Y-%m-%dT%H:%M:%SZ";
 
-#ifdef _MSC_VER
             std::strftime(timeStamp, timeStampSize, fmt, &timeInfo);
-#else
-            std::strftime(timeStamp, timeStampSize, fmt, timeInfo);
-#endif
             return std::string(timeStamp, timeStampSize-1);
         }
 

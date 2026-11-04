@@ -9,6 +9,7 @@ import { getLogger } from '../../utils/logger';
 import { sanitizeAxiosError } from '../../utils/sanitizeAxiosError';
 import { jwtFrom, clientIpFrom } from '../../utils/requestContext';
 import { resolveScannerGroupContext, groupIdWhereValue } from '../../utils/scannerScope';
+import { assertAllowedServiceUrl } from '../../utils/outboundUrl';
 
 const logger = getLogger('controllers.nessus');
 
@@ -129,7 +130,12 @@ export const saveNessusConfig = async (req: Request, res: Response, _next: NextF
       return res.status(400).json({ success: false, message: 'secret_key is required' });
     }
 
-    const urlClean = nessus_url.replace(/\/+$/, '');
+    let urlClean: string;
+    try {
+      urlClean = await assertAllowedServiceUrl(nessus_url);
+    } catch (validationErr: any) {
+      return res.status(400).json({ success: false, message: `Invalid Nessus URL: ${validationErr.message}` });
+    }
 
     // Require a successful live connection test with these exact credentials
     // before persisting — otherwise a typo'd URL/key silently saves and only
@@ -282,7 +288,13 @@ export const testNessusConnection = async (req: Request, res: Response, _next: N
     return res.status(400).json({ success: false, message: 'nessus_url, access_key, and secret_key are required' });
   }
 
-  const urlClean = nessus_url.replace(/\/+$/, '');
+  let urlClean: string;
+  try {
+    urlClean = await assertAllowedServiceUrl(nessus_url);
+  } catch (validationErr: any) {
+    return res.status(200).json({ success: false, message: `Invalid Nessus URL: ${validationErr.message}` });
+  }
+
   const result = await runNessusConnectionTest(urlClean, access_key, secret_key);
   return res.status(200).json(result);
 };

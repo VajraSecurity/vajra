@@ -1,5 +1,4 @@
 import axios, { AxiosInstance } from 'axios';
-import https from 'https';
 import { XMLParser, type JPathOrMatcher } from 'fast-xml-parser';
 import { decrypt } from './encryption';
 import { getLogger } from './logger';
@@ -7,6 +6,7 @@ import { sanitizeAxiosError } from './sanitizeAxiosError';
 import { SCANNER_CONFIG_CACHE_TTL_MS } from '../consts/scanning';
 import { EXTERNAL_API_TIMEOUT_MS } from '../consts/timeout';
 import { groupIdWhereValue, scannerCacheKey } from './scannerScope';
+import { createGuardedServiceHttpsAgent, guardedServiceHttpAgent } from './outboundUrl';
 
 const logger = getLogger('scanner.openvas');
 
@@ -36,7 +36,7 @@ const sessionCache = new Map<string, GsaSession>();
 const CONFIG_CACHE_TTL_MS = SCANNER_CONFIG_CACHE_TTL_MS;
 const SESSION_TTL_MS = 600_000; // 10 min (GSA session timeout is ~15 min)
 
-const gsaHttpsAgent = new https.Agent({ rejectUnauthorized: false });
+const gsaHttpsAgent = createGuardedServiceHttpsAgent({ rejectUnauthorized: false });
 
 /**
  * GMP response paths that must always parse as arrays, even when the response
@@ -164,6 +164,7 @@ async function createGsaSession(config: OpenVASConnectionConfig): Promise<GsaSes
     `${baseURL}/login`,
     `login=${encodeURIComponent(config.gmpUsername)}&password=${encodeURIComponent(config.gmpPassword)}`,
     {
+      httpAgent: guardedServiceHttpAgent,
       httpsAgent: gsaHttpsAgent,
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       timeout: 15_000,
@@ -198,7 +199,9 @@ async function createGsaSession(config: OpenVASConnectionConfig): Promise<GsaSes
 
   const client = axios.create({
     baseURL,
+    httpAgent: guardedServiceHttpAgent,
     httpsAgent: gsaHttpsAgent,
+    maxRedirects: 0, // don't let a validated-at-save-time host 30x us to an unvalidated internal target
     headers: {
       'Cookie': `GSAD_SID=${sidCookie}`,
     },

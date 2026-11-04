@@ -2,11 +2,14 @@ import axios from 'axios';
 import { promises as dns } from 'dns';
 import { getProviderConfig, type LoadedProviderConfig } from '../client';
 import { isPrivateOrLoopbackIp } from '../validation';
+import { createGuardedServiceHttpsAgent, guardedServiceHttpAgent } from '../../../utils/outboundUrl';
 import type { NormalizedReputationResult } from './types';
 import type { DomainReputationTargetType } from '../../../orm/entities/fleet/DomainReputationTarget';
 import type { DomainReputationAuthMode } from '../../../orm/entities/fleet/DomainReputationProviderConfig';
 import { getLogger } from '../../../utils/logger';
 import { sanitizeAxiosError } from '../../../utils/sanitizeAxiosError';
+
+const manualServerHttpsAgent = createGuardedServiceHttpsAgent();
 
 const logger = getLogger('services.domainReputation.manualServer');
 
@@ -132,7 +135,7 @@ export async function checkManualServer(value: string, type: DomainReputationTar
     resp = await axios.post(
       `${config.baseUrl.replace(/\/+$/, '')}/check`,
       { value: ip, type: 'ip' },
-      { headers, timeout: MANUAL_SERVER_TIMEOUT_MS, maxRedirects: 0 }, // don't let a validated-at-save-time host 30x us to an unvalidated internal target
+      { headers, timeout: MANUAL_SERVER_TIMEOUT_MS, maxRedirects: 0, httpAgent: guardedServiceHttpAgent, httpsAgent: manualServerHttpsAgent }, // don't let a validated-at-save-time host 30x us to an unvalidated internal target
     );
   } catch (err: any) {
     // The credential (bearer token or custom header, per buildAuthHeaders)
@@ -174,7 +177,7 @@ export async function testManualServerConnection(
     const headers = buildAuthHeaders({ apiKey, authMode, authHeaderName });
     const resp = await axios.get(
       `${baseUrl.replace(/\/+$/, '')}/providers`,
-      { headers, timeout: MANUAL_SERVER_TIMEOUT_MS, maxRedirects: 0 }, // don't let a validated-at-save-time host 30x us to an unvalidated internal target
+      { headers, timeout: MANUAL_SERVER_TIMEOUT_MS, maxRedirects: 0, httpAgent: guardedServiceHttpAgent, httpsAgent: manualServerHttpsAgent }, // don't let a validated-at-save-time host 30x us to an unvalidated internal target
     );
 
     const data = resp.data ?? {};

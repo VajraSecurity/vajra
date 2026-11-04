@@ -12,6 +12,7 @@ import { logAuditTrail } from '../../utils/auditTrailLogger';
 import { parseAndValidateTargets } from '../network/targetValidation';
 import { getLogger } from '../../utils/logger';
 import { sanitizeAxiosError } from '../../utils/sanitizeAxiosError';
+import { assertAllowedServiceUrl } from '../../utils/outboundUrl';
 import {
   OPENVAS_DEFAULT_PORT_LIST_ID,
   OPENVAS_DEFAULT_SCANNER_ID,
@@ -97,6 +98,12 @@ function handleOpenVASError(res: Response, err: any, context?: Record<string, un
 
 // Config endpoints
 
+/** The setup screen accepts a bare host such as 10.0.5.187, which means https. */
+function resolveGsaUrl(raw: string): Promise<string> {
+  const trimmed = raw.trim();
+  return assertAllowedServiceUrl(/^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`);
+}
+
 export const saveOpenVASConfig = async (req: Request, res: Response, _next: NextFunction) => {
   try {
     const scopeResult = await resolveScannerGroupContext(req, { forWrite: true });
@@ -114,9 +121,11 @@ export const saveOpenVASConfig = async (req: Request, res: Response, _next: Next
       return res.status(400).json({ success: false, message: 'gmp_username and gmp_password are required' });
     }
 
-    let urlClean = gsa_url.trim().replace(/\/+$/, '');
-    if (!/^https?:\/\//i.test(urlClean)) {
-      urlClean = `https://${urlClean}`;
+    let urlClean: string;
+    try {
+      urlClean = await resolveGsaUrl(gsa_url);
+    } catch (validationErr: any) {
+      return res.status(400).json({ success: false, message: `Invalid GSA URL: ${validationErr.message}` });
     }
 
     // Require a successful live connection test with these exact credentials
@@ -229,13 +238,15 @@ export const testOpenVASConnection = async (req: Request, res: Response, _next: 
   try {
     const { gsa_url, gmp_username, gmp_password } = req.body;
 
-    if (!gsa_url || !gmp_username || !gmp_password) {
+    if (!gsa_url || typeof gsa_url !== 'string' || !gmp_username || !gmp_password) {
       return res.status(400).json({ success: false, message: 'gsa_url, gmp_username, and gmp_password are required' });
     }
 
-    let urlClean = gsa_url.trim().replace(/\/+$/, '');
-    if (!/^https?:\/\//i.test(urlClean)) {
-      urlClean = `https://${urlClean}`;
+    let urlClean: string;
+    try {
+      urlClean = await resolveGsaUrl(gsa_url);
+    } catch (validationErr: any) {
+      return res.status(200).json({ success: false, message: `Invalid GSA URL: ${validationErr.message}` });
     }
 
     const config: OpenVASConnectionConfig = {
