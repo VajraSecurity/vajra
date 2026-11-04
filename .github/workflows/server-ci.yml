@@ -1,0 +1,103 @@
+name: Server CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "vajra_server/**"
+      - ".github/actions/setup-server-deps/**"
+      - ".github/workflows/server-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "vajra_server/**"
+      - ".github/actions/setup-server-deps/**"
+      - ".github/workflows/server-ci.yml"
+  workflow_call:
+
+concurrency:
+  group: server-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: vajra_server
+
+jobs:
+  build-and-test:
+    name: Release build + unit tests
+    # Same Ubuntu release as vajra_server/docker/Dockerfile.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      CCACHE_DIR: ${{ github.workspace }}/.ccache
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up C++ dependencies
+        uses: ./.github/actions/setup-server-deps
+
+      - name: Restore ccache
+        uses: actions/cache@v6
+        with:
+          path: .ccache
+          key: ccache-release-${{ github.sha }}
+          restore-keys: |
+            ccache-release-
+
+      - name: Configure
+        run: |
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+
+      - name: Build all targets
+        run: cmake --build build -j"$(nproc)"
+
+      - name: Run unit tests
+        run: ctest --test-dir build --output-on-failure
+
+      # engine_v2 is its own CMake project; it shares common/ with the root build.
+      - name: Configure engine_v2
+        run: |
+          cmake -S engine_v2 -B engine_v2/build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+
+      - name: Build engine_v2
+        run: cmake --build engine_v2/build -j"$(nproc)"
+
+      - name: Run engine_v2 unit tests
+        run: ctest --test-dir engine_v2/build --output-on-failure
+
+  asan-tests:
+    name: Debug + ASan/UBSan unit tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    # After build-and-test so a cache miss does not build libpqxx twice at once.
+    needs: build-and-test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up C++ dependencies
+        uses: ./.github/actions/setup-server-deps
+
+      - name: Configure with sanitizers
+        run: |
+          cmake -S . -B build-asan \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DCMAKE_CXX_FLAGS="-fsanitize=address,undefined -fno-omit-frame-pointer -g -O0" \
+            -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address,undefined"
+
+      - name: Build test suite with sanitizers
+        run: cmake --build build-asan -j"$(nproc)" --target vajra_tests
+
+      - name: Run sanitized tests
+        run: ./build-asan/tests/vajra_tests

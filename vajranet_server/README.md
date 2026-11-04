@@ -105,7 +105,7 @@ cd backend && npm test
 cd frontend && npm run lint
 ```
 
-The CI workflow in `.github/workflows/ci.yml` runs the same checks.
+The `Console CI` workflow in the root `.github/workflows/console-ci.yml` runs the same checks.
 
 ## Related repositories
 

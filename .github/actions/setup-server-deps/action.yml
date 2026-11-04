@@ -1,0 +1,47 @@
+name: Set up vajra_server build dependencies
+description: Installs the apt packages vajra_server needs and builds the C++20 libpqxx it links against.
+
+inputs:
+  use-cache:
+    description: Restore libpqxx from the Actions cache. Set to "false" to build it from verified source.
+    default: "true"
+
+runs:
+  using: composite
+  steps:
+    - name: Install apt packages
+      shell: bash
+      run: |
+        sudo apt-get update
+        # Same package list as vajra_server/docker/Dockerfile.
+        sudo apt-get install -y --no-install-recommends \
+          cmake g++ make ccache \
+          libboost-all-dev \
+          libpq-dev \
+          librdkafka-dev \
+          libssl-dev \
+          libcurl4-openssl-dev \
+          libsqlite3-dev \
+          nlohmann-json3-dev
+
+    # The distro libpqxx is built as C++17 and does not link into this C++20 project,
+    # so CMake stops unless vajra_server/3rdparty/local has a C++20 build of it.
+    - name: Restore libpqxx build
+      if: inputs.use-cache == 'true'
+      id: cache-pqxx
+      uses: actions/cache@v6
+      with:
+        path: vajra_server/3rdparty/local
+        key: pqxx-7.8.1-0f4c0762de45-${{ runner.os }}-${{ hashFiles('vajra_server/scripts/bootstrap_deps_pqxx.sh') }}
+
+    - name: Fetch and build libpqxx
+      if: steps.cache-pqxx.outputs.cache-hit != 'true'
+      shell: bash
+      working-directory: vajra_server
+      run: |
+        # Keep this version and hash in step with vajra_server/docker/Dockerfile and the cache key above.
+        mkdir -p 3rdparty
+        curl -fsSL "https://github.com/jtv/libpqxx/archive/refs/tags/7.8.1.tar.gz" -o "$RUNNER_TEMP/libpqxx.tar.gz"
+        echo "0f4c0762de45a415c9fd7357ce508666fa88b9a4a463f5fb76c235bc80dd6a84  $RUNNER_TEMP/libpqxx.tar.gz" | sha256sum --check --strict
+        tar -xzf "$RUNNER_TEMP/libpqxx.tar.gz" -C 3rdparty
+        bash scripts/bootstrap_deps_pqxx.sh

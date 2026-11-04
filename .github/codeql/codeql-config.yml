@@ -1,0 +1,11 @@
+name: Vajra CodeQL config
+
+queries:
+  - uses: security-extended
+
+# Applies to JavaScript/TypeScript. C/C++ is analyzed from the real build, so these
+# paths do not filter it.
+paths-ignore:
+  - "**/test/**"
+  - "**/tests/**"
+  - "vajra_server/3rdparty/**"

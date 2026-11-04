@@ -71,7 +71,9 @@ if (have) {
       for (const dir of ['a/.cache', '.d/x', 'b/c/d']) fs.mkdirSync(path.join(d, dir), { recursive: true });
       for (const f of ['.hid', 'vis', 'a/.dotfile', 'a/vis2', 'a/.cache/evil', 'b/.top']) fs.writeFileSync(path.join(d, f), f);
       spawnSync('mkfifo', [path.join(d, 'pipe')]);
-      const q = (sql: string) => { const o = execFileSync('osqueryd', ['-S', '--json', sql], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 120000 }); return JSON.parse(o.slice(o.indexOf('['))) as any[]; };
+      fs.symlinkSync(path.join(d, 'pipe'), path.join(d, 'link-to-pipe'));
+      // SIGKILL: osqueryd ignores the default SIGTERM while blocked on a FIFO, and execFileSync waits for it to exit.
+      const q = (sql: string) => { const o = execFileSync('osqueryd', ['-S', '--json', sql], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], timeout: 120000, killSignal: 'SIGKILL' }); return JSON.parse(o.slice(o.indexOf('['))) as any[]; };
       const rows = q(buildScanSql({ kind: 'path', path: `${d}/%%` }, 'linux'));
       const rel = new Map(rows.map((r) => [r.path.replace(d, ''), r]));
       for (const want of ['/.hid', '/a/.dotfile', '/a/.cache/evil', '/b/.top', '/vis', '/a/vis2']) {

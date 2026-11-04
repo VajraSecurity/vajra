@@ -1,0 +1,67 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "17 3 * * 1"
+
+concurrency:
+  group: codeql-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: Analyze (${{ matrix.language }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    permissions:
+      contents: read
+      actions: read
+      packages: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - language: actions
+            build-mode: none
+          - language: javascript-typescript
+            build-mode: none
+          - language: c-cpp
+            build-mode: manual
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      # Before CodeQL init, so libpqxx's own build is not traced into the database.
+      - name: Set up C++ dependencies
+        if: matrix.language == 'c-cpp'
+        uses: ./.github/actions/setup-server-deps
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+          build-mode: ${{ matrix.build-mode }}
+          config-file: ./.github/codeql/codeql-config.yml
+
+      # No ccache here: a cached compile is invisible to CodeQL's tracer.
+      - name: Build C++ for analysis
+        if: matrix.language == 'c-cpp'
+        working-directory: vajra_server
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j"$(nproc)"
+          cmake -S engine_v2 -B engine_v2/build -DCMAKE_BUILD_TYPE=Release
+          cmake --build engine_v2/build -j"$(nproc)"
+
+      - name: Run CodeQL analysis
+        uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{ matrix.language }}"

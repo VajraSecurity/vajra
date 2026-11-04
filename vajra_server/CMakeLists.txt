@@ -19,7 +19,7 @@ set(VAJRA_PQXX_PREFIX ${CMAKE_SOURCE_DIR}/3rdparty/local)
 if(NOT EXISTS ${VAJRA_PQXX_PREFIX}/lib/libpqxx.a)
     message(FATAL_ERROR
         "Vendored libpqxx not found at ${VAJRA_PQXX_PREFIX}/lib/libpqxx.a. "
-        "Fetch 3rdparty/libpqxx-7.8.1 (see .github/workflows/ci.yml for the exact "
+        "Fetch 3rdparty/libpqxx-7.8.1 (see .github/actions/setup-server-deps for the exact "
         "source URL) then run scripts/bootstrap_deps_pqxx.sh to build it.")
 endif()
 add_library(vendored_pqxx STATIC IMPORTED GLOBAL)

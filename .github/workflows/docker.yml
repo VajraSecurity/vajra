@@ -1,0 +1,45 @@
+name: Docker build
+
+# Builds what `docker compose up --build` builds, since that is the documented install.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docker-compose.yml"
+      - "docker/**"
+      - "vajra_server/**"
+      - "vajranet_server/**"
+      - ".github/workflows/docker.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "docker-compose.yml"
+      - "docker/**"
+      - "vajra_server/**"
+      - "vajranet_server/**"
+      - ".github/workflows/docker.yml"
+
+concurrency:
+  group: docker-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  compose-build:
+    name: Compose config and image build
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Generate throwaway .env
+        run: ./docker/init-env.sh localhost
+
+      - name: Validate compose file
+        run: docker compose config --quiet
+
+      - name: Build images
+        run: docker compose build

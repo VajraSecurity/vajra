@@ -1,0 +1,259 @@
+name: Console CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "vajranet_server/**"
+      - ".github/workflows/console-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "vajranet_server/**"
+      - ".github/workflows/console-ci.yml"
+  workflow_call:
+
+concurrency:
+  group: console-ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  NODE_VERSION: "24.x"
+
+jobs:
+  build:
+    name: Build (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [backend, frontend]
+    defaults:
+      run:
+        working-directory: vajranet_server/${{ matrix.app }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: vajranet_server/${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+  test:
+    name: Test (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [backend, frontend]
+    defaults:
+      run:
+        working-directory: vajranet_server/${{ matrix.app }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: vajranet_server/${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run unit tests
+        run: npm test
+        env:
+          CI: true
+          # This job has no osqueryd or Postgres, so it accepts those FIM skips.
+          # The fim-tests job below runs them with no skips allowed.
+          FIM_ALLOW_SKIP: "1"
+
+  lint:
+    name: Lint (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [backend, frontend]
+    defaults:
+      run:
+        working-directory: vajranet_server/${{ matrix.app }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: vajranet_server/${{ matrix.app }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+  dependency-audit:
+    name: Dependency audit (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [backend, frontend]
+    defaults:
+      run:
+        working-directory: vajranet_server/${{ matrix.app }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Audit for high and critical advisories
+        run: npm audit --audit-level=high
+
+  db-setup-check:
+    name: DB setup check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: vajra_ci
+          POSTGRES_PASSWORD: vajra_ci_password
+          POSTGRES_DB: vajra_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    defaults:
+      run:
+        working-directory: vajranet_server/backend
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: vajranet_server/backend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Runs the whole primary-database schema path against an empty database.
+      # db:setup:fleet is not covered: it needs the fleet schema from vajra_server.
+      - name: Run primary DB setup against a fresh database
+        run: npm run db:setup
+        env:
+          NODE_ENV: test
+          PG_HOST: localhost
+          PG_PORT: 5432
+          POSTGRES_USER: vajra_ci
+          POSTGRES_PASSWORD: vajra_ci_password
+          POSTGRES_DB: vajra_db
+
+  # Every FIM suite with no skips allowed: real osqueryd and a throwaway Postgres.
+  fim-tests:
+    name: FIM suites (osquery + Postgres)
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: fimtest
+          POSTGRES_DB: fimdb
+          POSTGRES_HOST_AUTH_METHOD: trust
+        ports:
+          - 55432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      FIM_TEST_PG: 127.0.0.1:55432
+      FIM_HISTORY_HMAC_KEY: ci-only-fim-history-key-not-a-secret-0123456789
+      OSQUERY_VERSION: 5.12.1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: |
+            vajranet_server/backend/package-lock.json
+            vajranet_server/frontend/package-lock.json
+
+      - name: Install osquery (pinned)
+        run: |
+          curl -fsSL -o /tmp/osquery.deb "https://pkg.osquery.io/deb/osquery_${OSQUERY_VERSION}-1.linux_amd64.deb"
+          sudo apt-get install -y /tmp/osquery.deb postgresql-client
+          osqueryd --version
+
+      - name: Apply base schema fixture and FIM migrations
+        working-directory: vajranet_server/backend
+        run: |
+          for f in src/test/fixtures/fim_ci_base_schema.sql migrations/030_add_fim_tables.sql migrations/031_add_fim_registry.sql migrations/032_add_fim_verify.sql migrations/033_add_fim_worker_schema.sql migrations/034_add_fim_perf.sql; do
+            psql -1 -v ON_ERROR_STOP=1 -q -h 127.0.0.1 -p 55432 -U fimtest -d fimdb -f "$f"
+          done
+
+      - name: Install backend dependencies
+        working-directory: vajranet_server/backend
+        run: npm ci
+
+      - name: Type-check backend
+        working-directory: vajranet_server/backend
+        run: npm run typecheck
+
+      - name: FIM suites (pure, catalog, osquery, both DB suites)
+        working-directory: vajranet_server/backend
+        run: npm run test:fim-all
+
+      - name: FIM scale check (5,000 synthetic nodes)
+        working-directory: vajranet_server/backend
+        run: npm run test:fim-load
+        env:
+          FIM_LOAD_NODES: "5000"
+
+      - name: Install frontend dependencies
+        working-directory: vajranet_server/frontend
+        run: npm ci
+
+      - name: Frontend FIM unit tests
+        working-directory: vajranet_server/frontend
+        run: npx vitest run src/test/unit/fim
