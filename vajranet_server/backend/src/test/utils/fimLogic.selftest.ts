@@ -251,10 +251,11 @@ t('entry kinds: normalisation fills server-side metadata and rejects bad input',
 });
 
 t('scan SQL per kind (exact text)', () => {
-  const run = "SELECT path, key, value FROM extended_attributes WHERE ";
-  assert.strictEqual(buildScanSql({ kind: 'xattr', path: '/etc/ssh/passwd' }, 'linux'), run + "path LIKE '/etc/ssh/passwd'");
+  const run = "SELECT f.path, x.key, x.value FROM file f CROSS JOIN extended_attributes x ON x.path = f.path WHERE (";
+  const typeFilter = ") AND f.type IN ('regular', 'directory')";
+  assert.strictEqual(buildScanSql({ kind: 'xattr', path: '/etc/ssh/passwd' }, 'linux'), run + "f.path LIKE '/etc/ssh/passwd'" + typeFilter);
   const xr = buildScanSql({ kind: 'xattr', path: '/etc/%%' }, 'linux');
-  assert.ok(xr.startsWith(run + "(path LIKE '/etc/%%' OR path LIKE '/etc/.%'") && xr.endsWith("AND path NOT LIKE '%/../%' AND path NOT LIKE '%/./%'"));
+  assert.ok(xr.startsWith(run + "(f.path LIKE '/etc/%%' OR f.path LIKE '/etc/.%'") && xr.endsWith("AND f.path NOT LIKE '%/../%' AND f.path NOT LIKE '%/./%'" + typeFilter));
   // Stored legacy registry entries keep their legacy filter; the mandatory credential redaction is always added.
   const legacy = buildScanSql({ kind: 'registry', path: 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run\\%' }, 'windows');
   assert.ok(legacy.startsWith("SELECT path, name, type, CASE WHEN type <> 'subkey' AND (lower(name) IN ('altdefaultpassword'"), legacy);

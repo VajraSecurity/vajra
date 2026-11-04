@@ -641,7 +641,7 @@ const nodeRow = (h: string, plat: string, cfg: string | null, grp: string | null
     const kcfg = JSON.parse((await q('SELECT query FROM config_queries WHERE id=$1', [kpub.configQueryId]))[0].query);
     assert.strictEqual(kcfg.schedule[`fim_scan_${kp.id}_1_0`].query, 'SELECT username, uid, gid, description, directory, shell FROM users');
     assert.ok(kcfg.schedule[`fim_scan_${kp.id}_1_1`].query.includes('LEFT JOIN hash'));
-    assert.ok(kcfg.schedule[`fim_scan_${kp.id}_1_2`].query.startsWith('SELECT path, key, value FROM extended_attributes'));
+    assert.ok(kcfg.schedule[`fim_scan_${kp.id}_1_2`].query.startsWith('SELECT f.path, x.key, x.value FROM file f CROSS JOIN extended_attributes x'));
     assert.deepStrictEqual(kcfg.file_paths, { [`fim_${kp.id}`]: ['/etc/ssh/%%'] });
     // initialize uses the very same SQL per entry
     const ki = await svc.initializeBaseline(db, kp.id, { note: 'k', requestedBy: 'a@x' });

@@ -466,7 +466,10 @@ export type ScanEntry = string | ({ kind?: FimEntryKind; path?: string; source?:
  * path: files AND directories. The LEFT JOIN is guarded by f.type = 'regular' so FIFOs,
  *   devices and directories are never opened for hashing (verified with osqueryd 5.0.1:
  *   directories come back with type='directory' and a trailing slash).
- * xattr (linux): extended_attributes needs a path constraint; LIKE works (verified).
+ * xattr (linux): extended_attributes opens each path it is given, and opening a FIFO blocks
+ *   osqueryd forever (verified with osqueryd 5.12.1; it also ignores SIGTERM while blocked). So
+ *   paths come from the file table filtered by type first. CROSS JOIN keeps that order in SQLite.
+ *   The file table reports a symlink as its target's type, so a symlink to a FIFO is filtered too.
  * registry (windows, UNVERIFIED): registry.key LIKE '<pattern>' - '%' one level, '%%' recursive,
  *   as documented for the osquery registry table.
  * acl (windows, UNVERIFIED): ntfs_acl_permissions for one exact path.
@@ -502,7 +505,7 @@ export function buildScanSql(entryIn: ScanEntry, platform: FimOsPlatform): strin
   if (kind === 'xattr') {
     if (platform !== 'linux') throw new FimValidationError('extended attribute entries are Linux-only');
     assertSafePath(path, 'linux');
-    return `SELECT path, key, value FROM extended_attributes WHERE ${likeConds('path', path, 'linux').where}`;
+    return `SELECT f.path, x.key, x.value FROM file f CROSS JOIN extended_attributes x ON x.path = f.path WHERE (${likeConds('f.path', path, 'linux').where}) AND f.type IN ('regular', 'directory')`;
   }
   assertSafePath(path, platform);
   const { where } = likeConds('f.path', path, platform);
