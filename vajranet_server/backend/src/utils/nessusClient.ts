@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
-import https from 'https';
 import { decrypt } from './encryption';
 import { getLogger } from './logger';
 import { SCANNER_CONFIG_CACHE_TTL_MS } from '../consts/scanning';
 import { groupIdWhereValue, scannerCacheKey } from './scannerScope';
+import { createGuardedServiceHttpsAgent, scannerTlsOptions, guardedServiceHttpAgent } from './outboundUrl';
 
 const logger = getLogger('scanner.nessus');
 
@@ -19,7 +19,7 @@ const cachedClients = new Map<string, CachedNessusClient>();
 
 const CACHE_TTL_MS = SCANNER_CONFIG_CACHE_TTL_MS;
 
-const nessusHttpsAgent = new https.Agent({ rejectUnauthorized: false });
+const nessusHttpsAgent = createGuardedServiceHttpsAgent(scannerTlsOptions());
 
 function createNessusInstance(nessusUrl: string, accessKey: string, secretKey: string): AxiosInstance {
   return axios.create({
@@ -29,8 +29,10 @@ function createNessusInstance(nessusUrl: string, accessKey: string, secretKey: s
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
+    httpAgent: guardedServiceHttpAgent,
     httpsAgent: nessusHttpsAgent,
     timeout: 30_000,
+    maxRedirects: 0, // don't let a validated-at-save-time host 30x us to an unvalidated internal target
   });
 }
 

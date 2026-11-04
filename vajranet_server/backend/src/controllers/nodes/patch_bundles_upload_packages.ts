@@ -115,7 +115,7 @@ export const uploadPackagesForBuild = async (req: Request, res: Response, next: 
       upload(req, res, (err) => (err ? reject(err) : resolve()));
     });
 
-    const files = (req.files as Express.Multer.File[] | undefined) ?? [];
+    const files = Array.isArray(req.files) ? req.files : [];
     if (files.length === 0) {
       throw new Error(`no ${ext} files were accepted — check the files you selected match family "${family}"`);
     }

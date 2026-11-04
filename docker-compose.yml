@@ -235,6 +235,10 @@ services:
       NESSUS_ENCRYPTION_KEY: ${NESSUS_ENCRYPTION_KEY:?set NESSUS_ENCRYPTION_KEY in .env}
       AGENT_MTLS_MODE: "off"
       WS_ENABLED: "false"
+      # Optional. See .env.example.
+      ALLOW_LOOPBACK_SERVICE_URL: ${ALLOW_LOOPBACK_SERVICE_URL:-}
+      ALLOW_INSECURE_SCANNER_TLS: ${ALLOW_INSECURE_SCANNER_TLS:-}
+      SCANNER_TLS_CA_FILE: ${SCANNER_TLS_CA_FILE:-}
     volumes:
       - backend-keys:/app/keys
       - backend-storage:/app/storage

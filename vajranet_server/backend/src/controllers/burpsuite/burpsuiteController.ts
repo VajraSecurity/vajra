@@ -12,6 +12,7 @@ import { sanitizeAxiosError } from '../../utils/sanitizeAxiosError';
 import { resolveScannerGroupContext, groupIdWhereValue } from '../../utils/scannerScope';
 import { canActOnGroup, scopeGroupIds } from '../../utils/nodeScope';
 import { normalizeBurpTarget } from '../../utils/urlIdentity';
+import { canonicalizeHttpUrl } from '../../utils/outboundUrl';
 
 const logger = getLogger('controllers.burpsuite');
 
@@ -74,11 +75,13 @@ async function assertAllowedBurpUrl(
     );
   }
 
+  let canonical: string;
   let hostname: string;
   try {
-    hostname = new URL(cleaned).hostname.replace(/^\[|\]$/g, ''); // strip IPv6 literal brackets
-  } catch {
-    throw new Error('Burp Suite URL is not a valid URL');
+    canonical = canonicalizeHttpUrl(cleaned);
+    hostname = new URL(canonical).hostname.replace(/^\[|\]$/g, ''); // strip IPv6 literal brackets
+  } catch (err: any) {
+    throw new Error(`Burp Suite ${err.message}`, { cause: err });
   }
 
   const isLiteral = /^[0-9.]+$/.test(hostname) || hostname.includes(':');
@@ -105,7 +108,7 @@ async function assertAllowedBurpUrl(
     );
   }
 
-  return cleaned;
+  return canonical;
 }
 
 const getActiveConfig = async (groupId: string | null) => {
@@ -268,7 +271,7 @@ export const getBurpsuiteConfig = async (req: Request, res: Response, _next: Nex
  */
 async function runBurpsuiteConnectionTest(urlClean: string, apiKey: string): Promise<{ success: boolean; message?: string }> {
     try {
-        await axios.get(`${urlClean}/${apiKey}/v0.1/knowledge_base/issue_definitions`, {
+        await axios.get(`${urlClean}/${encodeURIComponent(apiKey)}/v0.1/knowledge_base/issue_definitions`, {
             timeout: DEFAULT_TIMEOUT_MS,
             maxRedirects: 0 // don't let a validated-at-save-time host 30x us to an unvalidated internal target
         });
@@ -410,7 +413,7 @@ export const listBurpsuiteScans = async (req: Request, res: Response, _next: Nex
                     config.apiKeyIv,
                     config.apiKeyAuthTag
                 );
-                const response = await axios.get(`${config.apiUrl}/${apiKey}/v0.1/scan/${scan.taskId}`, {
+                const response = await axios.get(`${config.apiUrl}/${encodeURIComponent(apiKey)}/v0.1/scan/${scan.taskId}`, {
                     timeout: DEFAULT_TIMEOUT_MS,
                     maxRedirects: 0 // don't let a validated-at-save-time host 30x us to an unvalidated internal target
                 });
@@ -543,7 +546,7 @@ export const launchBurpsuiteScan = async (req: Request, res: Response, _next: Ne
 
         let response;
         try {
-            response = await axios.post(`${config.apiUrl}/${apiKey}/v0.1/scan`,
+            response = await axios.post(`${config.apiUrl}/${encodeURIComponent(apiKey)}/v0.1/scan`,
                 payload,
                 {
                     headers: {
@@ -681,7 +684,7 @@ export const testStoredBurpsuiteConnection = async (req: Request, res: Response,
             config.apiKeyAuthTag
         );
 
-        await axios.get(`${config.apiUrl}/${apiKey}/v0.1/knowledge_base/issue_definitions`, {
+        await axios.get(`${config.apiUrl}/${encodeURIComponent(apiKey)}/v0.1/knowledge_base/issue_definitions`, {
             timeout: DEFAULT_TIMEOUT_MS,
             maxRedirects: 0 // don't let a validated-at-save-time host 30x us to an unvalidated internal target
         });
@@ -760,7 +763,7 @@ export const getBurpsuiteScanDetails = async (req: Request, res: Response, _next
             );
 
             try {
-                const response = await axios.get(`${config.apiUrl}/${apiKey}/v0.1/scan/${scan.taskId}`, {
+                const response = await axios.get(`${config.apiUrl}/${encodeURIComponent(apiKey)}/v0.1/scan/${scan.taskId}`, {
                     timeout: DEFAULT_TIMEOUT_MS,
                     maxRedirects: 0 // don't let a validated-at-save-time host 30x us to an unvalidated internal target
                 });
