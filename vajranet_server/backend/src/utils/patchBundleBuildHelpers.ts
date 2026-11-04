@@ -40,9 +40,13 @@ export class BinaryMissingError extends Error {}
  */
 export async function resolveWithinRoot(root: string, name: string): Promise<string> {
   const rootReal = await fs.promises.realpath(root);
-  const candidate = path.join(rootReal, name);
-  const candidateReal = await fs.promises.realpath(candidate);
   const prefix = rootReal.endsWith(path.sep) ? rootReal : rootReal + path.sep;
+  const candidate = path.resolve(rootReal, name);
+  if (candidate === rootReal) return rootReal;
+  if (!candidate.startsWith(prefix)) {
+    throw new Error('path resolves outside the given root');
+  }
+  const candidateReal = await fs.promises.realpath(candidate);
   if (candidateReal !== rootReal && !candidateReal.startsWith(prefix)) {
     throw new Error('path resolves outside the given root');
   }

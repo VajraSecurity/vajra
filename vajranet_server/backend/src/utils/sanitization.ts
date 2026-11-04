@@ -28,9 +28,10 @@ export const normalizeEmail = (email: string): string => {
 };
 
 /**
- * Escapes ILIKE's own wildcard characters (`%`, `_`) in a user-supplied search
- * term, so it can be safely interpolated into a `%<term>%` ILIKE pattern
- * without the caller's raw input being treated as SQL LIKE wildcards.
+ * Escapes ILIKE's wildcard characters (`%`, `_`) and its escape character (`\\`)
+ * in a user-supplied search term, so it can be safely interpolated into a
+ * `%<term>%` ILIKE pattern without being treated as pattern syntax. A term ending
+ * in a backslash would otherwise escape the closing `%`.
  */
 export const escapeIlikeSearchTerm = (search: string): string =>
-  search.replace(/%/g, '\\%').replace(/_/g, '\\_');
+  search.replace(/[\\%_]/g, '\\$&');

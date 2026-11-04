@@ -63,7 +63,7 @@ async function assertAllowedBurpUrl(
   rawUrl: string,
   relaxationLogLevel: 'warn' | 'debug' = 'warn',
 ): Promise<string> {
-  const cleaned = String(rawUrl).replace(/\/+$/, '');
+  const cleaned = String(rawUrl);
   const allowInsecure = allowInsecureBurpUrl();
 
   const schemeOk = allowInsecure ? /^https?:\/\//i.test(cleaned) : /^https:\/\//i.test(cleaned);

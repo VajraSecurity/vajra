@@ -14,6 +14,7 @@ export const RATE_LIMIT_MAX_PROFILE_UPDATE = 5;
 export const RATE_LIMIT_MAX_SESSION_STATUS = 60;
 
 /** Data API rate limits */
+export const RATE_LIMIT_MAX_FAILED_AUTH_IP = 300; // 401 responses per IP per minute, checked before authentication
 export const RATE_LIMIT_MAX_API_DATA = 200;       // General data queries per minute (keyed per-user when authenticated)
 export const RATE_LIMIT_MAX_API_EXPORT = 20;     // Export endpoints per 15 min (keyed per-user when authenticated)
 export const RATE_LIMIT_MAX_API_MUTATION = 60;   // Mutation (update/rename) per 15 min (keyed per-user when authenticated)

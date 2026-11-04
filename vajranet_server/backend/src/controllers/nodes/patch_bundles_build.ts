@@ -95,14 +95,23 @@ async function resolveStagingDir(sourceDirName: string): Promise<string> {
  */
 function loadSignKey(): string {
   const keyPath = process.env.PATCH_BUNDLE_SIGN_KEY_PATH || path.join(__dirname, '..', '..', '..', 'keys', 'patch_bundle_sign.key');
-  if (!fs.existsSync(keyPath)) {
-    throw new Error(`patch bundle signing key not found at ${keyPath} — provision it (see scripts/sign-patch-bundle.ts keygen) before using the build endpoint`);
+  // Check and read through one descriptor, so the file checked is the file read.
+  let fd: number;
+  try {
+    fd = fs.openSync(keyPath, 'r');
+  } catch (err: any) {
+    if (err?.code !== 'ENOENT') throw err;
+    throw new Error(`patch bundle signing key not found at ${keyPath} — provision it (see scripts/sign-patch-bundle.ts keygen) before using the build endpoint`, { cause: err });
   }
-  const mode = fs.statSync(keyPath).mode & 0o777;
-  if (mode & 0o077) {
-    throw new Error(`patch bundle signing key at ${keyPath} is readable/writable beyond its owner (mode ${mode.toString(8)}) — refusing to use it; chmod 600 it first`);
+  try {
+    const mode = fs.fstatSync(fd).mode & 0o777;
+    if (mode & 0o077) {
+      throw new Error(`patch bundle signing key at ${keyPath} is readable/writable beyond its owner (mode ${mode.toString(8)}) — refusing to use it; chmod 600 it first`);
+    }
+    return fs.readFileSync(fd, 'utf-8');
+  } finally {
+    fs.closeSync(fd);
   }
-  return fs.readFileSync(keyPath, 'utf-8');
 }
 
 type StagedPackage = { name: string; version: string; arch: string; filename: string; sha256: string };
@@ -408,9 +417,11 @@ export const servePatchArchive = async (req: Request, res: Response, next: NextF
       logger.warn({ filename, dir }, 'Patch archive download rejected: archive directory does not exist');
       return res.status(404).json({ status: 'Fail', message: 'Archive not found' });
     }
-    const candidate = path.join(dirReal, filename);
-    const resolved = await fs.promises.realpath(candidate).catch(() => null);
     const prefix = dirReal.endsWith(path.sep) ? dirReal : dirReal + path.sep;
+    const candidate = path.resolve(dirReal, filename);
+    const resolved = candidate.startsWith(prefix)
+      ? await fs.promises.realpath(candidate).catch(() => null)
+      : null;
     if (!resolved || !resolved.startsWith(prefix)) {
       // Covers both a genuinely missing archive file AND a resolved path
       // that escaped PATCH_ARCHIVE_DIR — the latter would only happen via a

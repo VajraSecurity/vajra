@@ -78,7 +78,8 @@ export const manualCheck = async (req: Request, res: Response, _next: NextFuncti
     if (!Array.isArray(providers) || providers.length === 0) {
       return res.status(400).json({ success: false, message: 'providers must be a non-empty array' });
     }
-    const requested = providers.filter((p): p is DomainReputationProviderName => Object.prototype.hasOwnProperty.call(CHECKERS, p));
+    // Walk the known providers rather than the request, so the key used below is never user input.
+    const requested = (Object.keys(CHECKERS) as DomainReputationProviderName[]).filter((name) => providers.includes(name));
     if (requested.length === 0) {
       return res.status(400).json({ success: false, message: 'No valid providers requested' });
     }

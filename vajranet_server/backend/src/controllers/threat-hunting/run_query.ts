@@ -5,6 +5,7 @@ import { CustomError } from '../../utils/response/custom-error/CustomError';
 import { validateSql } from '../../mcp/guardrails';
 import { getUserNodeScope, scopeGroupIds } from '../../utils/nodeScope';
 import { getLogger } from '../../utils/logger';
+import { stripTrailingStatementEnd } from '../../utils/sqlText';
 import { THREAT_HUNTING_DEFAULT_ROW_LIMIT, THREAT_HUNTING_MAX_ROW_LIMIT, RLS_GROUP_SESSION_VAR } from '../../consts/database';
 
 const logger = getLogger('controllers.threatHunting.runQuery');
@@ -70,7 +71,7 @@ export async function run_query(req: Request, res: Response, next: NextFunction)
     );
 
     // Wrap in a CTE to inject LIMIT safely without modifying the user's SQL
-    const wrapped = `SELECT * FROM (${query.trim().replace(/;+\s*$/, '')}) __q LIMIT ${rowLimit}`;
+    const wrapped = `SELECT * FROM (${stripTrailingStatementEnd(query)}) __q LIMIT ${rowLimit}`;
 
     try {
       const rows = await db.transaction(async (manager) => {
