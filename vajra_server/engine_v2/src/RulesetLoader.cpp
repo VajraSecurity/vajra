@@ -7,6 +7,7 @@
 #include <set>
 #include <sstream>
 
+#include "../../common/ReadRegularFile.h"
 #include "vajra_engine/JsonSafety.h"
 
 namespace vajra_engine {
@@ -632,16 +633,16 @@ void load_ruleset_file(const std::string& path, RuleEngine& engine, Decoder* dec
     if (!std::filesystem::exists(path)) {
         throw RulesetError("ruleset file not found: " + path);
     }
-    std::ifstream in(path);
-    if (!in.is_open()) {
-        throw RulesetError("could not open ruleset file: " + path);
+    std::string text;
+    try {
+        text = vajra_common::read_regular_file(path);
+    } catch (const std::runtime_error& e) {
+        throw RulesetError("could not open ruleset file: " + path + ": " + e.what());
     }
-    std::ostringstream buf;
-    buf << in.rdbuf();
 
     nlohmann::json doc;
     try {
-        doc = nlohmann::json::parse(buf.str());
+        doc = nlohmann::json::parse(text);
     } catch (const nlohmann::json::parse_error& e) {
         throw RulesetError(std::string("invalid JSON in ") + path + ": " + e.what());
     }

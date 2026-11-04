@@ -88,9 +88,8 @@ export const verifyMfaSetup = async (req: Request, res: Response, next: NextFunc
   try {
     const { token, securityQuestion1, securityAnswer1, securityQuestion2, securityAnswer2 } = req.body;
     if (!token) return res.status(400).json({ status: 'Fail', message: 'Missing MFA code' });
-    if (!securityQuestion1 || !securityAnswer1 || !securityQuestion2 || !securityAnswer2) {
+    if (!securityQuestion1 || !securityAnswer1 || !securityQuestion2 || !securityAnswer2)
       return res.status(400).json({ status: 'Fail', message: 'Missing security questions or answers' });
-    }
 
     const userId = (req as any).jwtPayload?.id;
     if (!userId) return res.status(401).json({ status: 'Fail', message: 'Unauthorized' });
@@ -267,9 +266,8 @@ export const recoverMfa = async (req: Request, res: Response, next: NextFunction
   let decoded: any;
   try {
     const { mfaToken, recoveryCode } = req.body;
-    if (!mfaToken || !recoveryCode) {
+    if (!mfaToken || !recoveryCode)
       return res.status(400).json({ status: 'Fail', message: 'Missing MFA token or recovery code' });
-    }
 
     try {
       decoded = verifyMfaToken(mfaToken);

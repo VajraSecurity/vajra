@@ -11,6 +11,7 @@ set(VAJRA_ENGINE_V2_TEST_SOURCES
     test_metrics_server.cpp
     test_list_store_icase.cpp
     test_regex_search_bounded.cpp
+    test_read_regular_file.cpp
 )
 
 add_executable(vajra_engine_v2_tests ${VAJRA_ENGINE_V2_TEST_SOURCES})

@@ -46,9 +46,8 @@ const logger = getLogger('nodes.agentCertProvisioning');
 export const generateCertProvisioningToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { host_identifier, totp_code } = req.body ?? {};
-    if (!isValidHostIdentifier(host_identifier) || !totp_code) {
+    if (!isValidHostIdentifier(host_identifier) || !totp_code)
       return res.status(400).json({ status: 'Fail', message: 'Missing or invalid host_identifier, or missing totp_code' });
-    }
 
     const jwtPayload = (req as any).jwtPayload as JwtPayload | undefined;
     if (!jwtPayload?.id) {
@@ -275,9 +274,8 @@ export const provisionAgentCert = async (req: Request, res: Response, next: Next
 export const revokeCertProvisioningToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { id, totp_code } = req.body ?? {};
-    if (!id || !totp_code) {
+    if (!id || !totp_code)
       return res.status(400).json({ status: 'Fail', message: 'Missing id or totp_code' });
-    }
 
     const jwtPayload = (req as any).jwtPayload as JwtPayload | undefined;
     if (!jwtPayload?.id) {
