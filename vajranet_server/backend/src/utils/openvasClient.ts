@@ -6,7 +6,7 @@ import { sanitizeAxiosError } from './sanitizeAxiosError';
 import { SCANNER_CONFIG_CACHE_TTL_MS } from '../consts/scanning';
 import { EXTERNAL_API_TIMEOUT_MS } from '../consts/timeout';
 import { groupIdWhereValue, scannerCacheKey } from './scannerScope';
-import { createGuardedServiceHttpsAgent, guardedServiceHttpAgent } from './outboundUrl';
+import { createGuardedServiceHttpsAgent, scannerTlsOptions, guardedServiceHttpAgent } from './outboundUrl';
 
 const logger = getLogger('scanner.openvas');
 
@@ -36,7 +36,7 @@ const sessionCache = new Map<string, GsaSession>();
 const CONFIG_CACHE_TTL_MS = SCANNER_CONFIG_CACHE_TTL_MS;
 const SESSION_TTL_MS = 600_000; // 10 min (GSA session timeout is ~15 min)
 
-const gsaHttpsAgent = createGuardedServiceHttpsAgent({ rejectUnauthorized: false });
+const gsaHttpsAgent = createGuardedServiceHttpsAgent(scannerTlsOptions());
 
 /**
  * GMP response paths that must always parse as arrays, even when the response

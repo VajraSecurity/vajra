@@ -3,7 +3,7 @@ import { decrypt } from './encryption';
 import { getLogger } from './logger';
 import { SCANNER_CONFIG_CACHE_TTL_MS } from '../consts/scanning';
 import { groupIdWhereValue, scannerCacheKey } from './scannerScope';
-import { createGuardedServiceHttpsAgent, guardedServiceHttpAgent } from './outboundUrl';
+import { createGuardedServiceHttpsAgent, scannerTlsOptions, guardedServiceHttpAgent } from './outboundUrl';
 
 const logger = getLogger('scanner.nessus');
 
@@ -19,7 +19,7 @@ const cachedClients = new Map<string, CachedNessusClient>();
 
 const CACHE_TTL_MS = SCANNER_CONFIG_CACHE_TTL_MS;
 
-const nessusHttpsAgent = createGuardedServiceHttpsAgent({ rejectUnauthorized: false });
+const nessusHttpsAgent = createGuardedServiceHttpsAgent(scannerTlsOptions());
 
 function createNessusInstance(nessusUrl: string, accessKey: string, secretKey: string): AxiosInstance {
   return axios.create({

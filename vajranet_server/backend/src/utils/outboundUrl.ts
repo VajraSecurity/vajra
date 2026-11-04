@@ -1,8 +1,12 @@
 import { lookup as dnsLookup, promises as dns } from 'dns';
 import * as http from 'http';
 import * as https from 'https';
+import * as fs from 'fs';
 import * as net from 'net';
 import { isPrivateOrLoopbackIp } from '../services/domainReputation/validation';
+import { getLogger } from './logger';
+
+const logger = getLogger('utils.outboundUrl');
 
 export class OutboundUrlError extends Error {}
 
@@ -177,4 +181,29 @@ export const guardedServiceHttpAgent = guardLiteralHosts(new http.Agent({ lookup
 
 export function createGuardedServiceHttpsAgent(options: https.AgentOptions = {}): https.Agent {
   return guardLiteralHosts(new https.Agent({ ...options, lookup: guardedServiceLookup }));
+}
+
+/**
+ * TLS settings for Nessus and OpenVAS. Certificates are verified by default, because
+ * these connections carry scanner credentials. Scanners usually ship a self-signed
+ * certificate: trust it with SCANNER_TLS_CA_FILE, or opt out with
+ * ALLOW_INSECURE_SCANNER_TLS=true. An unreadable CA file leaves verification on, so
+ * a bad path fails closed.
+ */
+export function scannerTlsOptions(): Pick<https.AgentOptions, 'rejectUnauthorized' | 'ca'> {
+  const options: Pick<https.AgentOptions, 'rejectUnauthorized' | 'ca'> = {
+    rejectUnauthorized: process.env.ALLOW_INSECURE_SCANNER_TLS !== 'true',
+  };
+  if (!options.rejectUnauthorized) {
+    logger.warn('ALLOW_INSECURE_SCANNER_TLS is set: scanner TLS certificates are not being verified');
+    return options;
+  }
+  const caFile = process.env.SCANNER_TLS_CA_FILE;
+  if (!caFile) return options;
+  try {
+    options.ca = fs.readFileSync(caFile, 'utf-8');
+  } catch (err) {
+    logger.error({ err, caFile }, 'Could not read SCANNER_TLS_CA_FILE; scanner connections with a private CA will fail');
+  }
+  return options;
 }

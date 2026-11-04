@@ -9,6 +9,7 @@ import {
   createGuardedServiceHttpsAgent,
   guardedServiceHttpAgent,
   OutboundUrlError,
+  scannerTlsOptions,
 } from '../../../utils/outboundUrl';
 
 describe('canonicalizeHttpUrl', () => {
@@ -157,5 +158,30 @@ describe('guardedServiceHttpAgent', () => {
   it('connects when the resolved address is allowed', async () => {
     process.env.ALLOW_LOOPBACK_SERVICE_URL = 'true';
     await expect(request()).resolves.toMatchObject({ data: 'reached' });
+  });
+});
+
+describe('scannerTlsOptions', () => {
+  const saved = { insecure: process.env.ALLOW_INSECURE_SCANNER_TLS, ca: process.env.SCANNER_TLS_CA_FILE };
+  afterEach(() => {
+    if (saved.insecure === undefined) delete process.env.ALLOW_INSECURE_SCANNER_TLS; else process.env.ALLOW_INSECURE_SCANNER_TLS = saved.insecure;
+    if (saved.ca === undefined) delete process.env.SCANNER_TLS_CA_FILE; else process.env.SCANNER_TLS_CA_FILE = saved.ca;
+  });
+
+  it('verifies certificates by default', () => {
+    delete process.env.ALLOW_INSECURE_SCANNER_TLS;
+    delete process.env.SCANNER_TLS_CA_FILE;
+    expect(scannerTlsOptions()).toEqual({ rejectUnauthorized: true });
+  });
+  it('turns verification off only for the exact opt-out value', () => {
+    process.env.ALLOW_INSECURE_SCANNER_TLS = 'true';
+    expect(scannerTlsOptions().rejectUnauthorized).toBe(false);
+    process.env.ALLOW_INSECURE_SCANNER_TLS = '1';
+    expect(scannerTlsOptions().rejectUnauthorized).toBe(true);
+  });
+  it('keeps verification on when the CA file cannot be read', () => {
+    delete process.env.ALLOW_INSECURE_SCANNER_TLS;
+    process.env.SCANNER_TLS_CA_FILE = '/nonexistent/ca.pem';
+    expect(scannerTlsOptions()).toEqual({ rejectUnauthorized: true });
   });
 });
