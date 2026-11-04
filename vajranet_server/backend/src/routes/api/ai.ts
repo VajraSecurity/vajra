@@ -64,7 +64,7 @@ router.use(checkAccessJwt);
 
 // ─── POST /api/ai/chat ────────────────────────────────────────────────────────
 
-router.post('/chat', [apiDataLimiter], async (req: Request, res: Response) => {
+router.post('/chat', [apiDataLimiter, checkCsrf], async (req: Request, res: Response) => {
   const messages: ChatMessage[] = req.body?.messages;
 
   if (!messages || !Array.isArray(messages)) {

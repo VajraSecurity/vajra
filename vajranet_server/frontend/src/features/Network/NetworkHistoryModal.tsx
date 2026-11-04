@@ -12,6 +12,7 @@ import { DuoSpinner } from '@/components/ui/loading';
 import { useModalA11y } from '../../hooks/useModalA11y';
 import type { ParsedHost, ParsedNmapResult } from './utils/parseNmapOutput';
 import NetworkScanCharts from './NetworkScanCharts';
+import { hasVulnersLink } from '../../lib/hasVulnersLink';
 
 /** Small chevron that flips to indicate an expandable section's open state. */
 const ExpandChevron = ({ expanded, className = 'w-5 h-5 text-slate-400' }: { expanded: boolean; className?: string }) => (
@@ -44,7 +45,7 @@ const HostRow = React.memo<{ host: ParsedHost, isManaged: boolean, childScan?: N
   if (parsedChildResult) {
     parsedChildResult.ports.forEach(p => {
       p.details.forEach(d => {
-        if (d.includes('vulners.com')) {
+        if (hasVulnersLink(d)) {
           nmapVulns.push(d);
         }
       });

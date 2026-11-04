@@ -150,3 +150,10 @@ export function isPrivateOrLoopbackIp(ip: string): boolean {
   if (kind === 6) return isPrivateIPv6(ip);
   return false;
 }
+
+const HEADER_NAME_RE = /^[A-Za-z0-9][A-Za-z0-9_-]{0,127}$/;
+
+/** Rejects anything that isn't a plain header name, including `__proto__`. */
+export function isValidHeaderName(name: string): boolean {
+  return HEADER_NAME_RE.test(name);
+}

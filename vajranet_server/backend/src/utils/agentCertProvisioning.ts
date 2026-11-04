@@ -53,7 +53,7 @@ function parsePositiveNumberEnv(raw: string | undefined, fallback: number, name:
   if (raw === undefined) return fallback;
   const parsed = Number(raw);
   if (!Number.isFinite(parsed) || parsed <= 0) {
-    logger.warn({ name, raw, fallback }, 'Invalid environment variable value, falling back to default');
+    logger.warn({ name, fallback }, 'Invalid environment variable value, falling back to default');
     return fallback;
   }
   return parsed;

@@ -108,6 +108,7 @@ export function canonicalRegistryKey(key: string): string {
 
 /** SQL LIKE as SQLite evaluates the exclusions: '%' any run, rest literal, ASCII case-insensitive. */
 export function likeMatch(pattern: string, text: string): boolean {
+  if (typeof pattern !== 'string' || typeof text !== 'string') return false;
   const p = asciiLower(pattern), t = asciiLower(text);
   let dp: boolean[] = new Array(p.length + 1).fill(false);
   dp[0] = true;
@@ -477,7 +478,7 @@ export function buildRegistryScanSqlV2(entry: RegistryEntryV2): string {
   return sql;
 }
 
-const SHAPE_TOKENS = /^(?:\s+|SELECT|FROM|WHERE|AND|OR|NOT|LIKE|ESCAPE|IN|UNION|ALL|CASE|WHEN|THEN|ELSE|END|AS|registry|path|name|type|data|key|lower|length|substr|sha256|1|16|GLOB|\?|\|\||[(),=]|<>)+$/;
+const SHAPE_TOKENS = /^(?:\s|SELECT|FROM|WHERE|AND|OR|NOT|LIKE|ESCAPE|IN|UNION|ALL|CASE|WHEN|THEN|ELSE|END|AS|registry|path|name|type|data|key|lower|length|substr|sha256|1|16|GLOB|\?|\|\||[(),=]|<>)+$/;
 
 /** Post-build check: fixed token shape (after removing literals) and a 16 KiB cap. */
 export function assertRegistrySqlShape(sql: string): void {

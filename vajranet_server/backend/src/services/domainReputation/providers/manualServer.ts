@@ -4,6 +4,7 @@ import { getProviderConfig, type LoadedProviderConfig } from '../client';
 import { isPrivateOrLoopbackIp } from '../validation';
 import { createGuardedServiceHttpsAgent, guardedServiceHttpAgent } from '../../../utils/outboundUrl';
 import type { NormalizedReputationResult } from './types';
+import { isValidHeaderName } from '../validation';
 import type { DomainReputationTargetType } from '../../../orm/entities/fleet/DomainReputationTarget';
 import type { DomainReputationAuthMode } from '../../../orm/entities/fleet/DomainReputationProviderConfig';
 import { getLogger } from '../../../utils/logger';
@@ -81,13 +82,15 @@ export function normalizeManualServerResponse(raw: any): NormalizedReputationRes
 }
 
 function buildAuthHeaders(config: Pick<LoadedProviderConfig, 'apiKey' | 'authMode' | 'authHeaderName'>): Record<string, string> {
-  const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+  const entries: Array<[string, string]> = [['Content-Type', 'application/json']];
   if (config.authMode === 'bearer' && config.apiKey) {
-    headers['Authorization'] = `Bearer ${config.apiKey}`;
+    entries.push(['Authorization', `Bearer ${config.apiKey}`]);
   } else if (config.authMode === 'header' && config.apiKey) {
-    headers[config.authHeaderName || 'X-API-Key'] = config.apiKey;
+    const name = config.authHeaderName || 'X-API-Key';
+    if (!isValidHeaderName(name)) throw new Error('Reputation engine auth header name is invalid');
+    entries.push([name, config.apiKey]);
   }
-  return headers;
+  return Object.fromEntries(entries);
 }
 
 export async function checkManualServer(value: string, type: DomainReputationTargetType): Promise<NormalizedReputationResult> {

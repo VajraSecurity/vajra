@@ -320,9 +320,21 @@ function DisableMfaModal({ isOpen, onClose, onSuccess }: { isOpen: boolean; onCl
   );
 }
 
+type UserSettings = {
+  emailNotifications: boolean;
+  pushNotifications: boolean;
+  twoFactorAuth: boolean;
+  auditAlerts: boolean;
+};
+
+// The MFA state comes from the profile on every load, so it is never cached.
+const persistSettings = ({ emailNotifications, pushNotifications, auditAlerts }: UserSettings) => {
+  localStorage.setItem("userSettings", JSON.stringify({ emailNotifications, pushNotifications, auditAlerts }));
+};
+
 export default function Settings() {
   const navigate = useNavigate();
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = useState<UserSettings>({
     emailNotifications: true,
     pushNotifications: false,
     twoFactorAuth: false,
@@ -335,11 +347,11 @@ export default function Settings() {
   useEffect(() => {
     // Load saved settings from localStorage if they exist
     const savedSettings = localStorage.getItem('userSettings');
-    let parsedSettings = null;
+    let parsedSettings: Partial<UserSettings> | null = null;
     if (savedSettings) {
       try {
         parsedSettings = JSON.parse(savedSettings);
-        setSettings(parsedSettings);
+        setSettings(prev => ({ ...prev, ...parsedSettings }));
       } catch (err) {
         if (import.meta.env.DEV) {
           console.error('Invalid userSettings in localStorage, resetting.', err);
@@ -356,7 +368,7 @@ export default function Settings() {
           const mfaEnabled = response.data.mfa_enabled;
           setSettings(prev => {
             const updated = { ...prev, twoFactorAuth: mfaEnabled };
-            localStorage.setItem("userSettings", JSON.stringify(updated));
+            persistSettings(updated);
             return updated;
           });
           localStorage.setItem("user", JSON.stringify(sanitizeUserForCache(response.data)));
@@ -382,19 +394,19 @@ export default function Settings() {
     }
     const newSettings = { ...settings, [key]: !settings[key as keyof typeof settings] };
     setSettings(newSettings);
-    localStorage.setItem("userSettings", JSON.stringify(newSettings));
+    persistSettings(newSettings);
   };
 
   const handleMfaSuccess = () => {
     const newSettings = { ...settings, twoFactorAuth: true };
     setSettings(newSettings);
-    localStorage.setItem("userSettings", JSON.stringify(newSettings));
+    persistSettings(newSettings);
   };
 
   const handleMfaDisableSuccess = () => {
     const newSettings = { ...settings, twoFactorAuth: false };
     setSettings(newSettings);
-    localStorage.setItem("userSettings", JSON.stringify(newSettings));
+    persistSettings(newSettings);
   };
 
 

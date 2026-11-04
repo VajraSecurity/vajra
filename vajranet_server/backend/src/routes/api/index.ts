@@ -25,12 +25,19 @@ import domainReputation from './domain-reputation';
 import assets from './assets';
 import ruleEngine from './rule-engine';
 import fim from './fim';
+import { failedAuthIpLimiter } from '../../middleware/rateLimiters';
 
 const router = Router();
 
 router.get('/', (_req, res) => {
 	res.status(200).send("Hey, welcome to Vajra");
 });
+
+// Before the limiter: agents authenticate with mTLS rather than a session, and many
+// can share one address, so one host's failures must not block the rest of the fleet.
+router.use('/agent', agent);
+
+router.use(failedAuthIpLimiter);
 
 router.use('/auth', auth);
 router.use('/nodes', nodes);
@@ -48,7 +55,6 @@ router.use('/openvas', openvas);
 router.use('/groups', endpointGroups);
 router.use('/policies', policies);
 router.use('/burpsuite', burpsuite);
-router.use('/agent', agent);
 router.use('/node-assignment-rules', nodeAssignmentRules);
 router.use('/patch', patch);
 // Windows maintained-app (third-party software) install/uninstall — a

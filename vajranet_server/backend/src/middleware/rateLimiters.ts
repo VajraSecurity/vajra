@@ -12,6 +12,7 @@ import {
   RATE_LIMIT_MAX_PASSWORD_UPDATE,
   RATE_LIMIT_MAX_PROFILE_UPDATE,
   RATE_LIMIT_MAX_SESSION_STATUS,
+  RATE_LIMIT_MAX_FAILED_AUTH_IP,
   RATE_LIMIT_MAX_API_DATA,
   RATE_LIMIT_MAX_API_EXPORT,
   RATE_LIMIT_MAX_API_MUTATION,
@@ -205,6 +206,40 @@ export const sessionStatusLimiter = rateLimit({
   message: {
     status: 'TooManyRequests',
     message: 'Too many session status checks, please try again later.',
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+/**
+ * nginx connects over loopback and appends the real client address, so req.ip is only
+ * trusted there. The backend port can also be reached directly, and a direct client
+ * could otherwise send X-Forwarded-For to dodge this limiter or to use up someone
+ * else's budget, so anything else is keyed on the connection's own address.
+ */
+export const failedAuthKey = (req: Pick<Request, 'ip' | 'socket'>): string => {
+  const peer = req.socket.remoteAddress ?? '0.0.0.0';
+  const viaLocalProxy = peer === '127.0.0.1' || peer === '::1' || peer === '::ffff:127.0.0.1';
+  return ipKeyGenerator(viaLocalProxy ? req.ip ?? peer : peer);
+};
+
+/**
+ * Runs before authentication on the API routers. The per-route limiters run after
+ * it because they key on the user id, which leaves token checks themselves
+ * unthrottled. Only 401s count, so a valid session never spends this budget and
+ * many users behind one NAT address aren't limited by each other's traffic.
+ */
+export const failedAuthIpLimiter = rateLimit({
+  store: storeConfig('rl:failed-auth-ip:'),
+  windowMs: RATE_LIMIT_WINDOW_MS_1MIN,
+  max: RATE_LIMIT_MAX_FAILED_AUTH_IP,
+  keyGenerator: failedAuthKey,
+  skipSuccessfulRequests: true,
+  requestWasSuccessful: (_req, res) => res.statusCode !== 401,
+  handler: rateLimitExceededHandler('failedAuthIp'),
+  message: {
+    status: 'TooManyRequests',
+    message: 'Too many failed authentication attempts from this IP, please try again later.',
   },
   standardHeaders: true,
   legacyHeaders: false,

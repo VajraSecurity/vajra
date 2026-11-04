@@ -4835,7 +4835,7 @@
         a.className = 'sb-link';
         a.href = '#';
         a.innerHTML = item.label;
-        a.setAttribute('data-label', item.label.replace(/<[^>]+>/g, ''));
+        a.setAttribute('data-label', a.textContent);
         a.setAttribute('data-page', item.id);
         a.addEventListener('click', function (e) {
           e.preventDefault();

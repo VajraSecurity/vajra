@@ -7,6 +7,7 @@ import type { ParsedHost, ParsedNmapResult } from './utils/parseNmapOutput';
 import { AdvancedScanCard } from './NetworkHistoryModal';
 import type { VulnScanEntry } from './NetworkHistoryModal';
 import { DuoSpinner } from '@/components/ui/loading';
+import { hasVulnersLink } from '../../lib/hasVulnersLink';
 
 // Memoised like its twin in NetworkHistoryModal: without it every parent render re-mounts
 // and re-parses every row, and the parse below re-runs even when the row's own expand
@@ -29,7 +30,7 @@ const HostRowOverview = React.memo<{ host: ParsedHost, isManaged: boolean, child
     if (parsedChildResult) {
       parsedChildResult.ports.forEach(p => {
         p.details.forEach(d => {
-          if (d.includes('vulners.com')) {
+          if (hasVulnersLink(d)) {
             vulns.push(d);
           }
         });

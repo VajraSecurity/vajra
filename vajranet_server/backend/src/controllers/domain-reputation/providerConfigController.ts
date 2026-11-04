@@ -6,6 +6,7 @@ import { getProviderConfig, invalidateDomainReputationConfigCache } from '../../
 import { testVirusTotalApiKey } from '../../services/domainReputation/providers/virustotal';
 import { testAbuseIPDBApiKey } from '../../services/domainReputation/providers/abuseipdb';
 import { testManualServerConnection } from '../../services/domainReputation/providers/manualServer';
+import { isValidHeaderName } from '../../services/domainReputation/validation';
 import { getDomainReputationScopeContext, resolveWriteGroupId } from '../../services/domainReputation/scopeContext';
 import type { DomainReputationAuthMode, DomainReputationProviderName } from '../../orm/entities/fleet/DomainReputationProviderConfig';
 import { API_KEY_MASK_SUFFIX_LENGTH } from '../../consts/auth';
@@ -154,6 +155,9 @@ export const saveProviderConfig = async (req: Request, res: Response, _next: Nex
       }
       const authMode: DomainReputationAuthMode = ['none', 'header', 'bearer'].includes(auth_mode) ? auth_mode : 'bearer';
       const authHeaderName = typeof auth_header_name === 'string' && auth_header_name.trim() ? auth_header_name.trim() : 'X-API-Key';
+      if (!isValidHeaderName(authHeaderName)) {
+        return res.status(400).json({ success: false, message: 'auth_header_name is not a valid header name' });
+      }
 
       let apiKeyEncrypted: string | null = null;
       let apiKeyIv: string | null = null;
