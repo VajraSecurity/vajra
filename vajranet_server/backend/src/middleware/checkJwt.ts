@@ -414,6 +414,27 @@ export const checkAccessJwt = async (req: Request, res: Response, next: NextFunc
   }
 };
 
+/** Handles a request carrying only a refresh token. */
+async function renewFromRefreshToken(req: Request, res: Response, next: NextFunction, refreshToken: string) {
+  try {
+    const refreshPayload = jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET as string, { algorithms: [JWT_ALGORITHM] }) as { [key: string]: any };
+
+    stripJwtTimingClaims(refreshPayload);
+    (req as any).jwtPayload = refreshPayload as JwtPayload;
+
+    const rotationError = await rotateRefreshToken(req, res, refreshToken, refreshPayload as JwtPayload);
+    if (rotationError) return next(rotationError);
+    return next();
+  } catch (err) {
+    // This block also covers the session_version UPDATE on the
+    // reuse-detected path, so a database failure would otherwise read as an
+    // ordinary invalid or expired refresh token.
+    logger.warn({ err }, 'Refresh token verification or renewal failed');
+    const customError = new CustomError(401, 'Raw', 'Refresh token expired or invalid. Please log in again.', null, err);
+    return next(customError);
+  }
+}
+
 /**
  * Middleware that attempts to use access token, and if it's expired,
  * tries to renew it using the refresh token. This prevents the redirect loop
@@ -434,79 +455,63 @@ export const checkAccessWithRefreshFallback = async (req: Request, res: Response
     return next(customError);
   }
 
+  if (!accessToken && !refreshToken)
+    return next(new CustomError(401, 'General', 'No tokens found. Please log in.'));
+
+  if (!accessToken) return renewFromRefreshToken(req, res, next, refreshToken);
+
   // Try to verify access token first
-  if (accessToken) {
-    try {
-      const jwtPayload = jwt.verify(accessToken, process.env.ACCESS_JWT_SECRET as string, { algorithms: [JWT_ALGORITHM] }) as { [key: string]: any };
+  try {
+    const jwtPayload = jwt.verify(accessToken, process.env.ACCESS_JWT_SECRET as string, { algorithms: [JWT_ALGORITHM] }) as { [key: string]: any };
 
-      // Reject the interim MFA-challenge token (see isMfaChallengeToken above).
-      if (isMfaChallengeToken(jwtPayload)) {
-        const customError = new CustomError(401, 'General', 'MFA verification not completed. Please log in again.');
-        return next(customError);
-      }
-
-      const tokenExp = jwtPayload.exp;
-      stripJwtTimingClaims(jwtPayload);
-      (req as any).jwtPayload = jwtPayload as JwtPayload;
-
-      // Validate session_version against the database.
-      const isSessionValid = await validateSessionVersion(jwtPayload.id, jwtPayload.session_version, jwtPayload.sessionId);
-      if (!isSessionValid) {
-        clearAuthCookies(res);
-        const customError = new CustomError(401, 'General', 'Session invalidated. Please log in again.');
-        return next(customError);
-      }
-
-      // Enforce force_password_change server-side
-      const forcePwError = enforceForcePasswordChange(req, jwtPayload as JwtPayload);
-      if (forcePwError) {
-        return next(forcePwError);
-      }
-
-      // Only renew if close to expiry.
-      try {
-        await tryRenewTokens(req, res, jwtPayload as JwtPayload, tokenExp);
-        return next();
-      } catch (err) {
-        logger.error({ err, userId: jwtPayload.id }, 'Failed to generate renewed access token');
-        const customError = new CustomError(500, 'Raw', "Error generating renewed token", null, err);
-        return next(customError);
-      }
-    } catch (accessErr) {
-      // Access token is invalid or expired, try refresh token
-      if (!(accessErr instanceof TokenExpiredError)) {
-        // errorHandler drops the underlying err for 4xx (see checkAccessJwt).
-        logger.warn({ err: accessErr }, 'Access token verification failed (non-expiry)');
-        const customError = new CustomError(401, 'Raw', 'Invalid access token', null, accessErr);
-        return next(customError);
-      }
-
-      // Access token is expired, try to use refresh token
-      if (!refreshToken) {
-        const customError = new CustomError(401, 'General', 'Refresh token not found. Please log in again.');
-        return next(customError);
-      }
-
-      try {
-        const refreshPayload = jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET as string, { algorithms: [JWT_ALGORITHM] }) as { [key: string]: any };
-
-        stripJwtTimingClaims(refreshPayload);
-        (req as any).jwtPayload = refreshPayload as JwtPayload;
-
-        const rotationError = await rotateRefreshToken(req, res, refreshToken, refreshPayload as JwtPayload);
-        if (rotationError) return next(rotationError);
-        return next();
-      } catch (refreshErr) {
-        // This block also covers the session_version UPDATE on the
-        // reuse-detected path, so log the err: otherwise a database failure
-        // reads in the logs as an ordinary invalid or expired refresh token.
-        logger.warn({ err: refreshErr }, 'Refresh token verification or renewal failed');
-        const customError = new CustomError(401, 'Raw', 'Refresh token expired or invalid. Please log in again.', null, refreshErr);
-        return next(customError);
-      }
+    // Reject the interim MFA-challenge token (see isMfaChallengeToken above).
+    if (isMfaChallengeToken(jwtPayload)) {
+      const customError = new CustomError(401, 'General', 'MFA verification not completed. Please log in again.');
+      return next(customError);
     }
-  } else if (refreshToken) {
-    // No access token but refresh token exists
+
+    const tokenExp = jwtPayload.exp;
+    stripJwtTimingClaims(jwtPayload);
+    (req as any).jwtPayload = jwtPayload as JwtPayload;
+
+    // Validate session_version against the database.
+    const isSessionValid = await validateSessionVersion(jwtPayload.id, jwtPayload.session_version, jwtPayload.sessionId);
+    if (!isSessionValid) {
+      clearAuthCookies(res);
+      const customError = new CustomError(401, 'General', 'Session invalidated. Please log in again.');
+      return next(customError);
+    }
+
+    // Enforce force_password_change server-side
+    const forcePwError = enforceForcePasswordChange(req, jwtPayload as JwtPayload);
+    if (forcePwError) {
+      return next(forcePwError);
+    }
+
+    // Only renew if close to expiry.
+    try {
+      await tryRenewTokens(req, res, jwtPayload as JwtPayload, tokenExp);
+      return next();
+    } catch (err) {
+      logger.error({ err, userId: jwtPayload.id }, 'Failed to generate renewed access token');
+      const customError = new CustomError(500, 'Raw', "Error generating renewed token", null, err);
+      return next(customError);
+    }
+  } catch (accessErr) {
+    // Access token is invalid or expired, try refresh token
+    if (!(accessErr instanceof TokenExpiredError)) {
+      // errorHandler drops the underlying err for 4xx (see checkAccessJwt).
+      logger.warn({ err: accessErr }, 'Access token verification failed (non-expiry)');
+      const customError = new CustomError(401, 'Raw', 'Invalid access token', null, accessErr);
+      return next(customError);
+    }
+
+    // Access token is expired, try to use refresh token
+    if (!refreshToken) {
+      const customError = new CustomError(401, 'General', 'Refresh token not found. Please log in again.');
+      return next(customError);
+    }
+
     try {
       const refreshPayload = jwt.verify(refreshToken, process.env.REFRESH_JWT_SECRET as string, { algorithms: [JWT_ALGORITHM] }) as { [key: string]: any };
 
@@ -516,17 +521,14 @@ export const checkAccessWithRefreshFallback = async (req: Request, res: Response
       const rotationError = await rotateRefreshToken(req, res, refreshToken, refreshPayload as JwtPayload);
       if (rotationError) return next(rotationError);
       return next();
-    } catch (err) {
-      // As above: this block also covers the session_version UPDATE on the
-      // reuse-detected path, so a database failure would otherwise read as an
-      // ordinary invalid or expired refresh token.
-      logger.warn({ err }, 'Refresh token verification or renewal failed');
-      const customError = new CustomError(401, 'Raw', 'Refresh token expired or invalid. Please log in again.', null, err);
+    } catch (refreshErr) {
+      // This block also covers the session_version UPDATE on the
+      // reuse-detected path, so log the err: otherwise a database failure
+      // reads in the logs as an ordinary invalid or expired refresh token.
+      logger.warn({ err: refreshErr }, 'Refresh token verification or renewal failed');
+      const customError = new CustomError(401, 'Raw', 'Refresh token expired or invalid. Please log in again.', null, refreshErr);
       return next(customError);
     }
-  } else {
-    const customError = new CustomError(401, 'General', 'No tokens found. Please log in.');
-    return next(customError);
   }
 };
 

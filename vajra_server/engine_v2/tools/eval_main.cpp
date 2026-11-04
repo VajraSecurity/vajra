@@ -14,13 +14,17 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 
+#include "../../common/ReadRegularFile.h"
 #include "vajra_engine/BuiltinRules.h"
 #include "vajra_engine/Decoder.h"
 #include "vajra_engine/Envelope.h"
 #include "vajra_engine/RuleEngine.h"
 #include "vajra_engine/RulesetLoader.h"
+
+constexpr std::size_t kMaxInputFileBytes = std::size_t{1024} * 1024 * 1024;
 
 int main(int argc, char** argv) {
     vajra_engine::RuleEngine rules;
@@ -39,11 +43,12 @@ int main(int argc, char** argv) {
     std::cerr << "vajra_engine_eval: " << rules.size() << " rule(s) active\n";
 
     std::istream* in = &std::cin;
-    std::ifstream file;
+    std::istringstream file;
     if (argc > 1) {
-        file.open(argv[1]);
-        if (!file.is_open()) {
-            std::cerr << "vajra_engine_eval: cannot open " << argv[1] << "\n";
+        try {
+            file.str(vajra_common::read_regular_file(argv[1], kMaxInputFileBytes));
+        } catch (const std::runtime_error& e) {
+            std::cerr << "vajra_engine_eval: cannot open " << argv[1] << ": " << e.what() << "\n";
             return 1;
         }
         in = &file;

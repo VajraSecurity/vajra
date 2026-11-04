@@ -51,15 +51,12 @@ const emailOrIpKeyGenerator = (req: Request) => {
 // mfaToken (same verification the controller itself does) to key by the
 // account it identifies instead.
 const mfaTokenOrIpKeyGenerator = (req: Request) => {
-  const rawToken = (req.body as any)?.mfaToken;
-  if (typeof rawToken === 'string' && rawToken) {
-    try {
-      const decoded = verifyMfaToken(rawToken);
-      if (decoded?.id != null) return `uid:${decoded.id}`;
-    } catch {
-      // Invalid/expired mfaToken — fall through to IP; the controller will
-      // reject the request on its own merits.
-    }
+  try {
+    const decoded = verifyMfaToken((req.body as any)?.mfaToken);
+    if (decoded?.id != null) return `uid:${decoded.id}`;
+  } catch {
+    // Missing, invalid or expired mfaToken — fall through to IP; the controller
+    // will reject the request on its own merits.
   }
   return ipKeyGenerator(req.ip ?? '0.0.0.0');
 };

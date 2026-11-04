@@ -35,6 +35,11 @@ async function resolveCurrentRole(userId: number): Promise<string | null> {
   }
 }
 
+function rejectMissingAccessToken(res: Response) {
+  logger.debug('Grafana auth validation rejected: no access token cookie present');
+  return res.status(401).send('Unauthorized');
+}
+
 /**
  * Gatekeeper for the entire /grafana/ reverse-proxy path (nginx auth_request
  * -> /api/auth/validate). A cryptographically valid JWT is not enough here:
@@ -53,10 +58,7 @@ async function resolveCurrentRole(userId: number): Promise<string | null> {
 export const validateGrafana = async (req: Request, res: Response) => {
   try {
     const token = req.cookies?.[ACCESS_TOKEN_COOKIE];
-    if (!token) {
-      logger.debug('Grafana auth validation rejected: no access token cookie present');
-      return res.status(401).send('Unauthorized');
-    }
+    if (!token) return rejectMissingAccessToken(res);
 
     if (await checkTokenBlacklist(token)) {
       logger.warn('Grafana auth validation rejected: access token is blacklisted');

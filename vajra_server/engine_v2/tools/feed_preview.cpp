@@ -38,6 +38,7 @@
 #include <string>
 #include <vector>
 
+#include "../../common/ReadRegularFile.h"
 #include "vajra_engine/ThreatIntelFeed.h"
 
 namespace {
@@ -121,6 +122,10 @@ bool fetch(const std::string& url, const std::vector<std::string>& headers, std:
     return true;
 }
 
+bool has_https_scheme(const std::string& url) {
+    return url.rfind("https://", 0) == 0;
+}
+
 std::string env_or(const char* name, const std::string& fallback) {
     const char* v = std::getenv(name);
     return (v && *v) ? std::string(v) : fallback;
@@ -148,14 +153,12 @@ int main() {
     std::string source_description;
 
     if (!local_file.empty()) {
-        std::ifstream in(local_file, std::ios::binary);
-        if (!in.is_open()) {
-            std::cerr << "vajra_engine_v2_feed_preview: cannot open local file " << local_file << "\n";
+        try {
+            response_body = vajra_common::read_regular_file(local_file);
+        } catch (const std::runtime_error& e) {
+            std::cerr << "vajra_engine_v2_feed_preview: cannot open local file " << local_file << ": " << e.what() << "\n";
             return 1;
         }
-        std::ostringstream buf;
-        buf << in.rdbuf();
-        response_body = buf.str();
         source_description = "local file " + local_file;
     } else {
         std::string url;
@@ -164,7 +167,7 @@ int main() {
             url = kAbuseIpDbBlacklistUrl;
             headers = {"Key: " + api_key, "Accept: application/json"};
         } else {
-            if (url_env.rfind("https://", 0) != 0) {
+            if (!has_https_scheme(url_env)) {
                 std::cerr << "vajra_engine_v2_feed_preview: 'stix' format requires an https:// url "
                              "(got '"
                           << url_env << "')\n";

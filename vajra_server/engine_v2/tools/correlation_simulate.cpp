@@ -51,9 +51,11 @@
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
 #include <vector>
 
+#include "../../common/ReadRegularFile.h"
 #include "vajra_engine/CorrelationEngine.h"
 #include "vajra_engine/Decoder.h"
 #include "vajra_engine/Envelope.h"
@@ -100,6 +102,8 @@ std::string incident_line(const vajra_engine::Incident& inc,
 
 }  // namespace
 
+constexpr std::size_t kMaxInputFileBytes = std::size_t{1024} * 1024 * 1024;
+
 int main(int argc, char** argv) {
     const char* path = std::getenv("VAJRA_ENGINE_RULES");
     if (!path || !*path) {
@@ -141,11 +145,12 @@ int main(int argc, char** argv) {
               << " correlation(s) active\n";
 
     std::istream* in = &std::cin;
-    std::ifstream file;
+    std::istringstream file;
     if (argc > 1) {
-        file.open(argv[1]);
-        if (!file.is_open()) {
-            std::cerr << "vajra_engine_v2_correlation_simulate: cannot open " << argv[1] << "\n";
+        try {
+            file.str(vajra_common::read_regular_file(argv[1], kMaxInputFileBytes));
+        } catch (const std::runtime_error& e) {
+            std::cerr << "vajra_engine_v2_correlation_simulate: cannot open " << argv[1] << ": " << e.what() << "\n";
             return 1;
         }
         in = &file;

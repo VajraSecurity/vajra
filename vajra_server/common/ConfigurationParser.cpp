@@ -1,4 +1,5 @@
 #include "ConfigurationParser.h"
+#include "ReadRegularFile.h"
 #include "../3rdparty/json.hpp"
 
 #include <boost/algorithm/string.hpp>
@@ -901,8 +902,16 @@ bool ConfigurationParser::parse() {
         return false;
     }
 
-    std::ifstream config_file(this->configuration_file);
-    std::string str((std::istreambuf_iterator<char>(config_file)), std::istreambuf_iterator<char>());
+    std::string str;
+    try
+    {
+        str = vajra_common::read_regular_file(this->configuration_file.string());
+    }
+    catch (const std::runtime_error& error)
+    {
+        std::cerr << "Error: could not read configuration file: " << error.what() << std::endl;
+        return false;
+    }
 
     try {
         this->config_data = nlohmann::json::parse(str);
