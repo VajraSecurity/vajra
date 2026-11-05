@@ -110,7 +110,7 @@
   "overrides": {
     "diff": "5.2.2",
     "qs": "^6.15.2",
-    "minimatch": "10.2.5",
+    "minimatch": "11.0.4",
     "glob": {
       ".": "14.0.3",
       "minimatch": "11.0.4"
