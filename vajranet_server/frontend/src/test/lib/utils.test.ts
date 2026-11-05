@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { cn, formatUnixTimestamp, secureUUID } from '@/lib/utils';
+import { cn, formatUnixTimestamp, secureUUID, stripLineBreaks } from '@/lib/utils';
 
 describe('cn', () => {
   it('joins truthy class names', () => {
@@ -45,5 +45,15 @@ describe('formatUnixTimestamp', () => {
   it("returns 'N/A' for empty/falsy input", () => {
     expect(formatUnixTimestamp('')).toBe('N/A');
     expect(formatUnixTimestamp(0)).toBe('N/A');
+  });
+});
+
+describe('stripLineBreaks', () => {
+  it('removes CR and LF so one message stays on one log line', () => {
+    expect(stripLineBreaks('bad token\r\n[LiveWS] forged entry\nmore')).toBe('bad token[LiveWS] forged entrymore');
+  });
+
+  it('leaves other text unchanged', () => {
+    expect(stripLineBreaks('Authentication failed: token expired')).toBe('Authentication failed: token expired');
   });
 });
