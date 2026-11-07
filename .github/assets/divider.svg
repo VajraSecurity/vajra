@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="12" viewBox="0 0 900 12">
+<defs>
+  <linearGradient id="base" x1="0" x2="1"><stop offset="0" stop-color="#8f407f" stop-opacity="0"/><stop offset=".5" stop-color="#8f407f"/><stop offset="1" stop-color="#8f407f" stop-opacity="0"/></linearGradient>
+  <linearGradient id="glow" x1="0" x2="1"><stop offset="0" stop-color="#ffffff" stop-opacity="0"/><stop offset=".5" stop-color="#f7ecf4" stop-opacity=".95"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient>
+</defs>
+<style>
+.g{animation:sweep 4s ease-in-out infinite}
+@keyframes sweep{from{transform:translateX(-160px)}to{transform:translateX(900px)}}
+@media (prefers-reduced-motion: reduce){.g{animation:none;opacity:0}}
+</style>
+<rect x="0" y="5" width="900" height="2" rx="1" fill="url(#base)"/>
+<rect class="g" x="0" y="4" width="160" height="4" rx="2" fill="url(#glow)"/>
+<circle cx="450" cy="6" r="3.5" fill="#8f407f"/>
+</svg>

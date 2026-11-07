@@ -13,4 +13,4 @@ labels: enhancement
 **Component**
 <!-- vajra_server / vajranet_server / linux_agent / windows_agent / deployment -->
 
-<!-- Check FEATURES.md first: features listed as removed will not be added back. -->
+<!-- The remote shell, agent self-update and uninstall tokens were removed from this edition and will not be added back. -->

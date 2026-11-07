@@ -33,7 +33,7 @@ To build the package yourself:
 | `cert.pem` | the certificate authority certificate of your Vajra C++ server (`vajra_server/ssl/myCA.pem`) |
 | `enrollment_secret` | the enrollment secret of your Vajra C++ server (`vajra_server/enrollment_secret.txt`) |
 | `osqueryd` | an osquery daemon binary (not stored in this repository) |
-| `extension.ext` | the Vajra extension binary (not stored in this repository) |
+| `extension.ext` | the Vajra extension binary (included; prebuilt, source not published) |
 
 ## Install and uninstall
 
