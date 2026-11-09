@@ -34,19 +34,22 @@
 </p>
 
 <p align="center">
-  <img src=".github/assets/screenshot-devices.png" alt="The Vajra console Devices page, showing 36 sample Windows and Linux endpoints with their groups, status and security tools" width="100%">
+  <img src=".github/assets/vajra_background.jpeg" alt="Vajra Background Image" width="100%">
 </p>
 
 ## <img src=".github/assets/icons/why.svg" width="28" height="28" alt="" align="top"> Why Vajra
 
-Vajra puts endpoint agents, a detection engine and a web console in one repository that you run
-yourself. Agents collect telemetry with [osquery](https://osquery.io); a C++ engine correlates it
-into alerts; the console covers hunting, compliance, vulnerabilities, patching and device control.
+Built for teams that can't afford blind spots.
 
-- **Compared with osquery on its own**, Vajra adds enrollment, detection rules and a console for the
-  alerts they raise.
-- **Compared with a full SIEM or XDR suite**, it is smaller and endpoint-only: one compose file
-  starts the whole stack on one machine.
+- **Complete asset visibility**: every managed Windows and Linux device accounted for,
+  continuously and automatically.
+- **Continuous vulnerability management**: agent-based checks on every host, plus Nessus, OpenVAS
+  and Burp Suite imports, keep exposure current, not quarterly.
+- **Automated compliance and audit readiness**: evidence collection runs in the background, ready
+  whenever auditors ask.
+- **Detect, investigate and respond**: one console for alerts, investigation and containment. Every
+  action carries a stated risk level and needs your explicit sign-off.
+- **On your own servers**: run Vajra entirely inside your own infrastructure and network boundary.
 
 ## <img src=".github/assets/icons/features.svg" width="28" height="28" alt="" align="top"> Features
 
@@ -62,12 +65,6 @@ into alerts; the console covers hunting, compliance, vulnerabilities, patching a
 - **Network Security** and **Domain Reputation**.
 - **Access**: roles, teams, MFA with recovery codes and an audit trail.
 - **Clean removal**: uninstalling an agent or the server restores what was there before.
-
-### <img src=".github/assets/icons/open.svg" width="22" height="22" alt="" align="top"> What's open and what isn't
-
-The server, detection engine, console, installers and ruleset are MIT licensed and in this
-repository. The agent extensions are prebuilt binaries whose source is not published, and the FIM
-worker and Rule Engine console are not included.
 
 ## <img src=".github/assets/icons/quickstart.svg" width="28" height="28" alt="" align="top"> Quick start
 
@@ -143,10 +140,55 @@ support; see [vajranet.com](https://vajranet.com).
 </details>
 
 <details>
-<summary><b>Is it ready for production?</b></summary>
+<summary><b>How quickly can Vajra be deployed?</b></summary>
 
-Not out of the box. The default setup is for one machine on a trusted network, and the console uses
-plain HTTP. Work through [Production hardening](docs/production.md) first.
+The server comes up with one `docker compose` command, and the first build takes about five
+minutes. You then onboard endpoints in phases: install the agent package on Windows and Linux
+machines one at a time or in batches, and organize them into groups with their own policies. There
+is no disruptive all-at-once cutover.
+
+</details>
+
+<details>
+<summary><b>What detection methods does Vajra use?</b></summary>
+
+A real-time correlation engine tracks process, file, socket, DNS, registry, eBPF and audit
+activity across every host against a bundled ruleset that is partly converted from Sigma, with
+alerts mapped to MITRE ATT&CK. For investigating emerging attacks, you can run live osquery SQL
+across all your hosts.
+
+</details>
+
+<details>
+<summary><b>Can Vajra isolate compromised endpoints?</b></summary>
+
+Yes. From the console, the AI assistant can propose isolating an endpoint or blocking a
+suspicious port or IP. Every proposed action shows its risk level and waits for a human sign-off
+before it runs, so nothing acts without your approval.
+
+</details>
+
+<details>
+<summary><b>How does Vajra enforce hardware and network controls?</b></summary>
+
+Device control blocks unauthorized USB and Bluetooth peripherals, and IP and port policies limit
+network exposure. Policies apply per device or per group.
+
+</details>
+
+<details>
+<summary><b>Which compliance frameworks does Vajra support?</b></summary>
+
+CERT-In directives, the SEBI Cybersecurity and Cyber Resilience Framework (CSCRF) and IRDAI
+guidelines. Vajra collects the evidence automatically and produces PDF reports for auditors.
+
+</details>
+
+<details>
+<summary><b>What context do analysts get during an incident?</b></summary>
+
+Each alert includes host details, the process chain, the rule it matched and the alert's history,
+so analysts can triage and respond without switching tools.
 
 </details>
 
