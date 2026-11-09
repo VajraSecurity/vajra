@@ -1,147 +1,235 @@
-# Vajra
+<h1 align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/logo-dark.svg">
+    <img src=".github/assets/logo-light.svg" alt="Vajra" width="220">
+  </picture>
+</h1>
 
-Vajra is an open-source endpoint security platform: agents for Linux and Windows collect
-telemetry with osquery, a C++ server ingests it and runs a detection engine, and a web console
-shows hosts, alerts, compliance, vulnerabilities and file integrity.
+<p align="center">
+  <b>The open-source endpoint security platform</b> for Linux and Windows, on your own servers.
+</p>
 
-| Folder | What it is |
-|---|---|
-| `vajranet_server/` | Web console (React) and API (Node.js) |
-| `vajra_server/` | C++ server that agents enroll with, and the detection engine |
-| `linux_agent/` | Linux agent |
-| `windows_agent/` | Windows agent |
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/tagline-dark.svg">
+    <img src=".github/assets/tagline-light.svg" alt="Detect threats. Prove compliance. Patch vulnerabilities. Control devices." width="600">
+  </picture>
+</p>
 
-## Two ways to run it
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-8F407F?logo=opensourceinitiative&logoColor=white" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/status-beta-8F407F" alt="Status: beta">
+  <a href="https://github.com/VajraSecurity/vajra/actions/workflows/server-ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/VajraSecurity/vajra/server-ci.yml?branch=main&label=server%20CI&logo=githubactions&logoColor=white" alt="Server CI"></a>
+  <a href="https://github.com/VajraSecurity/vajra/actions/workflows/console-ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/VajraSecurity/vajra/console-ci.yml?branch=main&label=console%20CI&logo=githubactions&logoColor=white" alt="Console CI"></a>
+  <img src="https://img.shields.io/badge/Linux-agent-042277?logo=linux&logoColor=white" alt="Linux agent">
+  <img src="https://img.shields.io/badge/Windows-7%E2%80%9311-042277?logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDBoMTEuNHYxMS40SDB6TTEyLjYgMEgyNHYxMS40SDEyLjZ6TTAgMTIuNmgxMS40VjI0SDB6TTEyLjYgMTIuNkgyNFYyNEgxMi42eiIvPjwvc3ZnPg==" alt="Windows agent">
+</p>
 
-Both give you the same result: the C++ server and detection engine, the web console and API, and
-Linux and Windows agent packages that already point at this machine (or at the address you give).
-Everything is plain HTTP on one machine; production hardening is up to you.
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="docs/install.md">Install guide</a> ·
+  <a href="docs/agents.md">Agents</a> ·
+  <a href="docs/production.md">Production</a> ·
+  <a href="https://vajranet.com">Website</a>
+</p>
 
-| | Docker | Script (no Docker) |
-|---|---|---|
-| Needs | Docker with the Compose plugin | Ubuntu/Debian with sudo |
-| Start | `./docker/init-env.sh` then `docker compose up -d --build` | `./install.sh` |
-| Web console | `http://ADDRESS:8080` | `http://ADDRESS:8080` |
-| Agent downloads | `http://ADDRESS:8080/downloads/linux_agent.zip` and `.../windows_agent.zip` | `http://ADDRESS:8080/linux_agent.zip` and `.../windows_agent.zip` |
-| Stop / start | `docker compose stop` / `docker compose start` | `./install.sh stop` / `./install.sh start` |
-| Remove everything | `./docker/cleanup.sh` | `./uninstall.sh` |
+<p align="center">
+  <img src=".github/assets/vajra_background.jpeg" alt="Vajra Background Image" width="100%">
+</p>
 
-**Use one option per machine at a time.** Docker and the script install use the same ports (8080 for the console, 4000, 1234), so running both on one machine makes them collide and you may be looking at the other one's console. Remove one (`./docker/cleanup.sh` or `./uninstall.sh`) before using the other.
+## <img src=".github/assets/icons/why.svg" width="28" height="28" alt="" align="top"> Why Vajra
 
-`ADDRESS` is this machine's IP by default. To use another address or a host name, pass it:
-`./docker/init-env.sh my-host.lan` or `./install.sh --host my-host.lan`. Agents on other machines
-need ports 1234 (osquery), 4000 (extension WebSocket) and 8080 (console and downloads) open.
+Built for teams that can't afford blind spots.
 
-### Option 1: Docker
+- **Complete asset visibility**: every managed Windows and Linux device accounted for,
+  continuously and automatically.
+- **Continuous vulnerability management**: agent-based checks on every host, plus Nessus, OpenVAS
+  and Burp Suite imports, keep exposure current, not quarterly.
+- **Automated compliance and audit readiness**: evidence collection runs in the background, ready
+  whenever auditors ask.
+- **Detect, investigate and respond**: one console for alerts, investigation and containment. Every
+  action carries a stated risk level and needs your explicit sign-off.
+- **On your own servers**: run Vajra entirely inside your own infrastructure and network boundary.
+
+## <img src=".github/assets/icons/features.svg" width="28" height="28" alt="" align="top"> Features
+
+- **Threat detection**: correlation over process, file, socket, DNS, registry, eBPF and audit
+  events, with a bundled ruleset partly converted from Sigma.
+- **Alerts and hunting**: triage and assignment, analytics, AI-assisted analysis, and live osquery
+  SQL across every host.
+- **Compliance**: snapshots, history and PDF reports, including the SEBI and IRDAI frameworks.
+- **Vulnerabilities and patching**: host CVEs, Nessus, OpenVAS and Burp Suite imports, Windows patch
+  jobs and signed Linux patch bundles.
+- **Device control**: USB, Bluetooth, port and IP policies per device or group, plus inventory of
+  programs, ports, firewall and hardware.
+- **Network Security** and **Domain Reputation**.
+- **Access**: roles, teams, MFA with recovery codes and an audit trail.
+- **Clean removal**: uninstalling an agent or the server restores what was there before.
+
+## <img src=".github/assets/icons/quickstart.svg" width="28" height="28" alt="" align="top"> Quick start
+
+**Requirements:** Docker with the Compose plugin (or Ubuntu/Debian for the script install), 8 GB RAM
+and about 20 GB of free disk. The first build takes around 5 minutes on an 8-core machine. Your
+endpoints need to reach the server on ports 1234, 4000 and 8080.
 
 ```bash
+git clone https://github.com/VajraSecurity/vajra && cd vajra
 ./docker/init-env.sh              # writes .env with random secrets and this machine's IP
-docker compose up -d --build      # the first build takes a while (it compiles the C++ server)
-docker compose ps                 # wait until backend and frontend are healthy
-./docker/create-admin.sh          # creates the first admin and prints its one-time password
+docker compose up -d --build      # the first build compiles the C++ server
+./docker/create-admin.sh          # prints the first admin's one-time password
 ```
 
-Open `http://ADDRESS:8080` and sign in. Ports can be changed in `.env` (`WEB_PORT`, `API_PORT`,
-`FLEET_PORT`). If you change `PUBLIC_HOST` later, run `docker compose up -d --build` again so the
-console and the agent packages are rebuilt for the new address.
+Open `http://<your-ip>:8080` and sign in with the password it printed.
 
-### Option 2: Script
+<details>
+<summary><b>Install without Docker</b> (Ubuntu or Debian)</summary>
 
 ```bash
 ./install.sh                      # installs everything with sudo; prints the URLs at the end
-./install.sh --host 10.0.0.5      # same, with an address you choose
+./install.sh --host 10.0.0.5      # the same, with an address you choose
 ```
 
-It installs PostgreSQL, Redis, Kafka, nginx and Node.js, builds and starts the C++ server and
-engine, builds the console, creates the first admin (the one-time password is printed and saved
-in `admin-credentials.txt`) and builds the agent packages. Settings and generated passwords are
-kept in `.install.env`, so running it again is safe. Afterwards use `./install.sh status`, `stop`,
-`start` or `restart`. The individual steps are in `vajranet_server/scripts/setup/`.
+The first admin's one-time password is printed and saved in `admin-credentials.txt`. Use one
+install method per machine: both use the same ports.
 
-### Install an agent
+</details>
 
-Download the package for the machine from the console (sidebar) or with the links above, unzip it,
-then:
+### <img src=".github/assets/icons/endpoint.svg" width="22" height="22" alt="" align="top"> Add an endpoint
 
-- **Linux:** `sudo ./vajra_install.sh -install` inside `linux_agent/`.
-- **Windows:** run `vajra_install.bat` as administrator inside `windows_agent\`.
+Your Vajra server builds both agent packages for you. Download them from **Download Agent** in the
+console sidebar. Each package already contains your server's address, its CA certificate and the enrollment secret.
 
-The package already contains the server address, the CA certificate and the enrollment secret.
-The machine appears in the console within a minute or two; telemetry and alerts follow.
-
-The Linux package also needs the Vajra extension, which is not stored in this repository. Either
-copy your build to `linux_agent/common/extension.ext`, or set `EXTENSION_URL` and `EXTENSION_SHA256`
-in `.env` (Docker) or in the environment of `./install.sh` (script). The packager downloads the
-file, checks the checksum and adds it to `linux_agent.zip`; a file that does not match is not used.
-Then rebuild the packages: `docker compose up -d --force-recreate agents`, or
-`vajranet_server/scripts/service.sh setup 10`. `osqueryd` is downloaded the same way automatically.
-
-## Start, stop and remove
-
-### Docker
-
-| Task | Command |
+| Platform | Install |
 |---|---|
-| Start (first time, or after a change) | `docker compose up -d --build` |
-| Start again after a stop | `docker compose start` |
-| Stop, keep all data | `docker compose stop` |
-| Status | `docker compose ps` |
-| Follow logs | `docker compose logs -f backend vajra-server vajra-engine` |
-| What the agent packaging did | `docker compose logs agents` |
-| Stop and delete the containers, keep the data | `docker compose down` |
-| **Remove everything** (containers, all data, built images, `.env`) | `./docker/cleanup.sh` |
+| Linux | Unzip, then `sudo ./vajra_install.sh -install` inside `linux_agent/` |
+| Windows 7–11, 64-bit | Unzip, then run `vajra_install.bat` as administrator inside `windows_agent\` |
 
-`./docker/cleanup.sh` asks before it deletes. It removes the public images (postgres, redis,
-kafka, alpine) only if they were not on your machine before `./docker/init-env.sh` ran; images you
-already had stay. `--yes` skips the question and `--keep-env` keeps `.env`.
+The host appears in the console within a minute or two.
 
-### Script
+## <img src=".github/assets/icons/docs.svg" width="28" height="28" alt="" align="top"> Documentation
 
-| Task | Command |
+| Guide | What it covers |
 |---|---|
-| Start / stop / restart all services | `./install.sh start` / `stop` / `restart` |
-| Status | `./install.sh status` |
-| Logs | `journalctl -u vajra-backend -u vajra_server -u vajra_engine_v2 -f` |
-| **Remove everything** | `./uninstall.sh` |
+| [Install](docs/install.md) | Docker and script installs, ports, start, stop and logs |
+| [Agents](docs/agents.md) | Packages, install options, removing an agent |
+| [Production](docs/production.md) | HTTPS, agent mTLS, network exposure, secrets and backups |
+| [Uninstall](docs/uninstall.md) | Removing the server and how packages are handled |
+| [Troubleshooting](docs/troubleshooting.md) | Console problems, hosts that don't appear, Windows installer errors |
 
-`./uninstall.sh` stops and removes the Vajra services, drops the `vajra_db` and `fleet` databases
-and the `vajra` database role, and deletes the nginx site, web files, build output, certificates,
-generated keys, `.install.env` and `admin-credentials.txt`.
+<details>
+<summary><b>Repository layout</b></summary>
 
-Packages are treated carefully. Before it changes anything `./install.sh` saves a list of the
-packages already on the machine (`.install-snapshot/`). `./uninstall.sh` can remove only packages from
-a fixed list of what Vajra installs (PostgreSQL, Redis, nginx, Node.js, the build tools and libraries,
-Java, Grafana), and only those that were not on the machine before. It never removes anything else, so
-desktop, login and system packages are safe, and common tools such as python3, curl, git and openssl
-are always kept. If removing a package would also remove something outside that list, it removes
-nothing and says so. Packages that were already installed stay, and only Vajra's data is removed from
-them. It asks before purging (`--yes` skips the question, `--keep-packages` leaves all packages alone).
+| Folder | What it is |
+|---|---|
+| [`vajranet_server/`](vajranet_server) | Web console (React) and API (Node.js) |
+| [`vajra_server/`](vajra_server) | C++ server that agents enroll with, and the detection engine |
+| [`linux_agent/`](linux_agent) | Linux agent installer and packaging |
+| [`windows_agent/`](windows_agent) | Windows agent installer and packaging |
+| [`docker/`](docker) | Helper scripts for the Docker setup |
 
-Neither cleanup removes agents from other machines. See below.
+</details>
 
-## Remove an agent from a machine
+## <img src=".github/assets/icons/faq.svg" width="28" height="28" alt="" align="top"> FAQ
 
-An agent is removed on the machine it runs on. Use the `linux_agent` or `windows_agent` folder from
-the package you installed it with (or download the package again).
+<details>
+<summary><b>Is Vajra free?</b></summary>
 
-**Linux** (no token): in the `linux_agent` folder run `sudo ./vajra_install.sh -uninstall`.
+Yes. This edition is MIT licensed. Vajra Enterprise adds hardened security and professional
+support; see [vajranet.com](https://vajranet.com).
 
-**Windows** (no token): right-click `vajra_uninstall.bat` in the `windows_agent` folder and choose
-Run as administrator.
+</details>
 
-Both stop the Vajra service and delete the files and configuration it installed. If osquery was
-already on the machine before Vajra, it is put back as it was (its binary and its configuration);
-if Vajra installed osquery, osquery is removed too. A Linux machine's `/var/osquery` database is
-left alone when osquery was already there. After removal, delete the host from the console if you
-no longer want it listed.
+<details>
+<summary><b>How quickly can Vajra be deployed?</b></summary>
 
-## What is not included
+The server comes up with one `docker compose` command, and the first build takes about five
+minutes. You then onboard endpoints in phases: install the agent package on Windows and Linux
+machines one at a time or in batches, and organize them into groups with their own policies. There
+is no disruptive all-at-once cutover.
 
-This is a local, plain-HTTP setup. Production hardening (public domain, TLS certificates,
-production mode) is up to you. The remote shell, agent self-update and uninstall tokens are not
-part of this edition. `FEATURES.md` lists what is offered and what was removed. See each folder's
-`README.md` for known gaps.
+</details>
 
-## License
+<details>
+<summary><b>What detection methods does Vajra use?</b></summary>
 
-MIT, see `LICENSE` in each folder. Third-party components are listed in each `THIRD_PARTY.md`.
+A real-time correlation engine tracks process, file, socket, DNS, registry, eBPF and audit
+activity across every host against a bundled ruleset that is partly converted from Sigma, with
+alerts mapped to MITRE ATT&CK. For investigating emerging attacks, you can run live osquery SQL
+across all your hosts.
+
+</details>
+
+<details>
+<summary><b>Can Vajra isolate compromised endpoints?</b></summary>
+
+Yes. From the console, the AI assistant can propose isolating an endpoint or blocking a
+suspicious port or IP. Every proposed action shows its risk level and waits for a human sign-off
+before it runs, so nothing acts without your approval.
+
+</details>
+
+<details>
+<summary><b>How does Vajra enforce hardware and network controls?</b></summary>
+
+Device control blocks unauthorized USB and Bluetooth peripherals, and IP and port policies limit
+network exposure. Policies apply per device or per group.
+
+</details>
+
+<details>
+<summary><b>Which compliance frameworks does Vajra support?</b></summary>
+
+CERT-In directives, the SEBI Cybersecurity and Cyber Resilience Framework (CSCRF) and IRDAI
+guidelines. Vajra collects the evidence automatically and produces PDF reports for auditors.
+
+</details>
+
+<details>
+<summary><b>What context do analysts get during an incident?</b></summary>
+
+Each alert includes host details, the process chain, the rule it matched and the alert's history,
+so analysts can triage and respond without switching tools.
+
+</details>
+
+<details>
+<summary><b>How do I remove it?</b></summary>
+
+Run `./docker/cleanup.sh` (Docker) or `./uninstall.sh` (script). Agents are removed on each machine
+with the uninstaller in their package. See [Uninstall](docs/uninstall.md) and
+[Remove an agent](docs/agents.md#remove-an-agent).
+
+</details>
+
+## <img src=".github/assets/icons/security.svg" width="28" height="28" alt="" align="top"> Security
+
+Please don't open public issues for security problems. Report them privately as described in
+[SECURITY.md](SECURITY.md).
+
+> [!CAUTION]
+> This open-source edition is provided as is, without warranty or support, and Vajra Security is not
+> responsible for any damage or breach that comes from using it. For hardened security and support,
+> use **Vajra Enterprise**: [vajranet.com](https://vajranet.com).
+
+## <img src=".github/assets/icons/contributing.svg" width="28" height="28" alt="" align="top"> Contributing
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md), then pick an
+[open issue](https://github.com/VajraSecurity/vajra/issues). Bug reports and feature requests are
+welcome.
+
+## <img src=".github/assets/icons/license.svg" width="28" height="28" alt="" align="top"> License
+
+MIT, see [LICENSE](LICENSE). Third-party components are listed in each folder's `THIRD_PARTY.md`.
+
+<p align="center"><img src=".github/assets/divider.svg" alt="" width="100%"></p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset=".github/assets/logo-dark.svg">
+    <img src=".github/assets/logo-light.svg" alt="Vajra" width="70">
+  </picture>
+  <br>
+  <sub>Built by <a href="https://vajranet.com">Vajra Security</a> ·
+  <a href="SECURITY.md">Security</a> ·
+  <a href="https://github.com/VajraSecurity/vajra/issues">Issues</a></sub>
+</p>
