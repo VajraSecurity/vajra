@@ -74,3 +74,6 @@ vajranet_server/backend/CHANGELOG.md
 vajranet_server/backend/src/controllers/network/NETWORK_SCANNING.md
 vajranet_server/backend/src/controllers/network/SCAN_PIPELINE.md
 vajranet_server/backend/src/controllers/nodes/query_analysis.md
+
+# ---- Internal docs (kept local, not published) ----
+/FEATURES.md

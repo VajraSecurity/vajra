@@ -16,8 +16,8 @@ must not be filed as public issues.** See [SECURITY.md](SECURITY.md).
 | `windows_agent/` | Windows installer and agent configuration (64-bit) | Batch |
 | `docker/`, `docker-compose.yml`, `install.sh`, `uninstall.sh` | Deployment | Docker Compose |
 
-`FEATURES.md` lists what the open-source edition includes and what was removed. Features listed as
-removed will not be accepted back as contributions.
+The remote shell, agent self-update and uninstall tokens were removed from the open-source edition
+and will not be accepted back as contributions.
 
 ## Reporting a bug
 
